@@ -4,6 +4,7 @@ public class Gameloop {
 	
 	private Player[] players ;
 	private Board board ; //what shall be passed to the graphics, no more
+	private  Player currentPlayer ;
 	
 	public Player[] getPlayers() {
 		return players;

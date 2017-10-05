@@ -32,7 +32,7 @@ public class Kangaroo {
 		this.team = team;
 	}
 	
-	private int getLapCounter(){
+	public int getLapCounter(){
 		return lapCounter ;
 	}
 	

@@ -2,8 +2,9 @@ package Game;
 
 public class Board {
 	
-	private Square[][] boardArray = new Square[14][16] ;
+	private Square[][] boardArray ;
 	private Kangaroo referee ;
+	private Kangaroo[] kangaroos ;
 
 	public Square[][] getBoardArray() {
 		return boardArray ;
@@ -20,5 +21,14 @@ public class Board {
 	public void setReferee(Kangaroo referee) {
 		this.referee = referee;
 	}
+
+	public Kangaroo[] getKangaroos() {
+		return kangaroos;
+	}
+
+	public void setKangaroos(Kangaroo[] kangaroos) {
+		this.kangaroos = kangaroos;
+	}
+	
 
 }

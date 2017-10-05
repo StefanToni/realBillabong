@@ -2,15 +2,30 @@ package Game;
 
 public class Player {
 	
-	Kangaroo[] kangaroos = new Kangaroo[5] ;
+	Kangaroo[] kangaroos ;
  	
 	private boolean haveIWon(){
-		if(){
+		
+		int cntr = 0 ;
+		
+		for(int i = 0; i < 5; i++){
+			if(kangaroos[i].getLapCounter() >= 3){
+				cntr++ ;
+			}
+		}
+		if(cntr == 5){
 			return true ;
 		}
 		else{
 			return false ;
 		}
+	}
+	
+	public void performMove(Kangaroo k, Square o, Square d){
+		
+		k.setPosition(d) ;
+		o.empty() ;
+		d.fill(k) ;
 	}
 	
 	private void placePiece(){
@@ -21,7 +36,7 @@ public class Player {
 		haveIWon() ;
 		selectPiece() ;
 		selectMove() ;
-		performMove() ;
+		performMove(  ) ;
 		
 		
 	}

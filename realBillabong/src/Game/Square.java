@@ -7,7 +7,7 @@ public class Square {
 	private int xLoc ;
 	private int yLoc ;
 	
-	private boolean isOccupied(){
+	public boolean isOccupied(){
 		if(getIsHere() == null){
 			return false ;
 		}
@@ -16,7 +16,7 @@ public class Square {
 		}
 	}
 	
-	private void setIsHere(Kangaroo k){
+	public void setIsHere(Kangaroo k){
 		isHere = k ;
 	}
 	
@@ -24,12 +24,37 @@ public class Square {
 		return isHere ;
 	}
 	
-	private void fill(Kangaroo k){
+	public void fill(Kangaroo k){
 		isHere = k ;
 	}
 	
-	private void empty(){
+	public void empty(){
 		isHere = null ;
 	}
+
+	public int[][] getLocation() {
+		return location;
+	}
+
+	public void setLocation(int[][] location) {
+		this.location = location;
+	}
+
+	public int getxLoc() {
+		return xLoc;
+	}
+
+	public void setxLoc(int xLoc) {
+		this.xLoc = xLoc;
+	}
+
+	public int getyLoc() {
+		return yLoc;
+	}
+
+	public void setyLoc(int yLoc) {
+		this.yLoc = yLoc;
+	}
+	
 
 }
