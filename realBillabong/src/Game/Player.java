@@ -1,15 +1,26 @@
 package Game;
 
+import java.util.ArrayList;
+
 public class Player {
 	
-	Kangaroo[] kangaroos ;
+	ArrayList<Kangaroo> kangaroos ;
+	int color ;
+	
+	public Player(int c, ArrayList<Kangaroo> roos){
+		 kangaroos = new ArrayList<Kangaroo>() ;
+		 kangaroos = roos ;
+		 color = c ;
+		
+		
+	}
  	
-	private boolean haveIWon(){
+	public boolean haveIWon(){
 		
 		int cntr = 0 ;
 		
 		for(int i = 0; i < 5; i++){
-			if(kangaroos[i].getLapCounter() >= 3){
+			if(kangaroos.get(i).getLapCounter() >= 3){
 				cntr++ ;
 			}
 		}
@@ -28,18 +39,20 @@ public class Player {
 		d.fill(k) ;
 	}
 	
-	private void placePiece(){
+	public void placePiece(){
 		
 	}
 	
-	private void movePiece(){
+	public void movePiece(){
 		haveIWon() ;
 		selectPiece() ;
 		selectMove() ;
-		performMove(  ) ;
+		performMove() ;
 		
 		
 	}
+	
+	
 	
 	
 

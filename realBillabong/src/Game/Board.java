@@ -178,16 +178,17 @@ public class Board extends Applet implements ActionListener
 	} 
 
 
-	
-	private Square[][] boardArray ;
+	private int[][] boardArray ;
 	private Kangaroo referee ;
 	private Kangaroo[] kangaroos ;
 
-	public Square[][] getBoardArray() {
+
+	public int[][] getBoardArray() {
+
 		return boardArray ;
 	}
 
-	public void setBoardArray(Square[][] newBoard) {
+	public void setBoardArray(int[][] newBoard) {
 		boardArray = newBoard ;
 	}
 
