@@ -3,9 +3,13 @@ package Game;
 public class Square {
 	
 	private Kangaroo isHere ;
-	private int[][] location ;
 	private int xLoc ;
 	private int yLoc ;
+	
+	public Square(int x, int y){
+		xLoc = x ;
+		yLoc = y ;
+	}
 	
 	public boolean isOccupied(){
 		if(getIsHere() == null){
@@ -32,13 +36,6 @@ public class Square {
 		isHere = null ;
 	}
 
-	public int[][] getLocation() {
-		return location;
-	}
-
-	public void setLocation(int[][] location) {
-		this.location = location;
-	}
 
 	public int getxLoc() {
 		return xLoc;

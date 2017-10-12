@@ -7,6 +7,10 @@ public class Kangaroo {
 	private Square prevPosition ;
 	private int team ;
 	
+	public Kangaroo(int t){
+		team = t ;
+	}
+	
 	
 	public Square getPosition() {
 		return position;

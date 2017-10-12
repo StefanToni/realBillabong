@@ -140,7 +140,17 @@ public class Board extends Applet implements ActionListener
 		}
 	
 	
+<<<<<<< HEAD
+	
+	
+	private Square[][] boardArray ;
+	private Kangaroo referee ;
+	private Kangaroo[] kangaroos ;
+
+	public Square[][] getBoardArray() {
+=======
 	public int[][] getBoardArray() {
+>>>>>>> branch 'master' of https://github.com/StefanToni/realBillabong.git
 		return boardArray ;
 	}
 
