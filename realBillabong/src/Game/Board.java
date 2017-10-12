@@ -1,7 +1,6 @@
 package Game;
 
 import java.applet.Applet;
-import java.awt.event.*;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
@@ -17,22 +16,13 @@ import java.awt.event.WindowEvent;
 
 public class Board extends Applet implements ActionListener 
 { 
-	Graphics g;
-	int i, j, x, y, player = 0;
-	DrawGraphics painter = new DrawGraphics(g);
-	private int[][] boardArray ;
-	private Kangaroo referee ;
-	private Kangaroo[] kangaroos ;
-	public Board() {
-		boardArray = new int[14][16];
-	}
-	
+	int i, j, x, y, chk=0; 
+	int [][] a = new int[14][16]; 
+
 	Frame f1; 
 	Button b1 = new Button("Restart"); 
 	Button b2 = new Button("End"); 
-	
-	//This one either restarts the game or ends it, depends on button user clicked 
-	//for now it is not used since the game cannot be finished yet
+
 	public void actionPerformed(ActionEvent e) 
 	{ 
 		if (e.getSource()==b1) 
@@ -42,7 +32,7 @@ public class Board extends Applet implements ActionListener
 			{ 
 				for (int j=0;j<16;j++) 
 				{ 
-					boardArray[i][j]=0; 
+					a[i][j]=0; 
 					repaint(); 
 					f1.setVisible(false); 
 				} 
@@ -53,8 +43,7 @@ public class Board extends Applet implements ActionListener
 			System.exit(0);
 		} 
 	} 
-	
-	//basically creating windows in applet
+
 	public void init() 
 	{ 
 
@@ -76,7 +65,6 @@ public class Board extends Applet implements ActionListener
 				System.exit(0); 
 			} 
 		}); 
-		//Mouse Listener gets the pressed position and draws a circle depending on player doing it
 		addMouseListener(new MouseAdapter() 
 		{ 
 			public void mousePressed(MouseEvent e) 
@@ -91,17 +79,17 @@ public class Board extends Applet implements ActionListener
 
 						if((51+(20*j)<=x) && (69+(20*j)>=x) && 	(51+(20*i)<=y) && (69+(20*i)>=y) )  
 						{ 
-							if(boardArray[i][j]==0) 
+							if(a[i][j]==0) 
 							{ 
-								if(player==0 && check1()) 
+								if(chk==0 && check1()) 
 								{ 
-									boardArray[i][j]=1; 
-									player=1;
+									a[i][j]=1; 
+									chk=1;
 								} 
-								else if(player==1 && check1()) 
+								else if(chk==1 && check1()) 
 								{ 
-									boardArray[i][j]=2; 
-									player=0; 
+									a[i][j]=2; 
+									chk=0; 
 
 									
 								} 
@@ -114,37 +102,85 @@ public class Board extends Applet implements ActionListener
 		}); 
 	} 
 	
-	//check1 looks at how many kangaroos we have on a board
-		//stops creating new ones when there are 5 of them on a board
-		public boolean check1() {
-			
-			int white = 0;
-			int black = 0;
-			
-			for(int m=0;m<14;m++) 
+	public boolean check1() {
+		
+		int white = 0;
+		int black = 0;
+		
+		for(int m=0;m<14;m++) 
+		{ 
+			for(int n=0;n<16;n++) 
 			{ 
-				for(int n=0;n<16;n++) 
-				{ 
-					if (boardArray[m][n] == 1) {
-						white++;
-					}
-					if (boardArray[m][n] == 2) {
-						black++;
-					}
+				if (a[m][n] == 1) {
+					white++;
+				}
+				if (a[m][n] == 2) {
+					black++;
 				}
 			}
-			if (black > 4 && white > 4) {
-				return false;
-			}
-			return true;
 		}
+		if (black > 4 && white > 4) {
+			return false;
+		}
+		return true;
+	}
+
 	
+
+
+
+	public void paint(Graphics g) 
+	{ 
+		g.setColor(Color.yellow); 
+		g.fill3DRect(40,40,340,300,true); 
+		g.setColor(Color.BLUE);
+		g.fill3DRect(170, 170, 80, 40, true);
+		g.setColor(Color.blue);
+		g.fill3DRect(210, 200, 5, 130, true);
+		
+
+		for (int i=0;i<15;i++) 
+		{ 
+			g.setColor(Color.black); 
+			g.drawLine(50,50+20*i,370,50+20*i); 
+		} 
+		for (int j=0;j<17;j++) 
+		{ 
+			g.setColor(Color.black); 
+			g.drawLine(50+20*j,50,50+20*j,330); 
+		}  
+
+		for(int m=0;m<14;m++) 
+		{ 
+			for(int n=0;n<16;n++) 
+			{ 
+				if(a[m][n]==1) 
+				{ 
+					g.setColor(Color.black); 
+					g.drawOval((50+(20*n)),(50+(20*m)),20,20); 
+					g.setColor(Color.white); 
+					g.fillOval((50+(20*n)),(50+(20*m)),20,20); 
+				} 
+				if(a[m][n]==2)
+				{ 
+					g.setColor(Color.black); 
+					g.fillOval((50+(20*n)),(50+(20*m)),20,20); 
+				} 
+			} 
+		} 
+	} 
+
+
 	
-	public int[][] getBoardArray() {
+	private Square[][] boardArray ;
+	private Kangaroo referee ;
+	private Kangaroo[] kangaroos ;
+
+	public Square[][] getBoardArray() {
 		return boardArray ;
 	}
 
-	public void setBoardArray(int[][] newBoard) {
+	public void setBoardArray(Square[][] newBoard) {
 		boardArray = newBoard ;
 	}
 
@@ -156,7 +192,13 @@ public class Board extends Applet implements ActionListener
 		this.referee = referee;
 	}
 
+	public Kangaroo[] getKangaroos() {
+		return kangaroos;
+	}
 
+	public void setKangaroos(Kangaroo[] kangaroos) {
+		this.kangaroos = kangaroos;
+	}
 	
 
 }
