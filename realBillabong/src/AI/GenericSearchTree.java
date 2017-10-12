@@ -1,6 +1,7 @@
 package AI;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GenericSearchTree<GameState extends Comparable<? super GameState>> 
 {
@@ -158,5 +159,11 @@ public class GenericSearchTree<GameState extends Comparable<? super GameState>>
 		}
 		// Return the modified search tree.
 		return start;
+	}
+	
+	// This method returns the tree to an empty state.
+	public void clear()
+	{
+		root = null;
 	}
 }
