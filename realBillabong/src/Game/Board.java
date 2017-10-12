@@ -22,7 +22,9 @@ public class Board extends Applet implements ActionListener
 	Frame f1; 
 	Button b1 = new Button("Restart"); 
 	Button b2 = new Button("End"); 
-
+	
+	//Creating a new board or closing the game, depending on the button player clicked
+	//right now not used, since we cannot finish the game
 	public void actionPerformed(ActionEvent e) 
 	{ 
 		if (e.getSource()==b1) 
@@ -43,7 +45,8 @@ public class Board extends Applet implements ActionListener
 			System.exit(0);
 		} 
 	} 
-
+	
+	//init is like a main method for applets, initializes the board in a frame and adds the listeners
 	public void init() 
 	{ 
 
@@ -65,6 +68,7 @@ public class Board extends Applet implements ActionListener
 				System.exit(0); 
 			} 
 		}); 
+		//mouse listeners gets x and y and creates kangaroos depending on a player
 		addMouseListener(new MouseAdapter() 
 		{ 
 			public void mousePressed(MouseEvent e) 
@@ -102,6 +106,8 @@ public class Board extends Applet implements ActionListener
 		}); 
 	} 
 	
+	//check1 method looks at how many kangaroos are on the board, if there are 5 of them
+	//for each player then, then he cannot add more
 	public boolean check1() {
 		
 		int white = 0;
@@ -128,7 +134,8 @@ public class Board extends Applet implements ActionListener
 	
 
 
-
+	//paints the board and kangaroos on it, repaint method on severall classes, calls the paint method again
+	//with the updates
 	public void paint(Graphics g) 
 	{ 
 		g.setColor(Color.yellow); 
