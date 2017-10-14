@@ -14,37 +14,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class Board extends Applet implements ActionListener 
+public class Board implements ActionListener 
 { 
 	int i, j, x, y, chk=0; 
-	int [][] a = new int[14][16]; 
-
-	Frame f1; 
-	Button b1 = new Button("Restart"); 
-	Button b2 = new Button("End"); 
-	
-	//Creating a new board or closing the game, depending on the button player clicked
-	//right now not used, since we cannot finish the game
-	public void actionPerformed(ActionEvent e) 
-	{ 
-		if (e.getSource()==b1) 
-		{ 
-
-			for (int i=0;i<14;i++ ) 
-			{ 
-				for (int j=0;j<16;j++) 
-				{ 
-					a[i][j]=0; 
-					repaint(); 
-					f1.setVisible(false); 
-				} 
-			} 
-		} 
-		else if (e.getSource()==b2) 
-		{ 
-			System.exit(0);
-		} 
-	} 
+	private Square[][] board ; 
+	private Kangaroo referee ;
+	private Kangaroo[] kangaroos ;
 	
 	//init is like a main method for applets, initializes the board in a frame and adds the listeners
 	public void init() 
@@ -131,65 +106,14 @@ public class Board extends Applet implements ActionListener
 		return true;
 	}
 
-	
 
+	public Square[][] getBoardArray() {
 
-	//paints the board and kangaroos on it, repaint method on severall classes, calls the paint method again
-	//with the updates
-	public void paint(Graphics g) 
-	{ 
-		g.setColor(Color.yellow); 
-		g.fill3DRect(40,40,340,300,true); 
-		g.setColor(Color.BLUE);
-		g.fill3DRect(170, 170, 80, 40, true);
-		g.setColor(Color.blue);
-		g.fill3DRect(210, 200, 5, 130, true);
-		
-
-		for (int i=0;i<15;i++) 
-		{ 
-			g.setColor(Color.black); 
-			g.drawLine(50,50+20*i,370,50+20*i); 
-		} 
-		for (int j=0;j<17;j++) 
-		{ 
-			g.setColor(Color.black); 
-			g.drawLine(50+20*j,50,50+20*j,330); 
-		}  
-
-		for(int m=0;m<14;m++) 
-		{ 
-			for(int n=0;n<16;n++) 
-			{ 
-				if(a[m][n]==1) 
-				{ 
-					g.setColor(Color.black); 
-					g.drawOval((50+(20*n)),(50+(20*m)),20,20); 
-					g.setColor(Color.white); 
-					g.fillOval((50+(20*n)),(50+(20*m)),20,20); 
-				} 
-				if(a[m][n]==2)
-				{ 
-					g.setColor(Color.black); 
-					g.fillOval((50+(20*n)),(50+(20*m)),20,20); 
-				} 
-			} 
-		} 
-	} 
-
-
-	private int[][] boardArray ;
-	private Kangaroo referee ;
-	private Kangaroo[] kangaroos ;
-
-
-	public int[][] getBoardArray() {
-
-		return boardArray ;
+		return board ;
 	}
 
-	public void setBoardArray(int[][] newBoard) {
-		boardArray = newBoard ;
+	public void setBoardArray(Square[][] newBoard) {
+		board = newBoard ;
 	}
 
 	public Kangaroo getReferee() {

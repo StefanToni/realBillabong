@@ -24,7 +24,7 @@ public class Square {
 		isHere = k ;
 	}
 	
-	private Kangaroo getIsHere(){
+	public Kangaroo getIsHere(){
 		return isHere ;
 	}
 	
