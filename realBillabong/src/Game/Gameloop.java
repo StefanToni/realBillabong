@@ -6,14 +6,39 @@ import realBillabong.Main;
 
 public class Gameloop {
 	
-	private ArrayList<Player> players = new ArrayList<Player>() ;
+	private ArrayList<Player> players ;
 	private Board board ; //what shall be passed to the graphics, no more
 	private  Player currentPlayer ;
 	
 	public Gameloop(int p, int a){
-		board = Main.getState().getBoard() ;
+		board = new  Board() ;
+		players = new ArrayList<Player>() ;
+		for(int i = 0; i < p ; i++){
+			HumanPlayer hPlayer = new HumanPlayer() ;
+			players.add(hPlayer) ;
+		}
+		for(int i = 0; i < a ; i++){
+			AIPlayer aiPlayer = new AIPlayer() ;
+			players.add(aiPlayer) ;
+		}
 	}
 	
+	public Board getBoard() {
+		return board;
+	}
+
+	public void setBoard(Board board) {
+		this.board = board;
+	}
+
+	public Player getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+	public void setCurrentPlayer(Player currentPlayer) {
+		this.currentPlayer = currentPlayer;
+	}
+
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}

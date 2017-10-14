@@ -9,6 +9,10 @@ public class HumanPlayer extends Player {
 		// TODO Auto-generated constructor stub
 	}
 
+	public HumanPlayer() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void makeMove(){
 		
 	}
