@@ -35,5 +35,9 @@ public class Main {
 		
 		currentState = newState ;
 	}
+	
+	public static GameState getState(){
+		return currentState ;
+	}
 
 }
