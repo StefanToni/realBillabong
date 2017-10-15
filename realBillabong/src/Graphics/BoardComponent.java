@@ -53,6 +53,9 @@ public class BoardComponent extends JComponent {
 		{ 
 			for(int n=0;n<16;n++) 
 			{ 
+				if(boardArray[m][n].getIsHere()== null){
+					break ;
+				}
 				if(boardArray[m][n].getIsHere().getTeam()==1) 
 				{ 
 					g.setColor(Color.black); 

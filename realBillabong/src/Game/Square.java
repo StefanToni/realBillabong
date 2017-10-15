@@ -6,13 +6,27 @@ public class Square {
 	private int xLoc ;
 	private int yLoc ;
 	private boolean isOccupied ;
+	private boolean isWater ;
 	
 	public Square(int y, int x){
 		xLoc = x ;
 		yLoc = y ;
 		isOccupied = false ;
+		isWater = false ;
 	}
 	
+	public boolean isWater() {
+		return isWater;
+	}
+
+	public void setWater(boolean isWater) {
+		this.isWater = isWater;
+	}
+
+	public void setOccupied(boolean isOccupied) {
+		this.isOccupied = isOccupied;
+	}
+
 	public boolean isOccupied(){
 		return isOccupied ;
 	}

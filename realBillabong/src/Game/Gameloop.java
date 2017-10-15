@@ -13,14 +13,14 @@ public class Gameloop {
 	public Gameloop(int p, int a){
 		board = new  Board() ;
 		players = new ArrayList<Player>() ;
-		/*for(int i = 0; i < p ; i++){
+		for(int i = 0; i < p ; i++){
 			HumanPlayer hPlayer = new HumanPlayer() ;
 			players.add(hPlayer) ;
 		}
 		for(int i = 0; i < a ; i++){
 			AIPlayer aiPlayer = new AIPlayer() ;
 			players.add(aiPlayer) ;
-		}*/
+		}
 	}
 	
 	public Board getBoard() {
