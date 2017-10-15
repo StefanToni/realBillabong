@@ -8,19 +8,19 @@ public class Gameloop {
 	
 	private ArrayList<Player> players ;
 	private Board board ; //what shall be passed to the graphics, no more
-	private  Player currentPlayer ;
+	private Player currentPlayer ;
 	
 	public Gameloop(int p, int a){
 		board = new  Board() ;
 		players = new ArrayList<Player>() ;
-		for(int i = 0; i < p ; i++){
+		/*for(int i = 0; i < p ; i++){
 			HumanPlayer hPlayer = new HumanPlayer() ;
 			players.add(hPlayer) ;
 		}
 		for(int i = 0; i < a ; i++){
 			AIPlayer aiPlayer = new AIPlayer() ;
 			players.add(aiPlayer) ;
-		}
+		}*/
 	}
 	
 	public Board getBoard() {
@@ -49,10 +49,10 @@ public class Gameloop {
 
 	private void placementPhase(){
 		
-		int p = players.size() ;
+		
 		
 		for(int i = 0 ; i < 5 ; i++){
-			for(int p =0 ; i < p ; i++){
+			for(int p = 0 ; p < players.size() ; p++){
 				currentPlayer  = players.get(p) ;
 				currentPlayer.placePiece();
 			}

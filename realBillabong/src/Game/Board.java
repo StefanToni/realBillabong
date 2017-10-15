@@ -28,6 +28,7 @@ public class Board
 				board[i][j] = new Square(i, j) ;
 			}
 		}
+		System.out.println("created boardarray in board class..");
 	}
 	
 	/*init is like a main method for applets, initializes the board in a frame and adds the listeners
