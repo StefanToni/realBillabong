@@ -5,19 +5,20 @@ public class Square {
 	private Kangaroo isHere ;
 	private int xLoc ;
 	private int yLoc ;
+	private boolean isOccupied ;
 	
-	public Square(int x, int y){
+	public Square(int y, int x){
 		xLoc = x ;
 		yLoc = y ;
+		isOccupied = false ;
 	}
 	
 	public boolean isOccupied(){
-		if(getIsHere() == null){
-			return false ;
-		}
-		else{
-			return true ;
-		}
+		return isOccupied ;
+	}
+	
+	public void setIsOccupied(boolean o){
+		isOccupied = o ;
 	}
 	
 	public void setIsHere(Kangaroo k){
@@ -30,10 +31,12 @@ public class Square {
 	
 	public void fill(Kangaroo k){
 		isHere = k ;
+		isOccupied = true ;
 	}
 	
 	public void empty(){
 		isHere = null ;
+		isOccupied = false ;
 	}
 
 
@@ -41,16 +44,16 @@ public class Square {
 		return xLoc;
 	}
 
-	public void setxLoc(int xLoc) {
-		this.xLoc = xLoc;
+	public void setxLoc(int x) {
+		xLoc = x;
 	}
 
 	public int getyLoc() {
 		return yLoc;
 	}
 
-	public void setyLoc(int yLoc) {
-		this.yLoc = yLoc;
+	public void setyLoc(int y) {
+		yLoc = y;
 	}
 	
 

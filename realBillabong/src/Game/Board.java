@@ -14,14 +14,23 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class Board implements ActionListener 
+public class Board 
 { 
-	int i, j, x, y, chk=0; 
+	int x, y, chk=0; 
 	private Square[][] board ; 
 	private Kangaroo referee ;
 	private Kangaroo[] kangaroos ;
 	
-	//init is like a main method for applets, initializes the board in a frame and adds the listeners
+	public Board(){
+		board = new Square[14][16] ;
+		for(int i = 0 ; i < 14 ; i++){
+			for(int j = 0 ; j < 16 ; j++){
+				board[i][j] = new Square(i, j) ;
+			}
+		}
+	}
+	
+	/*init is like a main method for applets, initializes the board in a frame and adds the listeners
 	public void init() 
 	{ 
 
@@ -79,7 +88,7 @@ public class Board implements ActionListener
 				repaint(); 
 			} 
 		}); 
-	} 
+	} */
 	
 	//check1 method looks at how many kangaroos are on the board, if there are 5 of them
 	//for each player then, then he cannot add more
