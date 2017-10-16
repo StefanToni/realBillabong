@@ -28,6 +28,12 @@ public class Board
 				board[i][j] = new Square(i, j) ;
 			}
 		}
+		for (int m = 6 ; m < 8 ; m++) {
+			for (int n = 6 ; n < 10 ; n++) {
+				board[m][n].setWater(true);
+			}
+		}
+			
 		System.out.println("created boardarray in board class..");
 	}
 	
