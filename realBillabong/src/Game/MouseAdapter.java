@@ -5,14 +5,35 @@ import java.awt.event.MouseListener;
 
 public class MouseAdapter implements MouseListener {
 
-	private int x, y;
+	private int x, y, actualX, actualY;
+	private Gameloop loop;
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
 		x = e.getX();
 		y = e.getY();
 		System.out.println(x +" , " + y);
+		for(int i=0; i < 14; i++)
+        {
+            for(int j=0;j < 16 ;j++ )
+            {
+                if((51+(20*j)<=x) && (69+(20*j)>=x) &&  (51+(20*i)<=y) && (69+(20*i)>=y) )  
+                {
+               	 actualY = i;
+               	 actualX = j;
+                }
+                else{
+               	 System.out.println("smt went wrong...");
+                }
+            }
+        }
+		loop.setHasClicked(true);
 		
+	}
+	
+	public void addLoop(Gameloop l){
+		loop = l;
 	}
 
 	@Override
@@ -33,12 +54,19 @@ public class MouseAdapter implements MouseListener {
 		
 	}
 	
-	public void Mou
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public int getActualX() {
+		return actualX;
+	}
+	
+	public int getActualY() {
+		return actualY;
 	}
 	
 	public int getX() {
