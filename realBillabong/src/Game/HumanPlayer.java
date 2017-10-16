@@ -37,6 +37,8 @@ public class HumanPlayer extends Player {
                  else{
                 	 System.out.println("smt went wrong...");
                  }
+             }
+         }
 	}
 
 	public void makeMove(){
