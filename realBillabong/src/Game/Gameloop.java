@@ -6,6 +6,7 @@ import realBillabong.Main;
 
 public class Gameloop {
 	
+	private int x, y;
 	private ArrayList<Player> players ;
 	private Board board ; //what shall be passed to the graphics, no more
 	private Player currentPlayer ;
@@ -67,18 +68,24 @@ public class Gameloop {
 	}
 
 	public void placementPhase(){
-		
+		setCurrentPlayer(players.get(0));
+		int placeNumber = players.size()*5;
+		;
 		System.out.println("start placing");
-		
-		for(int i = 0 ; i < 5 ; i++){
+		x = mouse.getActualX();
+		y = mouse.getActualY();
+		if (x >= 0 && x <= 16 ) {
+			currentPlayer.placePiece(x, y);
+		}
+		/*for(int i = 0 ; i < 5 ; i++){
 			for(int p = 0 ; p < players.size() ; p++){
 				
 				currentPlayer  = players.get(p) ;
 				currentPlayer.placePiece() ;
 				
 			}
-		}
-		gamePhase() ;
+		}*/
+		//gamePhase() ;
 	}
 	
 	public void gamePhase(){

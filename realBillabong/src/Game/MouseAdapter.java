@@ -20,14 +20,14 @@ public class MouseAdapter implements MouseListener {
             {
                 if((51+(20*j)<=x) && (69+(20*j)>=x) &&  (51+(20*i)<=y) && (69+(20*i)>=y) )  
                 {
-               	 actualY = i;
-               	 actualX = j;
+               	 setActualY(i);
+               	 setActualX(j);
             	 System.out.println(i+ " " + j);
                 }
                
             }
         }
-		loop.setHasClicked(true);
+		//loop.setHasClicked(true);
 		
 	}
 	
@@ -58,6 +58,14 @@ public class MouseAdapter implements MouseListener {
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void setActualX(int x) {
+		this.actualX = x;
+	}
+	
+	public void setActualY(int y) {
+		this.actualY = y;
 	}
 	
 	public int getActualX() {
