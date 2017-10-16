@@ -63,7 +63,19 @@ public class Gameloop {
 	
 	public void gamePhase(){
 		System.out.println("start playing");
+		int i = 0 ;
+		for(i = 0; i < 5; i++){
+			currentPlayer = players.get(i) ;
+			if(currentPlayer.haveIWon() == true){
+				endGame() ;
+			}
+			currentPlayer.movePiece();
+		}
+		gamePhase() ;
 	}
 	
+	public void endGame(){
+		
+	}
 	
 }
