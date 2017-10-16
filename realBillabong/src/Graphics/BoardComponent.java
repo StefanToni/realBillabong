@@ -54,7 +54,7 @@ public class BoardComponent extends JComponent {
 			for(int n=0;n<16;n++) 
 			{ 
 				if(boardArray[m][n].getIsHere()== null){
-					break ;
+					continue ;
 				}
 				if(boardArray[m][n].getIsHere().getTeam()==1) 
 				{ 
