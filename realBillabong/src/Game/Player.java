@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class Player {
 	
-	ArrayList<Kangaroo> kangaroos ;
-	int color ;
+	private ArrayList<Kangaroo> kangaroos ;
+	private int color ;
+	private static int teamCounter = 0 ;
 	
 	public Player(int c, ArrayList<Kangaroo> roos){
 		 kangaroos = new ArrayList<Kangaroo>() ;
@@ -16,9 +17,34 @@ public class Player {
 	}
 	
 	public Player(){
-		
+		kangaroos = new ArrayList<Kangaroo>() ;
+		teamCounter++ ;
 	}
  	
+	public ArrayList<Kangaroo> getKangaroos() {
+		return kangaroos;
+	}
+
+	public void setKangaroos(ArrayList<Kangaroo> kangaroos) {
+		this.kangaroos = kangaroos;
+	}
+
+	public int getColor() {
+		return color;
+	}
+
+	public void setColor(int color) {
+		this.color = color;
+	}
+
+	public static int getTeamCounter() {
+		return teamCounter;
+	}
+
+	public static void setTeamCounter(int teamCounter) {
+		Player.teamCounter = teamCounter;
+	}
+
 	public boolean haveIWon(){
 		
 		int cntr = 0 ;
