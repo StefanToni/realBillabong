@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import Game.Board;
 import Game.DrawGraphics;
 import Game.Gameloop;
+import Game.MouseAdapter;
 import Game.Square;
 import Graphics.BoardComponent;
 
@@ -28,7 +29,18 @@ public class Game implements GameState {
 	private DrawGraphics graphics ;
 	private Square[][] boardArray ;
 	private BoardComponent component ;
+	private MouseAdapter mouse ;
 	
+	public MouseAdapter getMouse() {
+		return mouse;
+	}
+
+
+	public void setMouse(MouseAdapter mouse) {
+		this.mouse = mouse;
+	}
+
+
 	public Game(int p, int a){
 		loop = new Gameloop(p, a) ;
 		numberPlayers = p ;
@@ -53,9 +65,11 @@ public class Game implements GameState {
 			System.out.println();
 		}*/
 		//System.out.println(component.toString());
+		mouse = new MouseAdapter() ;
 		pane.add(component) ;
 		pane.add(start);
 		pane.add(end ) ;
+		pane.addMouseListener(mouse);
 		Main.frame.dispose();
 		Main.frame = new JFrame() ;
 		Main.frame.setSize(1000, 1000);
