@@ -69,7 +69,7 @@ public class Player {
 		d.fill(k) ;
 	}
 	
-	public void placePiece(int x, int y){
+	public void placePiece(){
 		
 	}
 	

@@ -22,10 +22,9 @@ public class MouseAdapter implements MouseListener {
                 {
                	 actualY = i;
                	 actualX = j;
+            	 System.out.println(i+ " " + j);
                 }
-                else{
-               	 System.out.println("smt went wrong...");
-                }
+               
             }
         }
 		loop.setHasClicked(true);

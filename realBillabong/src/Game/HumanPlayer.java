@@ -24,16 +24,20 @@ public class HumanPlayer extends Player {
 	}
 	
 	public void placePiece(){
-		if(loop.isHasClicked()){
-			int x = loop.getMouse().getActualX() ;
-			int y = loop.getMouse().getActualY() ;
-			loop.getBoard().getBoardArray()[x][y].fill(new Kangaroo(1));
+		int x = 99;
+		int y = 99;
+		while (x > 18 || x < 0) {
+		x = loop.getMouse().getActualX() ;
+		y = loop.getMouse().getActualY() ;
 		}
-		else{
-			placePiece() ;
+			//if(loop.isHasClicked()){
+				
+		loop.getBoard().getBoardArray()[x][y].fill(new Kangaroo(1));
+				
+			
 		}
 		 
-	}
+	
          
 
 	public void makeMove(){
