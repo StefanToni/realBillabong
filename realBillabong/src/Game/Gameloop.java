@@ -47,20 +47,22 @@ public class Gameloop {
 		this.players = players;
 	}
 
-	private void placementPhase(){
+	public void placementPhase(){
 		
-		
+		System.out.println("start placing");
 		
 		for(int i = 0 ; i < 5 ; i++){
 			for(int p = 0 ; p < players.size() ; p++){
 				currentPlayer  = players.get(p) ;
 				currentPlayer.placePiece();
 			}
-		}	
+		}
+		
+		gamePhase() ;
 	}
 	
-	private void gamePhase(){
-		
+	public void gamePhase(){
+		System.out.println("start playing");
 	}
 	
 	

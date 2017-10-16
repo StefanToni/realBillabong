@@ -63,6 +63,7 @@ public class Game implements GameState {
 		Main.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); ;
 		Main.frame.add(pane);
 		System.out.println("finished frame..");
+		loop.placementPhase() ;
 		
 		
 		
