@@ -21,6 +21,9 @@ public class Square {
 
 	public void setWater(boolean isWater) {
 		this.isWater = isWater;
+		if (isWater) {
+			fill(new Kangaroo(99));
+		}
 	}
 
 	public void setOccupied(boolean isOccupied) {
