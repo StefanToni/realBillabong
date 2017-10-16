@@ -85,5 +85,8 @@ public class Gameloop {
 		System.out.println("start playing");
 	}
 	
+	public void endGame(){
+		 
+	}
 	
 }

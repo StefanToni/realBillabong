@@ -24,6 +24,7 @@ public class HumanPlayer extends Player {
 	}
 	
 	public void placePiece(){
+
 		int x = 99;
 		int y = 99;
 		while (x > 18 || x < 0) {
@@ -39,6 +40,7 @@ public class HumanPlayer extends Player {
 		 
 	
          
+
 
 	public void makeMove(){
 		
