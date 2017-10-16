@@ -28,7 +28,6 @@ public class HumanPlayer extends Player {
          {
              for(int j=0;j < 16 ;j++ )
              {
-
                  if((51+(20*j)<=x) && (69+(20*j)>=x) &&  (51+(20*i)<=y) && (69+(20*i)>=y) )  
                  {
                 	 actualY = i;
@@ -37,7 +36,11 @@ public class HumanPlayer extends Player {
                  else{
                 	 System.out.println("smt went wrong...");
                  }
+             }
+         }
+		 
 	}
+         
 
 	public void makeMove(){
 		

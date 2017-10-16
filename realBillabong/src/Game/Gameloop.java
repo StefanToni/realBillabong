@@ -9,8 +9,10 @@ public class Gameloop {
 	private ArrayList<Player> players ;
 	private Board board ; //what shall be passed to the graphics, no more
 	private Player currentPlayer ;
+	private MouseAdapter mouse;
 	
 	public Gameloop(int p, int a){
+		mouse = Main.getState().getMouse() ;
 		board = new  Board() ;
 		players = new ArrayList<Player>() ;
 		for(int i = 0; i < p ; i++){
