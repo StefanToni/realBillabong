@@ -20,15 +20,17 @@ public class Player {
 	public Player(int c, ArrayList<Kangaroo> roos){
 		 kangaroos = new ArrayList<Kangaroo>() ;
 		 kangaroos = roos ;
+		 teamCounter++ ;
 		 color = teamCounter ;
 		 name = "x" ;
-		 teamCounter++ ;
+		 
 		
 	}
 	
 	public Player(){
 		kangaroos = new ArrayList<Kangaroo>() ;
 		teamCounter++ ;
+		color = teamCounter ;
 	}
  	
 	public ArrayList<Kangaroo> getKangaroos() {

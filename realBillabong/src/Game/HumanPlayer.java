@@ -9,7 +9,7 @@ import realBillabong.Main;
 public class HumanPlayer extends Player implements MouseListener{  
 	
 	
-	private int team ;
+	private int color ;
 	private MouseAdapter mouse ;
 	private int x, y, actualX, actualY ;
 	private Gameloop loop ;
@@ -19,9 +19,9 @@ public class HumanPlayer extends Player implements MouseListener{
 
 	public HumanPlayer(Gameloop l) {
 		// TODO Auto-generated constructor stub
-		super.setTeamCounter(super.getTeamCounter() + 1) ;
+		//super.setTeamCounter(super.getTeamCounter() + 1) ;
 		loop =l ;
-		team = super.getTeamCounter() ;
+		color = super.getTeamCounter() ;
 		mouse = Main.getState().getMouse() ;
 		name = "me" ;
 	
