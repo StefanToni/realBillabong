@@ -130,7 +130,7 @@ public class Gameloop implements MouseListener{
 		while(currentPlayer.haveIWon() == false){
 			//wait for input
 			while(currentPlayer.isInput() == false){
-				currentPlayer.
+				currentPlayer.movePiece();
 			}
 			//update board
 			currentPlayer.setInput(false);
