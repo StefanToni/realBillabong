@@ -41,6 +41,9 @@ public class MouseAdapter implements MouseListener {
 			Main.getState().getLoop().getNextPlayer();
 			
 		}
+		else{
+			Main.getState().getLoop().gamePhase() ;
+		}
 		
 	}
 	
