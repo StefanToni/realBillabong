@@ -93,10 +93,6 @@ public class Game implements GameState {
 	}
 
 
-	public int getX() {
-		return mouse.getActualX();
-	}
-
 	public JComponent getBoardComponent() {
 		return board;
 	}

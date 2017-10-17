@@ -59,14 +59,14 @@ public class BoardComponent extends JComponent {
 				if(boardArray[m][n].getIsHere().getTeam()==1) 
 				{ 
 					g.setColor(Color.black); 
-					g.drawOval((50+(20*n)),(50+(20*m)),20,20); 
+					g.drawOval((50+(20*m)),(50+(20*n)),20,20); 
 					g.setColor(Color.white); 
-					g.fillOval((50+(20*n)),(50+(20*m)),20,20); 
+					g.fillOval((50+(20*m)),(50+(20*n)),20,20); 
 				} 
 				if(boardArray[m][n].getIsHere().getTeam()==2)
 				{ 
 					g.setColor(Color.black); 
-					g.fillOval((50+(20*n)),(50+(20*m)),20,20); 
+					g.fillOval((50+(20*m)),(50+(20*n)),20,20); 
 				} 
 			} 
 		}
