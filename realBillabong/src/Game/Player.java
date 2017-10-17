@@ -115,8 +115,8 @@ public class Player {
 	}
 	
 	public void performMove(Kangaroo k, Square s){
-		selectedK.getPosition().empty();
-		selectedS.fill(selectedK);
+		k.getPosition().empty();
+		s.fill(k);
 		input = true ;
 	}
 	
