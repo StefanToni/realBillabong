@@ -47,9 +47,14 @@ public class Square {
 	}
 	
 	public void fill(Kangaroo k){
-		isHere = k ;
-		isOccupied = true ;
-		k.setPosition(this) ;
+		if(isOccupied){
+			System.out.println("there already is someone here");
+		}
+		else{
+			isHere = k ;
+			isOccupied = true ;
+			k.setPosition(this) ;
+		}
 	}
 	
 	public void empty(){
