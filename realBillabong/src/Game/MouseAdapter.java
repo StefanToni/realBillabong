@@ -20,7 +20,7 @@ public class MouseAdapter implements MouseListener {
         {
             for(int j=0;j < 16 ;j++ )
             {
-                if((79+(20*j)<=x) && (97+(20*j)>=x) &&  (51+(20*i)<=y) && (69+(20*i)>=y) )  
+                if((79+(20*j)<=x) && (97+(20*j)>=x) &&  (56+(20*i)<=y) && (74+(20*i)>=y) )  
                 {
                	 setActualY(i);
                	 setActualX(j);
