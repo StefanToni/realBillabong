@@ -35,6 +35,12 @@ public class MainMenu implements GameState {
 		panel.add(play) ;
 		settings = new JButton() ;
 		settings.setText("Settings..");
+		settings.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				changeState(new Settings());
+			}
+		});
 		panel.add(settings) ;
 		
 	}
@@ -88,6 +94,7 @@ public class MainMenu implements GameState {
 		// TODO Auto-generated method stub
 		Main.changeState(s) ;
 	}
+	
 
 	@Override
 	public void update() {
