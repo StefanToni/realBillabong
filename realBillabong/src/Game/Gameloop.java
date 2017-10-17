@@ -129,8 +129,13 @@ public class Gameloop implements MouseListener{
 		System.out.println("start playing");
 		while(currentPlayer.haveIWon() == false){
 			//wait for input
+			while(currentPlayer.isInput() == false){
+				currentPlayer.
+			}
 			//update board
+			currentPlayer.setInput(false);
 			//repaint
+			Main.getState().getComponent().repaint();
 			
 		}
 		//display winnner thing

@@ -8,7 +8,16 @@ public class Player {
 	private int color ;
 	private static int teamCounter  ;
 	private String name ;
+	private boolean input = false ;
 	
+	public boolean isInput() {
+		return input;
+	}
+
+	public void setInput(boolean input) {
+		this.input = input;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -86,12 +95,27 @@ public class Player {
 	}
 	
 	public void movePiece(){
-		haveIWon() ;
-		selectPiece() ;
-		selectMove() ;
-		performMove() ;
+		Kangaroo k = selectPiece() ;
+		Square s = selectMove() ;
+		performMove(k, s) ;
 		
 		
+	}
+	
+	public Kangaroo selectPiece(){
+		Kangaroo k ;
+		return k ;
+	}
+	
+	public Square selectMove(){
+		Square s ;
+		return s ;
+	}
+	
+	public void performMove(Kangaroo k, Square s){
+		k.getPosition().empty();
+		s.fill(k);
+		input = true ;
 	}
 	
 	
