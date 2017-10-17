@@ -30,20 +30,22 @@ public class MouseAdapter implements MouseListener {
                
             }
         }
-		//if (Main.getState().getComponent())
-		int k = Main.getState().getLoop().getPlaceNumber();
-		Main.getState().getLoop().setPlaceNumber(k-1);
-		if (k > 0) {
-			System.out.println(Main.getState().getLoop().getCurrentPlayer().getColor());
-			Main.getState().getLoop().getCurrentPlayer().placePiece(actualY, actualX);
-			//Main.getState().getLoop().setCurrentPlayer(Main.getState().getLoop().getPlayers().get(Main.getState().getLoop().getCurrentPlayer().getColor()+1));
-			//loop.setHasClicked(true);
-			Main.getState().getComponent().repaint();
-			Main.getState().getLoop().getNextPlayer();
-			
-		}
-		else{
-			Main.getState().getLoop().gamePhase() ;
+			if (!Main.getState().getLoop().getBoard().getBoardArray()[actualY][actualX].isOccupied() ) {
+				
+			int k = Main.getState().getLoop().getPlaceNumber();
+			Main.getState().getLoop().setPlaceNumber(k-1);
+			if (k > 0) {
+				System.out.println(Main.getState().getLoop().getCurrentPlayer().getColor());
+				Main.getState().getLoop().getCurrentPlayer().placePiece(actualY, actualX);
+				//Main.getState().getLoop().setCurrentPlayer(Main.getState().getLoop().getPlayers().get(Main.getState().getLoop().getCurrentPlayer().getColor()+1));
+				//loop.setHasClicked(true);
+				Main.getState().getComponent().repaint();
+				Main.getState().getLoop().getNextPlayer();
+				
+			}
+			else{
+				Main.getState().getLoop().gamePhase() ;
+			}
 		}
 		
 	}

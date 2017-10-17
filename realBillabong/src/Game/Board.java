@@ -99,29 +99,7 @@ public class Board
 	
 	//check1 method looks at how many kangaroos are on the board, if there are 5 of them
 	//for each player then, then he cannot add more
-	public boolean check1() {
-		
-		int white = 0;
-		int black = 0;
-		
-		for(int m=0;m<14;m++) 
-		{ 
-			for(int n=0;n<16;n++) 
-			{ 
-				if (a[m][n] == 1) {
-					white++;
-				}
-				if (a[m][n] == 2) {
-					black++;
-				}
-			}
-		}
-		if (black > 4 && white > 4) {
-			return false;
-		}
-		return true;
-	}
-
+	
 
 	public Square[][] getBoardArray() {
 
