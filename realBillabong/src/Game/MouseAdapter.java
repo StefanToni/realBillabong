@@ -13,7 +13,6 @@ public class MouseAdapter implements MouseListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
 		x = e.getX();
 		y = e.getY();
 		System.out.println(x +" , " + y);
@@ -21,16 +20,16 @@ public class MouseAdapter implements MouseListener {
         {
             for(int j=0;j < 16 ;j++ )
             {
-                if((51+(20*j)<=x) && (69+(20*j)>=x) &&  (51+(20*i)<=y) && (69+(20*i)>=y) )  
+                if((79+(20*j)<=x) && (97+(20*j)>=x) &&  (51+(20*i)<=y) && (69+(20*i)>=y) )  
                 {
                	 setActualY(i);
                	 setActualX(j);
-            	 System.out.println(i+ " " + j + Main.getState().getLoop().getCurrentPlayer().getName());
+            	 System.out.println(j+ " " + i + Main.getState().getLoop().getCurrentPlayer().getName());
                 }
                
             }
         }
-		Main.getState().getLoop().getCurrentPlayer().placePiece(actualX, actualY);
+		Main.getState().getLoop().getCurrentPlayer().placePiece(actualY, actualX);
 		Main.getState().getLoop().setCurrentPlayer(Main.getState().getLoop().getPlayers().get(Main.getState().getLoop().getCurrentPlayer().getColor()+1));
 		//loop.setHasClicked(true);
 		Main.getState().getComponent().repaint();
