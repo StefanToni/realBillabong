@@ -87,11 +87,15 @@ public class Gameloop implements MouseListener{
 		while(i < players.size() && done != true){
             if (players.get(i) == currentPlayer) {
             	if (i == players.size()-1){
+            		System.out.println(i + " i goes to 0");
             		setCurrentPlayer(players.get(0));
+            		System.out.println("team number " + currentPlayer.getColor());
             		done = true;
             	}
             	else {
+            		System.out.println(" i goes up to " + (i+1));
             		setCurrentPlayer(players.get(i+1));
+            		System.out.println("team number " + currentPlayer.getColor());
             		done = true;
             	}
             }
