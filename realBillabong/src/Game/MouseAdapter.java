@@ -30,6 +30,7 @@ public class MouseAdapter implements MouseListener {
                
             }
         }
+		if (Main.getState().getComponent())
 		int k = Main.getState().getLoop().getPlaceNumber();
 		Main.getState().getLoop().setPlaceNumber(k-1);
 		if (k > 0) {
