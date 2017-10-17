@@ -21,7 +21,7 @@ public class HumanPlayer extends Player implements MouseListener{
 		// TODO Auto-generated constructor stub
 		//super.setTeamCounter(super.getTeamCounter() + 1) ;
 		loop =l ;
-		color = super.getTeamCounter() ;
+		//color = super.getTeamCounter() ;
 		mouse = Main.getState().getMouse() ;
 		name = "me" ;
 	
