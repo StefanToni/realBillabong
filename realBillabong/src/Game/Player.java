@@ -9,6 +9,8 @@ public class Player {
 	private static int teamCounter  ;
 	private String name ;
 	private boolean input = false ;
+	private Kangaroo selectedK ;
+	private Square selectedS ;
 	
 	public boolean isInput() {
 		return input;
@@ -113,8 +115,8 @@ public class Player {
 	}
 	
 	public void performMove(Kangaroo k, Square s){
-		k.getPosition().empty();
-		s.fill(k);
+		selectedK.getPosition().empty();
+		selectedS.fill(selectedK);
 		input = true ;
 	}
 	
