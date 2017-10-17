@@ -3,6 +3,7 @@ package Game;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 import realBillabong.Main;
 
@@ -14,7 +15,16 @@ public class Gameloop implements MouseListener{
 	private Player currentPlayer ;
 	private MouseAdapter mouse;
 	private boolean hasClicked = false ;
+	private static int placeNumber;
 	
+	public static int getPlaceNumber() {
+		return placeNumber;
+	}
+
+	public static void setPlaceNumber(int placeNumber) {
+		Gameloop.placeNumber = placeNumber;
+	}
+
 	public boolean isHasClicked() {
 		return hasClicked;
 	}
@@ -43,6 +53,7 @@ public class Gameloop implements MouseListener{
 			AIPlayer aiPlayer = new AIPlayer() ;
 			players.add(aiPlayer) ;
 		}
+		placeNumber = players.size()*5;
 		currentPlayer = players.get(0) ;
 	}
 	
@@ -68,6 +79,24 @@ public class Gameloop implements MouseListener{
 
 	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
+	}
+	
+	public void getNextPlayer() {
+		boolean done = false;
+		int i = 0;
+		while(i < players.size() && done != true){
+            if (players.get(i) == currentPlayer) {
+            	if (i == players.size()-1){
+            		setCurrentPlayer(players.get(0));
+            		done = true;
+            	}
+            	else {
+            		setCurrentPlayer(players.get(i+1));
+            		done = true;
+            	}
+            }
+            i++;
+        }
 	}
 	
 	public void placementPhase(){
