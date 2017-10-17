@@ -15,14 +15,14 @@ public class Gameloop implements MouseListener{
 	private Player currentPlayer ;
 	private MouseAdapter mouse;
 	private boolean hasClicked = false ;
-	private static int placeNumber;
+	private int placeNumber;
 	
-	public static int getPlaceNumber() {
+	public int getPlaceNumber() {
 		return placeNumber;
 	}
 
-	public static void setPlaceNumber(int placeNumber) {
-		Gameloop.placeNumber = placeNumber;
+	public void setPlaceNumber(int placeNumber) {
+		this.placeNumber = placeNumber;
 	}
 
 	public boolean isHasClicked() {

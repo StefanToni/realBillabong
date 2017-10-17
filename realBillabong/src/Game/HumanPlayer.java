@@ -27,14 +27,6 @@ public class HumanPlayer extends Player implements MouseListener{
 	
 	}
 	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public void placePiece(int x, int y){
 
 	

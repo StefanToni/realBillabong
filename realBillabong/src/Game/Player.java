@@ -6,7 +6,7 @@ public class Player {
 	
 	private ArrayList<Kangaroo> kangaroos ;
 	private int color ;
-	private static int teamCounter = 0 ;
+	private static int teamCounter  ;
 	private String name ;
 	
 	public String getName() {
@@ -20,8 +20,9 @@ public class Player {
 	public Player(int c, ArrayList<Kangaroo> roos){
 		 kangaroos = new ArrayList<Kangaroo>() ;
 		 kangaroos = roos ;
-		 color = c ;
-		
+		 color = teamCounter ;
+		 name = "x" ;
+		 teamCounter++ ;
 		
 	}
 	

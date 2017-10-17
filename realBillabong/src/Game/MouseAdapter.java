@@ -33,6 +33,7 @@ public class MouseAdapter implements MouseListener {
 		int k = Main.getState().getLoop().getPlaceNumber();
 		Main.getState().getLoop().setPlaceNumber(k-1);
 		if (k > 0) {
+			System.out.println(Main.getState().getLoop().getCurrentPlayer().getColor());
 			Main.getState().getLoop().getCurrentPlayer().placePiece(actualY, actualX);
 			//Main.getState().getLoop().setCurrentPlayer(Main.getState().getLoop().getPlayers().get(Main.getState().getLoop().getCurrentPlayer().getColor()+1));
 			//loop.setHasClicked(true);
