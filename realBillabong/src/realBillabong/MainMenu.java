@@ -9,7 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Game.Board;
+import Game.Gameloop;
 import Game.MouseAdapter;
+import Graphics.BoardComponent;
 
 public class MainMenu implements GameState {
 	
@@ -98,6 +100,22 @@ public class MainMenu implements GameState {
 
 	@Override
 	public MouseAdapter getMouse() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public Gameloop getLoop() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public BoardComponent getComponent() {
 		// TODO Auto-generated method stub
 		return null;
 	}

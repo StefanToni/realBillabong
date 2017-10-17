@@ -31,6 +31,7 @@ public class MouseAdapter implements MouseListener {
             }
         }
 		Main.getState().getLoop().getCurrentPlayer().placePiece(actualX, actualY);
+		Main.getState().getLoop().setCurrentPlayer(Main.getState().getLoop().getPlayers().get(Main.getState().getLoop().getCurrentPlayer().getColor()+1));
 		//loop.setHasClicked(true);
 		Main.getState().getComponent().repaint();
 		
