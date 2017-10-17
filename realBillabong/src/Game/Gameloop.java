@@ -1,10 +1,12 @@
 package Game;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import realBillabong.Main;
 
-public class Gameloop {
+public class Gameloop implements MouseListener{
 	
 	private int x, y;
 	private ArrayList<Player> players ;
@@ -41,6 +43,7 @@ public class Gameloop {
 			AIPlayer aiPlayer = new AIPlayer() ;
 			players.add(aiPlayer) ;
 		}
+		currentPlayer = players.get(0) ;
 	}
 	
 	public Board getBoard() {
@@ -66,11 +69,11 @@ public class Gameloop {
 	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
 	}
-
+	
 	public void placementPhase(){
 		setCurrentPlayer(players.get(0));
 		int placeNumber = players.size()*5;
-		;
+		
 		System.out.println("start placing");
 		x = mouse.getActualX();
 		y = mouse.getActualY();
@@ -88,12 +91,43 @@ public class Gameloop {
 		//gamePhase() ;
 	}
 	
+	
 	public void gamePhase(){
 		System.out.println("start playing");
 	}
 	
 	public void endGame(){
 		 
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

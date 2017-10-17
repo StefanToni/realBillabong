@@ -77,12 +77,22 @@ public class Game implements GameState {
 		Main.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); ;
 		Main.frame.add(pane);
 		System.out.println("finished frame..");
-		loop.placementPhase() ;
+		//loop.placementPhase() ;
 		
 		
 		
 	}
 	
+	public Gameloop getLoop() {
+		return loop;
+	}
+
+
+	public void setLoop(Gameloop loop) {
+		this.loop = loop;
+	}
+
+
 	public int getX() {
 		return mouse.getActualX();
 	}
@@ -117,6 +127,13 @@ public class Game implements GameState {
 	public void changeState(GameState s) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public BoardComponent getComponent() {
+		// TODO Auto-generated method stub
+		return component;
 	}
 
 }

@@ -7,7 +7,16 @@ public class Player {
 	private ArrayList<Kangaroo> kangaroos ;
 	private int color ;
 	private static int teamCounter = 0 ;
+	private String name ;
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public Player(int c, ArrayList<Kangaroo> roos){
 		 kangaroos = new ArrayList<Kangaroo>() ;
 		 kangaroos = roos ;

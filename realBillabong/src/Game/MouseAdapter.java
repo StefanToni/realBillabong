@@ -3,10 +3,13 @@ package Game;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import realBillabong.Main;
+
 public class MouseAdapter implements MouseListener {
 
 	private int x, y, actualX, actualY;
 	private Gameloop loop;
+	
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -22,12 +25,15 @@ public class MouseAdapter implements MouseListener {
                 {
                	 setActualY(i);
                	 setActualX(j);
-            	 System.out.println(i+ " " + j);
+            	 System.out.println(i+ " " + j + Main.getState().getLoop().getCurrentPlayer().getName());
                 }
                
             }
         }
+		Main.getState().getLoop().getCurrentPlayer().placePiece(actualX, actualY);
 		//loop.setHasClicked(true);
+		Main.getState().getComponent().repaint();
+		
 		
 	}
 	
