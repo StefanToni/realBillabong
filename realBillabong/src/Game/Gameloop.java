@@ -139,6 +139,7 @@ public class Gameloop implements MouseListener{
 		while(currentPlayer.haveIWon() == false){
 			//wait for input
 			
+			//System.out.println(currentPlayer.getColor());
 			//currentPlayer.setInput(false);
 			//repaint
 			Main.getState().getComponent().repaint();
@@ -146,6 +147,7 @@ public class Gameloop implements MouseListener{
 			
 		}
 		//display winnner thing
+		System.out.println("Team number " + currentPlayer.getColor() + " wins !!!") ;
 	}
 	
 	public void checkInput(){
