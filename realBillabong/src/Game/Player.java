@@ -105,7 +105,7 @@ public class Player {
 	}
 	
 	public Kangaroo selectPiece(){
-		Kangaroo k ;
+		Kangaroo k = ;//what i click
 		return k ;
 	}
 	

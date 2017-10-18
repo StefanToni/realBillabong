@@ -1,6 +1,7 @@
 package realBillabong;
 
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 import Game.Board;
 import Game.Gameloop;
@@ -16,6 +17,7 @@ public interface GameState {
 	//public Board getBoard();
 	public Gameloop getLoop();
 	public BoardComponent getComponent() ;
+	public JPanel getPane() ;
 	
 
 }

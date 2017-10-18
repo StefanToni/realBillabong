@@ -83,6 +83,16 @@ public class Game implements GameState {
 		
 	}
 	
+	public JPanel getPane() {
+		return pane;
+	}
+
+
+	public void setPane(JPanel pane) {
+		this.pane = pane;
+	}
+
+
 	public Gameloop getLoop() {
 		return loop;
 	}
