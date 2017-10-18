@@ -20,7 +20,7 @@ public class MoveMouseAdapter implements MouseListener {
 		// TODO Auto-generated method stub
 		x = e.getX();
 		y = e.getY();
-		System.out.println(x +" , " + y);
+		System.out.println("mover " + x +" , " + y);
 		for(int i=0; i < 14; i++)
         {
             for(int j=0;j < 16 ;j++ )
