@@ -48,7 +48,7 @@ public class MoveMouseAdapter implements MouseListener {
 						
 			if(rightclick == 1)
 			{
-				Kangaroo ref = new Kangaroo(3);
+				Kangaroo ref = new Kangaroo(10);
 				ref.setPosition(currentSquare) ;
 				currentSquare.fill(ref) ;
 				rightSquare = currentSquare;
