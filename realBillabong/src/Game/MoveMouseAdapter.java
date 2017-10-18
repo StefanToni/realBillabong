@@ -1,6 +1,7 @@
 package Game;
 
 import java.awt.event.MouseEvent;
+import javax.swing.*;
 import java.awt.event.MouseListener;
 
 import realBillabong.Main;
@@ -12,12 +13,15 @@ public class MoveMouseAdapter implements MouseListener {
 	private Kangaroo currentKangaroo;
 	private int counter = 1;
 	private int squareSize = Main.getSize();
-
+	private int rightclick = 1;
+	private Square rightSquare;
+//	private HumanPlayer referee;
+	
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
 		
-		// TODO Auto-generated method stub
 		x = e.getX();
 		y = e.getY();
 		System.out.println("mover " + x +" , " + y);
@@ -34,11 +38,37 @@ public class MoveMouseAdapter implements MouseListener {
                
             }
         }
+		Square[][] boardCopy = Main.getState().getLoop().getBoard().getBoardArray() ;
+		Square currentSquare = boardCopy[actualY][actualX];
+		
+		
+		if(SwingUtilities.isRightMouseButton(e))
+		{	
+			System.out.println("rightmousecliked");
+						
+			if(rightclick == 1)
+			{
+				Kangaroo ref = new Kangaroo(3);
+				ref.setPosition(currentSquare) ;
+				currentSquare.fill(ref) ;
+				rightSquare = currentSquare;
+				rightclick = 2;	
+				System.out.println("rightmousecliked");
+			}
+			else if(rightclick == 2)
+			{
+				rightSquare.empty();
+				rightclick = 1;
+			}
+         }		
+		
+		// TODO Auto-generated method stub
+		else{
+		
 //gets the square & kangaroo (Doesn't work yet, it says it wants to make a static reference but I don't see why)
 		//this MoveMouseAdapter still has to be added after placement is done
 		
-		Square[][] boardCopy = Main.getState().getLoop().getBoard().getBoardArray() ;
-		Square currentSquare = boardCopy[actualY][actualX];
+		
 		
 		//gets Kangaroo of current square
 		if(counter ==1)//counter is for deciding whether it's the selection of the kangaroo or the square it wants to go to
@@ -72,10 +102,10 @@ public class MoveMouseAdapter implements MouseListener {
 		if(currentSquare == null){
 			System.out.println(" square is null");
 		}
-		
-		
-		
+		}
 	}
+		
+		
 
 	public int getActualX() {
 		return actualX;

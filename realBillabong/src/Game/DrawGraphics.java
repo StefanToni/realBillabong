@@ -48,6 +48,11 @@ public class DrawGraphics {
 					g.setColor(Color.black); 
 					g.fillOval((50+(20*n)),(50+(20*m)),20,20); 
 				} 
+				if(board[m][n].getIsHere().getTeam()==3)
+				{
+					g.setColor(Color.red);
+					g.fillOval((50+(20*n)),(50+(20*m)),20,20); 
+				}
 			} 
 		} 
 	} 
