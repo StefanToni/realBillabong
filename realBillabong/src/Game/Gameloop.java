@@ -18,6 +18,7 @@ public class Gameloop implements MouseListener{
 	private int placeNumber;
 	private RooSelectah rooSelector ;
 	private SquareSelectah squareSelector ;
+	private boolean inputIsDone ;
 	
 	public int getPlaceNumber() {
 		return placeNumber;
@@ -135,14 +136,18 @@ public class Gameloop implements MouseListener{
 		Main.getState().getPane().addMouseListener(squareSelector);
 		while(currentPlayer.haveIWon() == false){
 			//wait for input
-			while(rooSelector.isDone() == false || squareSelector.isDone() == false){
+			while(!inputIsDone){
 				System.out.println("waiting for move");
-				System.out.println(rooSelector.isDone() + " " + squareSelector.isDone());
+				System.out.println(squareSelector.isDone() + " " + rooSelector.isDone()) ;
+				if(squareSelector.isDone() && rooSelector.isDone()){
+					inputIsDone = true ;
+				}
 			}
 			//update board
 			currentPlayer.performMove(rooSelector.getSelected(), squareSelector.getSelected());
 			rooSelector.setDone(false);
 			squareSelector.setDone(false);
+			inputIsDone = false ;
 			//currentPlayer.setInput(false);
 			//repaint
 			Main.getState().getComponent().repaint();
