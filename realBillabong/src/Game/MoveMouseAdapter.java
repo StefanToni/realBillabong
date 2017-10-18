@@ -57,6 +57,7 @@ public class MoveMouseAdapter implements MouseListener {
 		{
 			if(!currentSquare.isOccupied()){
 				counter = 1 ;
+				/// constraints , x,y +-1 or jump
 				Main.getState().getLoop().getCurrentPlayer().performMove(currentKangaroo, currentSquare);
 				currentSquare = null ;
 				currentKangaroo = null ; System.out.println("current deleted");
