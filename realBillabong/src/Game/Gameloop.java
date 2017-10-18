@@ -21,6 +21,7 @@ public class Gameloop implements MouseListener{
 	private Kangaroo k ;
 	private Square s ;
 	
+
 	public int getPlaceNumber() {
 		return placeNumber;
 	}

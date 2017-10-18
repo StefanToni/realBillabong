@@ -6,7 +6,16 @@ public class Main {
 	
 	private static GameState currentState ;
 	public static JFrame frame ;
+	private static int size = 20;
 	
+	public static int getSize() {
+		return size;
+	}
+
+	public static void setSize(int s) {
+		size = s;
+	}
+
 	//ideally make a statemachine that has different states, menu and play (potentially even split play into 2 phases, placement and moving)	
 	public static void main(String[] args){
 		

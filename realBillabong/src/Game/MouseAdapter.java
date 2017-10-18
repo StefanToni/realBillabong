@@ -9,7 +9,7 @@ public class MouseAdapter implements MouseListener {
 
 	private int x, y, actualX, actualY;
 	private Gameloop loop;
-
+	private int squareSize = Main.getSize();
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -21,11 +21,11 @@ public class MouseAdapter implements MouseListener {
         {
             for(int j=0;j < 16 ;j++ )
             {
-                if((79+(20*j)<=x) && (97+(20*j)>=x) &&  (56+(20*i)<=y) && (74+(20*i)>=y) )  
+                if((79+(squareSize*j)<=x) && (77+squareSize+(squareSize*j)>=x) &&  (56+(squareSize*i)<=y) && (54+squareSize+(squareSize*i)>=y) )  
                 {
                	 setActualY(i);
                	 setActualX(j);
-            	 System.out.println(j+ " " + i + Main.getState().getLoop().getCurrentPlayer().getName());
+            	 System.out.println(j+ " " + i );
                 }
                
             }

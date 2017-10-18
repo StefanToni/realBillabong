@@ -43,6 +43,7 @@ public class Game implements GameState {
 
 	public Game(int p, int a){
 		loop = new Gameloop(p, a) ;
+		
 		numberPlayers = p ;
 		numberOfAI = a ;
 		start = new JButton() ;
@@ -53,6 +54,7 @@ public class Game implements GameState {
 		end.setSize(100, 100);
 		end.setText("End") ;
 		component = new BoardComponent(loop.getBoard().getBoardArray()) ;
+		//component.setSquareSize(Size);
 		System.out.println("created component..");
 		//add actionlistener
 		pane = new JPanel() ;

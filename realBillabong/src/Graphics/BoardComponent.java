@@ -8,14 +8,17 @@ import java.awt.Graphics2D;
 import javax.swing.JComponent;
 
 import Game.Square;
+import realBillabong.Main;
 
 public class BoardComponent extends JComponent {
 	
 	private Square[][] boardArray ;
+	private int SquareSize = 20;
 	
 	public BoardComponent(Square[][] b){
 		boardArray = b ;
 		System.out.println("loaded boardarray in paint class..");
+		SquareSize = Main.getSize();
 		
 	}
 	
@@ -31,22 +34,22 @@ public class BoardComponent extends JComponent {
 		Graphics2D g2 = (Graphics2D) g ;
 		
 		g.setColor(Color.yellow); 
-		g.fill3DRect(40,40,340,300,true); 
+		g.fill3DRect(40,40,(SquareSize*16)+20,(SquareSize*14)+20,true); 
 		g.setColor(Color.BLUE);
-		g.fill3DRect(170, 170, 80, 40, true);
+		g.fill3DRect(50+(SquareSize*6), 50+(SquareSize*6), SquareSize*4, SquareSize*2, true);
 		g.setColor(Color.blue);
-		g.fill3DRect(210, 200, 5, 130, true);
+		g.fill3DRect(50+(SquareSize*8), 50+(SquareSize*8), SquareSize/4, SquareSize*6, true);
 		
 
 		for (int i=0;i<15;i++) 
 		{ 
 			g.setColor(Color.black); 
-			g.drawLine(50,50+20*i,370,50+20*i); 
+			g.drawLine(50,50+SquareSize*i,50+(SquareSize*16),50+(SquareSize*i)); 
 		} 
 		for (int j=0;j<17;j++) 
 		{ 
 			g.setColor(Color.black); 
-			g.drawLine(50+20*j,50,50+20*j,330); 
+			g.drawLine(50+(SquareSize*j),50,50+(SquareSize*j),50+(SquareSize*14)); 
 		}  
 
 		for(int m=0;m<14;m++) 
@@ -59,18 +62,26 @@ public class BoardComponent extends JComponent {
 				if(boardArray[m][n].getIsHere().getTeam()==1) 
 				{ 
 					g.setColor(Color.black); 
-					g.drawOval((50+(20*n)),(50+(20*m)),20,20); 
+					g.drawOval((50+(SquareSize*n)),(50+(SquareSize*m)),SquareSize,SquareSize); 
 					g.setColor(Color.white); 
-					g.fillOval((50+(20*n)),(50+(20*m)),20,20); 
+					g.fillOval((50+(SquareSize*n)),(50+(SquareSize*m)),SquareSize,SquareSize); 
 				} 
 				if(boardArray[m][n].getIsHere().getTeam()==2)
 				{ 
 					g.setColor(Color.black); 
-					g.fillOval((50+(20*n)),(50+(20*m)),20,20); 
+					g.fillOval((50+(SquareSize*n)),(50+(SquareSize*m)),SquareSize,SquareSize); 
 				} 
 			} 
 		}
 		
+	}
+
+	public int getSquareSize() {
+		return SquareSize;
+	}
+
+	public void setSquareSize(int squareSize) {
+		SquareSize = squareSize;
 	}
 
 }
