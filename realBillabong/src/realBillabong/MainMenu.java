@@ -33,6 +33,7 @@ public class MainMenu implements GameState {
 			
 		});
 		panel.add(play) ;
+		
 		settings = new JButton() ;
 		settings.setText("Settings..");
 		settings.addActionListener(new ActionListener(){
