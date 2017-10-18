@@ -20,7 +20,17 @@ public class Gameloop implements MouseListener{
 	private MoveMouseAdapter mover ;
 	private Kangaroo k ;
 	private Square s ;
+	private int piececounter ;
 	
+	
+
+	public int getPiececounter() {
+		return piececounter;
+	}
+
+	public void setPiececounter(int piececounter) {
+		this.piececounter = piececounter;
+	}
 
 	public int getPlaceNumber() {
 		return placeNumber;
@@ -131,25 +141,25 @@ public class Gameloop implements MouseListener{
 	
 	
 	public void gamePhase(){
-		Main.getState().getPane().removeMouseListener(mouse);
-		mouse = null ;
+		
 		System.out.println("start playing");
 		mover = new MoveMouseAdapter() ;
-		Main.getState().getPane().addMouseListener(mover) ;
-		
+		Main.getState().getPane().addMouseListener(mover);
 		currentPlayer = players.get(0) ;
+		
 		if(currentPlayer.haveIWon()){
 			//display winnner thing
 			System.out.println("Team number " + currentPlayer.getColor() + " wins !!!") ;
 		}
 		else{
-			//wait for input
-			//something needs to happen
+			//check constraints
 			//System.out.println(currentPlayer.getColor());
 			//currentPlayer.setInput(false);
 			//repaint
 			Main.getState().getComponent().repaint();
+			System.out.println("repaint loop");
 			getNextPlayer() ;
+			System.out.println("next player selected");
 		}
 		
 	}

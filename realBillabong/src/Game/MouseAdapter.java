@@ -11,9 +11,14 @@ public class MouseAdapter implements MouseListener {
 	private Gameloop loop;
 	private int squareSize = Main.getSize();
 	
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
+		
+			
+		
+				
 		x = e.getX();
 		y = e.getY();
 		System.out.println(x +" , " + y);
@@ -45,8 +50,16 @@ public class MouseAdapter implements MouseListener {
 			}
 			else{
 				Main.getState().getLoop().gamePhase() ;
+				System.out.println("start boyyyyyy");
+				
 			}
 		}
+	
+		
+		
+		
+		
+		
 		
 	}
 	

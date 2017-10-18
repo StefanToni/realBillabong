@@ -10,11 +10,13 @@ public class MoveMouseAdapter implements MouseListener {
 	private int x, y, actualX, actualY;
 	private Gameloop loop;
 	private Kangaroo currentKangaroo;
-	private int counter = 0;
+	private int counter = 1;
 	private int squareSize = Main.getSize();
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
+		
 		// TODO Auto-generated method stub
 		x = e.getX();
 		y = e.getY();
@@ -39,19 +41,38 @@ public class MoveMouseAdapter implements MouseListener {
 		Square currentSquare = boardCopy[actualY][actualX];
 		
 		//gets Kangaroo of current square
-		if(counter%2 == 0)//counter is for deciding whether it's the selection of the kangaroo or the square it wants to go to
+		if(counter ==1)//counter is for deciding whether it's the selection of the kangaroo or the square it wants to go to
 		{
-			currentKangaroo = currentSquare.getIsHere();
+			if(currentSquare.isOccupied()){
+				//if(currentSquare.getIsHere().getTeam() == Main.getState().getLoop().getCurrentPlayer().getColor())
+				currentKangaroo = currentSquare.getIsHere();
+				counter++ ; 
+			}
+			
 					
 		}
 		
 		//moves to the new square
-		else if(counter%2 != 0)
+		else if(counter == 2)
 		{
-			Main.getState().getLoop().getCurrentPlayer().performMove(currentKangaroo, currentSquare);
+			if(!currentSquare.isOccupied()){
+				counter = 1 ;
+				Main.getState().getLoop().getCurrentPlayer().performMove(currentKangaroo, currentSquare);
+				currentSquare = null ;
+				currentKangaroo = null ; System.out.println("current deleted");
+				
+			}
+			
+		}
+		System.out.println("clicker is " + counter);
+		if(currentKangaroo == null){
+			System.out.println(" roo is null");
+		}
+		if(currentSquare == null){
+			System.out.println(" square is null");
 		}
 		
-		counter++;
+		
 		
 	}
 

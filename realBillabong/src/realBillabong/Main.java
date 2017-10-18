@@ -6,7 +6,7 @@ public class Main {
 	
 	private static GameState currentState ;
 	public static JFrame frame ;
-	private static int size = 20;
+	private static int size = 40;
 	
 	public static int getSize() {
 		return size;

@@ -55,7 +55,7 @@ public class Settings implements GameState {
 			public void actionPerformed(ActionEvent e){
 				  if (list.getSelectedIndex() == -1) {
 				        //No selection, disable fire button.
-					  		Main.setSize(20);
+					  		Main.setSize(40);
 				        } 
 				        else if (list.getSelectedIndex() == 0) {
 				        //Selection, enable the fire button.
