@@ -154,6 +154,7 @@ public class Gameloop implements MouseListener{
 			//currentPlayer.setInput(false);
 			//repaint
 			Main.getState().getComponent().repaint();
+			getNextPlayer() ;
 			
 		}
 		//display winnner thing
