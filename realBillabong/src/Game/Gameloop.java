@@ -136,19 +136,22 @@ public class Gameloop implements MouseListener{
 		System.out.println("start playing");
 		mover = new MoveMouseAdapter() ;
 		Main.getState().getPane().addMouseListener(mover) ;
+		
 		currentPlayer = players.get(0) ;
-		while(currentPlayer.haveIWon() == false){
+		if(currentPlayer.haveIWon()){
+			//display winnner thing
+			System.out.println("Team number " + currentPlayer.getColor() + " wins !!!") ;
+		}
+		else{
 			//wait for input
-			
+			//something needs to happen
 			//System.out.println(currentPlayer.getColor());
 			//currentPlayer.setInput(false);
 			//repaint
 			Main.getState().getComponent().repaint();
 			getNextPlayer() ;
-			
 		}
-		//display winnner thing
-		System.out.println("Team number " + currentPlayer.getColor() + " wins !!!") ;
+		
 	}
 	
 	public void checkInput(){

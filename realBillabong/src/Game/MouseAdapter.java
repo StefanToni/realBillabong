@@ -30,7 +30,7 @@ public class MouseAdapter implements MouseListener {
                
             }
         }
-			if (!Main.getState().getLoop().getBoard().getBoardArray()[actualY][actualX].isOccupied() ) {
+		if (!Main.getState().getLoop().getBoard().getBoardArray()[actualY][actualX].isOccupied() ) {
 				
 			int k = Main.getState().getLoop().getPlaceNumber();
 			Main.getState().getLoop().setPlaceNumber(k-1);

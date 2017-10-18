@@ -27,7 +27,7 @@ public class MoveMouseAdapter implements MouseListener {
                 {
                	 setActualY(i);
                	 setActualX(j);
-            	 System.out.println(j+ " " + i ); // + Main.getState().getLoop().getCurrentPlayer().getName());
+            	 System.out.println("mover " + j+ " " + i ); // + Main.getState().getLoop().getCurrentPlayer().getName());
                 }
                
             }
