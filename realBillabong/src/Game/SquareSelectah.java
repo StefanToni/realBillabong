@@ -10,6 +10,7 @@ public class SquareSelectah implements MouseListener {
 	private boolean done = false ;
 	private int x, y, actualX, actualY ;
 	private Square selected ;
+	private int squareSize = Main.getSize();
 
 	public int getActualX() {
 		return actualX;
@@ -53,7 +54,7 @@ public class SquareSelectah implements MouseListener {
         {
             for(int j=0;j < 16 ;j++ )
             {
-                if((79+(20*j)<=x) && (97+(20*j)>=x) &&  (56+(20*i)<=y) && (74+(20*i)>=y) )  
+                if((79+(squareSize*j)<=x) && (77+squareSize+(squareSize*j)>=x) &&  (56+(squareSize*i)<=y) && (54+squareSize+(squareSize*i)>=y) )  
                 {
                	 setActualY(i);
                	 setActualX(j);

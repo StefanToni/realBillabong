@@ -11,6 +11,7 @@ public class MoveMouseAdapter implements MouseListener {
 	private Gameloop loop;
 	private Kangaroo currentKangaroo;
 	private int counter = 0;
+	private int squareSize = Main.getSize();
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -22,7 +23,7 @@ public class MoveMouseAdapter implements MouseListener {
         {
             for(int j=0;j < 16 ;j++ )
             {
-                if((79+(20*j)<=x) && (97+(20*j)>=x) &&  (56+(20*i)<=y) && (74+(20*i)>=y) )  
+                if((79+(squareSize*j)<=x) && (77+squareSize+(squareSize*j)>=x) &&  (56+(squareSize*i)<=y) && (54+squareSize+(squareSize*i)>=y) )  
                 {
                	 setActualY(i);
                	 setActualX(j);
