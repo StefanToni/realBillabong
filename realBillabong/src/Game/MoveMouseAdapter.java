@@ -53,12 +53,14 @@ public class MoveMouseAdapter implements MouseListener {
 				currentSquare.fill(ref) ;
 				rightSquare = currentSquare;
 				rightclick = 2;	
-				System.out.println("rightmousecliked");
+				System.out.println("rightmousecliked" + rightclick);
 			}
 			else if(rightclick == 2)
 			{
+				rightSquare.setIsHere(null);
 				rightSquare.empty();
 				rightclick = 1;
+				System.out.println("rightmousecliked" + rightclick);
 			}
          }		
 		
