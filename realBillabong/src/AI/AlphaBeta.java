@@ -28,7 +28,7 @@ public class AlphaBeta
 		for(int i = 0; i < GameStates.size(); i++) {
 			state.add(GameStates.get(i));
 			float tmp = minValue(b, state, alpha, beta, depth + 1);
-			state.reGameState(state.lastIndexOf(GameStates.get(i)));
+			state.remove(state.lastIndexOf(GameStates.get(i)));
 			if(tmp > alpha) {
 				alpha = tmp;
 			}
@@ -57,7 +57,7 @@ public class AlphaBeta
 		for(int i = 0; i < GameStates.size(); i++) {
 			state.add(GameStates.get(i));
 			float tmp = maxValue(b, state, alpha, beta, depth + 1);
-			state.reGameState(state.lastIndexOf(GameStates.get(i)));
+			state.remove(state.lastIndexOf(GameStates.get(i)));
 			if(tmp < beta) {
 				beta = tmp;
 			}
