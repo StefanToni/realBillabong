@@ -17,6 +17,7 @@ public class Gameloop implements MouseListener{
 	private boolean hasClicked = false ;
 	private int placeNumber;
 	private RooSelectah rooSelector ;
+	private SquareSelectah squareSelector;
 	private MoveMouseAdapter mover ;
 	private Kangaroo k ;
 	private Square s ;

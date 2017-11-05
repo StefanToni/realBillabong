@@ -27,7 +27,7 @@ public class Player {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
 	public Player(int c, ArrayList<Kangaroo> roos){
 		 kangaroos = new ArrayList<Kangaroo>() ;
 		 kangaroos = roos ;
