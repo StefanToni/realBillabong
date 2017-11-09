@@ -1,32 +1,11 @@
 package AI;
 
+import realBillabong.GameState;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class GenericSearchTree<GameState extends Comparable<? super GameState>> 
 {
-	
-	public class Node 
-	{
-		
-		public GameState _gameState;
-		ArrayList<Node> _children;
-		
-		// This constructor initialises a childless node.
-		public Node(GameState gameState) 
-		{
-			_gameState = gameState;
-			_children = null;		
-		}
-		
-		// This constructor initialises a node with children.
-		public Node(GameState gameState, ArrayList<Node> children) 
-		{
-			_gameState = gameState;
-			_children = children;
-		}
-	}
-	
 	// Local variables
 	public Node root;					// Pointer to root node, if present.
 	private boolean removalSuccesful;	// Set to true when remove() succeeds.

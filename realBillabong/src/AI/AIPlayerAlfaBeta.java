@@ -4,6 +4,7 @@ import Game.AIPlayer;
 import Game.Player;
 import Game.Board;
 import Game.Gameloop;
+import realBillabong.GameState;
 
 import java.util.*;
 

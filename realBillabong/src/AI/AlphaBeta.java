@@ -1,7 +1,8 @@
 package AI;
 
 import Game.Board;
-import Game.GameStateMouseAdapter;
+import Game.MoveMouseAdapter;
+import realBillabong.GameState;
 
 import java.util.*;
 
