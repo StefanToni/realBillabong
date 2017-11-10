@@ -8,6 +8,7 @@ import realBillabong.GameState;
 
 import java.util.*;
 
+// this class would be better implemented in AIPlayer.java. This is just a try-out.
 public class AIPlayerAlfaBeta extends AIPlayer
 {
 	AlphaBeta alphabeta;

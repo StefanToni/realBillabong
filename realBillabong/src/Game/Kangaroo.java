@@ -48,12 +48,39 @@ public class Kangaroo {
 		lapCounter++ ;
 	}
 	
-	private void walk(Square dest){
-		
+	private void walk(Square origin, Square dest){
+		if(!(dest.isOccupied() || dest.isWater())) {
+			if((Math.abs(dest.getxLoc()-origin.getxLoc()) == 1) || // horizontal move
+				(Math.abs(dest.getyLoc()-origin.getyLoc()) == 1) || // vertical move
+				(Math.abs(dest.getxLoc()-origin.getxLoc()) == 1 && Math.abs(dest.getyLoc()-origin.getyLoc()) == 1)) // diagonal move
+			{
+				this.setPosition(dest);
+			}
+			else {
+				return;
+			}
+		}
+		else {
+			return;
+		}
 	}
 	
-	private void jump(Square dest){
+	private void jump(Square origin, Square dest){
+		Square midSquare = null;
+		midSquare.setxLoc(origin.getxLoc()+((dest.getxLoc()-origin.getxLoc())/2));
+		midSquare.setyLoc(origin.getyLoc()+((dest.getyLoc()-origin.getyLoc())/2));
 		
+		if(!(dest.isOccupied() || dest.isWater())) {
+			if(midSquare.isOccupied()) {
+				this.setPosition(dest);
+			}
+			else {
+				return;
+			}
+		}
+		else {
+			return;
+		}
 	}
 	
 	
