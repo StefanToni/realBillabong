@@ -38,7 +38,7 @@ public class MouseAdapter implements MouseListener {
 		if (!Main.getState().getLoop().getBoard().getBoardArray()[actualY][actualX].isOccupied() ) {
 				
 			int k = Main.getState().getLoop().getPlaceNumber();
-			Main.getState().getLoop().setPlaceNumber(k-1);
+			//Main.getState().getLoop().setPlaceNumber(k-1);
 			if (k > 0) {
 				System.out.println(Main.getState().getLoop().getCurrentPlayer().getColor());
 				Main.getState().getLoop().getCurrentPlayer().placePiece(actualY, actualX);
@@ -46,6 +46,7 @@ public class MouseAdapter implements MouseListener {
 				//loop.setHasClicked(true);
 				Main.getState().getComponent().repaint();
 				Main.getState().getLoop().getNextPlayer();
+				Main.getState().getLoop().setPlaceNumber(k-1);
 				
 			}
 			else{

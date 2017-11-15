@@ -73,7 +73,7 @@ public class Player {
 		int cntr = 0 ;
 		
 		for(int i = 0; i < 5; i++){
-			if(kangaroos.get(i).getLapCounter() >= 3){
+			if(kangaroos.get(i).getLapCounter() >= 3){ // isn't it two laps?
 				cntr++ ;
 			}
 		}
@@ -87,10 +87,23 @@ public class Player {
 	
 	public void performMove(Kangaroo k, Square o, Square d){
 		
-		k.setPosition(d) ;
-		o.empty() ;
-		d.fill(k) ;
+		try
+		{
+			k.walk(o, d);
+		} catch (Exception e)
+		{
+			System.out.println("Walking is not valid in this situation.");
+		}
+		try 
+		{
+			k.jump(o, d);
+		} catch(Exception e) 
+		{
+			System.out.println("Jumping is not valid in this situation.");
+		}
+		
 	}
+	
 	
 	public void placePiece(int x, int y){
 		

@@ -23,7 +23,6 @@ public class Gameloop implements MouseListener{
 	private Square s ;
 	private int piececounter ;
 	
-	
 
 	public int getPiececounter() {
 		return piececounter;
@@ -120,6 +119,7 @@ public class Gameloop implements MouseListener{
 	}
 	
 	public void placementPhase(){
+		
 		setCurrentPlayer(players.get(0));
 		int placeNumber = players.size()*5;
 		
@@ -137,7 +137,7 @@ public class Gameloop implements MouseListener{
 				
 			}
 		}*/
-		//gamePhase() ;
+		gamePhase() ;
 	}
 	
 	

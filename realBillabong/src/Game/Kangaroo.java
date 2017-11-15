@@ -48,13 +48,15 @@ public class Kangaroo {
 		lapCounter++ ;
 	}
 	
-	private void walk(Square origin, Square dest){
+	public void walk(Square origin, Square dest){
 		if(!(dest.isOccupied() || dest.isWater())) {
 			if((Math.abs(dest.getxLoc()-origin.getxLoc()) == 1) || // horizontal move
 				(Math.abs(dest.getyLoc()-origin.getyLoc()) == 1) || // vertical move
 				(Math.abs(dest.getxLoc()-origin.getxLoc()) == 1 && Math.abs(dest.getyLoc()-origin.getyLoc()) == 1)) // diagonal move
 			{
-				this.setPosition(dest);
+				origin.empty();
+				dest.fill(this);
+				//this.setPosition(dest); // Also covered in Square class, method Fill
 			}
 			else {
 				return;
@@ -65,14 +67,17 @@ public class Kangaroo {
 		}
 	}
 	
-	private void jump(Square origin, Square dest){
-		Square midSquare = null;
-		midSquare.setxLoc(origin.getxLoc()+((dest.getxLoc()-origin.getxLoc())/2));
-		midSquare.setyLoc(origin.getyLoc()+((dest.getyLoc()-origin.getyLoc())/2));
+	public void jump(Square origin, Square dest){
+		int midSquare_x = origin.getxLoc()+((dest.getxLoc()-origin.getxLoc())/2);
+		int midSquare_y = origin.getyLoc()+((dest.getyLoc()-origin.getyLoc())/2);
+
+		Square midSquare = new Square(midSquare_x, midSquare_y);
 		
 		if(!(dest.isOccupied() || dest.isWater())) {
 			if(midSquare.isOccupied()) {
-				this.setPosition(dest);
+				origin.empty();
+				dest.fill(this);
+				//this.setPosition(dest);// Also covered in Square class, method Fill
 			}
 			else {
 				return;

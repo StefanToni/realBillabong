@@ -31,7 +31,7 @@ public class HumanPlayer extends Player implements MouseListener{
 
 	
 		
-
+		
 			//if(loop.isHasClicked()){
 		Kangaroo k = new Kangaroo(color) ;
 		loop.getBoard().getBoardArray()[x][y].fill(k);
