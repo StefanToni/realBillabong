@@ -1,5 +1,7 @@
 package Game;
 
+import realBillabong.Main;
+
 public class Kangaroo {
 	
 	private int lapCounter = 0 ;
@@ -103,51 +105,200 @@ public class Kangaroo {
 	
 	
 	
-	public void walk(Square origin, Square dest){
-		if(!(dest.isOccupied() || dest.isWater())) {
-			System.out.println("Trying to move");
-			if((Math.abs(dest.getxLoc()-origin.getxLoc()) <= 1) && // horizontal move
-				(Math.abs(dest.getyLoc()-origin.getyLoc()) <= 1) && // vertical move
-				(Math.abs(dest.getxLoc()-origin.getxLoc()) <= 1 && Math.abs(dest.getyLoc()-origin.getyLoc()) <= 1)) // diagonal move
-			{	
-				System.out.println("Moving");
-				checkLap(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc());
-				origin.empty();
-				dest.fill(this);
-				//this.setPosition(dest); // Also covered in Square class, method Fill
-			}
-			else {
-				return;
-			}
-		}
-		else {
-			return;
-		}
-	}
-	
-	public void jump(Square origin, Square dest){
-		int midSquare_x = origin.getxLoc()+((dest.getxLoc()-origin.getxLoc())/2);
-		int midSquare_y = origin.getyLoc()+((dest.getyLoc()-origin.getyLoc())/2);
 
-		Square midSquare = new Square(midSquare_x, midSquare_y);
+	
+	public void move(Square origin, Square dest){
+				
 		
-		if(!(dest.isOccupied() || dest.isWater())) {
-			if(midSquare.isOccupied()) 
-			{   System.out.println("Moving");
-				checkLap(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc());
-				origin.empty();
-				dest.fill(this);
-				//this.setPosition(dest);// Also covered in Square class, method Fill
-			}
-			else {
-				return;
-			}
+		if(checkLegal(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc(), dest)) 
+		{
+			checkLap(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc());
+			origin.empty();
+			dest.fill(this);
+			System.out.println("MOVED");
 		}
-		else {
+		
+		else 
+		{	System.out.println("MOVE NOT LEGAL");
 			return;
 		}
+		
+		
 	}
 	
+	public boolean checkLegal(int ox, int oy, int dx, int dy, Square dest)
+	{
+		int deltaX = dx-ox;
+		int deltaY = dy-oy;
+		
+		if((Math.abs(deltaX) == Math.abs(deltaY) || deltaX == 0 || deltaY == 0) && !(dest.isOccupied() || dest.isWater()))
+		{
+			
+			System.out.println("delta = diagonal or 0");
+			
+			if(Math.abs(deltaX) <=1 && Math.abs(deltaY) <=1)
+			{
+				return true;
+			}
+		
+			else  
+			{   
+				Square[][] boardCopy = Main.getState().getLoop().getBoard().getBoardArray();
+				
+				int midSquare_x = ox + ((dx-ox)/2);
+				int midSquare_y = oy + ((dy-oy)/2);
+			
+				Square midSquare = boardCopy[midSquare_y][midSquare_x];
+				System.out.println("Midsquare found");
+				if(midSquare.isOccupied() && onlyOne(ox, oy, dx, dy))
+				{
+					return true;
+				}
+				
+			}
+			
+			return false;
+		}
+		
+		else return false;
+		
+		
+	}
 	
-
+	private boolean onlyOne(int ox, int oy, int dx, int dy)
+	{	System.out.println("Only One Tried");
+		//current x&y
+		
+		int deltaX = dx - ox;
+		int deltaY = dy - oy;
+		
+		Square[][] boardCopy = Main.getState().getLoop().getBoard().getBoardArray();
+		
+		int cx = ox;
+		int cy = oy;
+		int middleCounter = 0;
+		
+		
+		//if diagonal
+		if(Math.abs(deltaX) == Math.abs(deltaY))
+		{
+			
+			
+			if(deltaX<0 && deltaY>0)
+			{
+				while(cx!=dx && cy != dy )
+				{
+					cx--;
+					cy++;
+					if(boardCopy[cy][cx].isOccupied())
+					{
+						middleCounter++;
+					}
+				}
+			}
+			
+			if(deltaX>0 && deltaY<0)
+			{
+				while(cx!=dx && cy != dy )
+				{
+					cx++;
+					cy--;
+					if(boardCopy[cy][cx].isOccupied())
+					{
+						middleCounter++;
+					}
+				}
+			}
+			
+			if(deltaX>0 && deltaY>0)
+			{
+				while(cx!=dx && cy != dy )
+				{
+					cx++;
+					cy++;
+					if(boardCopy[cy][cx].isOccupied())
+					{
+						middleCounter++;
+					}
+				}
+			}
+			
+			if(deltaX<0 && deltaY<0)
+			{
+				while(cx!=dx && cy != dy )
+				{
+					cx--;
+					cy--;
+					if(boardCopy[cy][cx].isOccupied())
+					{
+						middleCounter++;
+					}
+				}
+			}
+			
+			
+			if(middleCounter == 1) return true;
+			
+			else return false;
+			
+		}
+		
+		//if not diagonal
+		else
+		{
+			if(deltaX == 0 && deltaY > 0)
+			{
+				while(cy!=dy)
+				{
+					cy++;
+					if(boardCopy[cy][cx].isOccupied())
+					{
+						middleCounter++;
+					}
+				}
+			}
+		
+			if(deltaX == 0 && deltaY < 0)
+			{
+				while(cy!=dy)
+				{
+					cy--;
+					if(boardCopy[cy][cx].isOccupied())
+					{
+						middleCounter++;
+					}
+				}
+			}
+		
+			if(deltaX > 0 && deltaY == 0)
+			{
+				while(cx!=dx)
+				{
+					cx++;
+					if(boardCopy[cy][cx].isOccupied())
+					{
+						middleCounter++;
+					}
+				}
+			}
+		
+			if(deltaX < 0 && deltaY == 0)
+			{
+				while(cx!=dx)
+				{
+					cx--;
+					if(boardCopy[cy][cx].isOccupied())
+					{
+						middleCounter++;
+					}
+				}
+			}
+			
+			if(middleCounter == 1) return true;
+			
+			else return false;
+			
+		}	
+		
+	}
 }

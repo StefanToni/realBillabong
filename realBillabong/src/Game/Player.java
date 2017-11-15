@@ -91,17 +91,10 @@ public class Player {
 		System.out.println("Trying move");
 		try
 		{
-			k.walk(o, d);
+			k.move(o, d);
 		} catch (Exception e)
 		{
-			System.out.println("Walking is not valid in this situation.");
-		}
-		try 
-		{
-			k.jump(o, d);
-		} catch(Exception e) 
-		{
-			System.out.println("Jumping is not valid in this situation.");
+			System.out.println("Moving is not valid in this situation.");
 		}
 		
 		
