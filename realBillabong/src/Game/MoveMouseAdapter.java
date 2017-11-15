@@ -31,8 +31,8 @@ public class MoveMouseAdapter implements MouseListener {
             {
                 if((79+(squareSize*j)<=x) && (77+squareSize+(squareSize*j)>=x) &&  (56+(squareSize*i)<=y) && (54+squareSize+(squareSize*i)>=y) )  
                 {
-               	 setActualY(i);
-               	 setActualX(j);
+               	 actualY = i;
+               	 actualX = j;
             	 System.out.println("mover " + j+ " " + i ); // + Main.getState().getLoop().getCurrentPlayer().getName());
                 }
                
@@ -74,11 +74,12 @@ public class MoveMouseAdapter implements MouseListener {
 		
 		//gets Kangaroo of current square
 		if(counter ==1)//counter is for deciding whether it's the selection of the kangaroo or the square it wants to go to
-		{
+		{ System.out.println("Counter1 executed");
 			if(currentSquare.isOccupied()){
 				//if(currentSquare.getIsHere().getTeam() == Main.getState().getLoop().getCurrentPlayer().getColor())
 				currentKangaroo = currentSquare.getIsHere();
 				counter++ ; 
+				System.out.println("CurrentKangarooSelected");
 			}
 			
 					
@@ -86,11 +87,12 @@ public class MoveMouseAdapter implements MouseListener {
 		
 		//moves to the new square
 		else if(counter == 2)
-		{
+		{	System.out.println("Counter2 executed");
 			if(!currentSquare.isOccupied()){
+				System.out.println("Destination square is not occupied");
 				counter = 1 ;
 				/// constraints , x,y +-1 or jump
-				Main.getState().getLoop().getCurrentPlayer().performMove(currentKangaroo, currentSquare);
+				Main.getState().getLoop().getCurrentPlayer().performMove(currentKangaroo, currentKangaroo.getPosition(), currentSquare);
 				currentSquare = null ;
 				currentKangaroo = null ; System.out.println("current deleted");
 				

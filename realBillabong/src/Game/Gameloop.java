@@ -142,7 +142,7 @@ public class Gameloop implements MouseListener{
 	
 	
 	public void gamePhase(){
-		Main.getState().getPane().removeMouseListener(mouse);
+		Main.getState().deleteMouse();
 		mouse = null;
 		System.out.println("start playing");
 		mover = new MoveMouseAdapter() ;

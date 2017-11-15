@@ -18,6 +18,7 @@ public interface GameState {
 	public Gameloop getLoop();
 	public BoardComponent getComponent() ;
 	public JPanel getPane() ;
+	public void deleteMouse();
 	
 
 }
