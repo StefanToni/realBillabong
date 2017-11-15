@@ -106,9 +106,9 @@ public class Kangaroo {
 	public void walk(Square origin, Square dest){
 		if(!(dest.isOccupied() || dest.isWater())) {
 			System.out.println("Trying to move");
-			if((Math.abs(dest.getxLoc()-origin.getxLoc()) == 1) || // horizontal move
-				(Math.abs(dest.getyLoc()-origin.getyLoc()) == 1) || // vertical move
-				(Math.abs(dest.getxLoc()-origin.getxLoc()) == 1 && Math.abs(dest.getyLoc()-origin.getyLoc()) == 1)) // diagonal move
+			if((Math.abs(dest.getxLoc()-origin.getxLoc()) <= 1) && // horizontal move
+				(Math.abs(dest.getyLoc()-origin.getyLoc()) <= 1) && // vertical move
+				(Math.abs(dest.getxLoc()-origin.getxLoc()) <= 1 && Math.abs(dest.getyLoc()-origin.getyLoc()) <= 1)) // diagonal move
 			{	
 				System.out.println("Moving");
 				checkLap(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc());
