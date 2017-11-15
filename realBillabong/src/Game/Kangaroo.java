@@ -48,12 +48,70 @@ public class Kangaroo {
 		lapCounter++ ;
 	}
 	
+	private void checkLap(int xFirst, int yFirst, int xNow, int yNow)
+	{
+		if(getRightLeft(xFirst, yFirst, xNow, yNow))
+		{
+			setLapCounter(lapCounter++);
+		}
+		else if(getLeftRight(xFirst, yFirst, xNow, yNow))
+		{
+			setLapCounter(lapCounter--);
+		}
+		
+	}
+	//These check if the kangaroo goes over the blue line & in which direction
+	private boolean getRightLeft(int xFirst, int yFirst, int xNow, int yNow)
+	{ //13& 15
+		if(xFirst>7 && xNow<=7 && yFirst>5 && yNow>5)
+		{
+			return true;
+		}
+		
+		else if(xFirst>7 && xNow<=7 && yFirst<=6 && yNow>=8)
+		{
+			return true;
+		}
+		
+		else if(xFirst>7 && xNow<=7 && yFirst>=8 && yNow<=6)
+		{
+			return true;
+		}
+		
+		else return false;
+	}
+	
+	private boolean getLeftRight(int xFirst, int yFirst, int xNow, int yNow)
+	{ //13& 15
+		if(xNow>7 && xFirst<=7 && yNow>5 && yFirst>5)
+		{
+			return true;
+		}
+		
+		else if(xNow>7 && xFirst<=7 && yNow<=6 && yFirst>=8)
+		{
+			return true;
+		}
+		
+		else if(xNow>7 && xFirst<=7 && yNow>=8 && yFirst<=6)
+		{
+			return true;
+		}
+		
+		else return false;
+	}
+	
+	
+	
 	public void walk(Square origin, Square dest){
 		if(!(dest.isOccupied() || dest.isWater())) {
+			System.out.println("Trying to move");
 			if((Math.abs(dest.getxLoc()-origin.getxLoc()) == 1) || // horizontal move
 				(Math.abs(dest.getyLoc()-origin.getyLoc()) == 1) || // vertical move
 				(Math.abs(dest.getxLoc()-origin.getxLoc()) == 1 && Math.abs(dest.getyLoc()-origin.getyLoc()) == 1)) // diagonal move
-			{
+			{	
+				System.out.println("Moving");
+				checkLap(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc());
 				origin.empty();
 				dest.fill(this);
 				//this.setPosition(dest); // Also covered in Square class, method Fill
@@ -74,7 +132,9 @@ public class Kangaroo {
 		Square midSquare = new Square(midSquare_x, midSquare_y);
 		
 		if(!(dest.isOccupied() || dest.isWater())) {
-			if(midSquare.isOccupied()) {
+			if(midSquare.isOccupied()) 
+			{   System.out.println("Moving");
+				checkLap(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc());
 				origin.empty();
 				dest.fill(this);
 				//this.setPosition(dest);// Also covered in Square class, method Fill

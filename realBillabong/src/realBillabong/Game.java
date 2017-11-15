@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -29,15 +30,20 @@ public class Game implements GameState {
 	private DrawGraphics graphics ;
 	private Square[][] boardArray ;
 	private BoardComponent component ;
-	private MouseAdapter mouse ;
+	private MouseListener mouse ;
 	
 	public MouseAdapter getMouse() {
-		return mouse;
+		return (MouseAdapter)mouse;
 	}
 
 
-	public void setMouse(MouseAdapter mouse) {
+	public void setMouse(MouseListener mouse) {
 		this.mouse = mouse;
+	}
+	
+	public void clearMouse()
+	{
+		pane.removeMouseListener(mouse);
 	}
 
 
@@ -85,6 +91,10 @@ public class Game implements GameState {
 		
 	}
 	
+	public void deleteMouse()
+	{
+		pane.removeMouseListener(mouse);
+	}
 	public JPanel getPane() {
 		return pane;
 	}

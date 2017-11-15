@@ -2,6 +2,8 @@ package Game;
 
 import java.util.ArrayList;
 
+import realBillabong.Main;
+
 public class Player {
 	
 	private ArrayList<Kangaroo> kangaroos ;
@@ -86,7 +88,7 @@ public class Player {
 	}
 	
 	public void performMove(Kangaroo k, Square o, Square d){
-		
+		System.out.println("Trying move");
 		try
 		{
 			k.walk(o, d);
@@ -102,6 +104,8 @@ public class Player {
 			System.out.println("Jumping is not valid in this situation.");
 		}
 		
+		
+		Main.getState().getComponent().repaint();
 	}
 	
 	
