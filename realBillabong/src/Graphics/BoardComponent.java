@@ -1,5 +1,6 @@
 package Graphics;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -7,6 +8,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JComponent;
 
+import Game.Player;
 import Game.Square;
 import realBillabong.Main;
 
@@ -14,11 +16,13 @@ public class BoardComponent extends JComponent {
 	
 	private Square[][] boardArray ;
 	private int SquareSize = 20;
+	private int current;
 	
 	public BoardComponent(Square[][] b){
 		boardArray = b ;
 		System.out.println("loaded boardarray in paint class..");
 		SquareSize = Main.getSize();
+		
 		
 	}
 	
@@ -77,10 +81,41 @@ public class BoardComponent extends JComponent {
 					g.drawOval((50+(SquareSize*n)),(50+(SquareSize*m)),SquareSize,SquareSize) ;
 					g.setColor(Color.red); 
 					g.fillOval((50+(SquareSize*n)),(50+(SquareSize*m)),SquareSize,SquareSize); 
-				} 
+				}
+			
 			} 
 		}
 		
+		
+		for(int m=0;m<14;m++) 
+		{ 
+			for(int n=0;n<16;n++) 
+			{ 
+				if(boardArray[m][n].getIsSelected())
+				{
+				g2.setStroke(new BasicStroke(2));
+				Main.getState().getLoop().getCurrentPlayer();
+				if (Player.getTeamCounter()==0) {
+					g2.setColor(Color.BLUE);
+					System.out.println("Player 0");
+				}
+				Main.getState().getLoop().getCurrentPlayer();
+				if (Player.getTeamCounter()==1) {
+					g2.setColor(Color.RED);
+					System.out.println("Player 1");
+				}
+				System.out.println(m + " " + n + " is selected"); 
+				g2.drawRect(50+(SquareSize*n),50+(SquareSize*m),SquareSize,SquareSize); 
+				}
+				
+			}
+		}
+		for(int i = 0 ; i < 14 ; i++){
+			for(int j = 0 ; j < 16 ; j++){
+				boardArray[i][j].setIsSelected(false);
+			}
+		}
+				
 	}
 
 	public int getSquareSize() {

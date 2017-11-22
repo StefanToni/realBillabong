@@ -41,6 +41,9 @@ public class MoveMouseAdapter implements MouseListener {
         }
 		Square[][] boardCopy = Main.getState().getLoop().getBoard().getBoardArray() ;
 		Square currentSquare = boardCopy[actualY][actualX];
+		currentSquare.setIsSelected(true);
+		
+		
 		
 		
 		if(SwingUtilities.isRightMouseButton(e))
