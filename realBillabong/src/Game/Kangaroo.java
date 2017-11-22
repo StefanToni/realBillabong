@@ -38,18 +38,18 @@ public class Kangaroo {
 		this.team = team;
 	}
 	
-	private int getLapCounter()
+	public int getLapCounter()
 	{
 		return lapCounter;
 	}
 	
-	private void finishKangaroo()
+	public void finishKangaroo()
 	{
 		System.out.println("Kangaroo has finished");
 		//maybe an in-game notification 
 	}
 	
-	private void checkLap(int xFirst, int yFirst, int xNow, int yNow)
+	public void checkLap(int xFirst, int yFirst, int xNow, int yNow)
 	{
 		System.out.println("Lap checked");
 		if(getRightLeft(xFirst, yFirst, xNow, yNow))
@@ -69,7 +69,7 @@ public class Kangaroo {
 		
 	}
 	//These check if the kangaroo goes over the blue line & in which direction
-	private boolean getRightLeft(int xFirst, int yFirst, int xNow, int yNow)
+	public boolean getRightLeft(int xFirst, int yFirst, int xNow, int yNow)
 	{ //13& 15
 		if(xFirst>7 && xNow<=7 && yFirst>5 && yNow>5)
 		{
@@ -89,7 +89,7 @@ public class Kangaroo {
 		else return false;
 	}
 	
-	private boolean getLeftRight(int xFirst, int yFirst, int xNow, int yNow)
+	public boolean getLeftRight(int xFirst, int yFirst, int xNow, int yNow)
 	{ //13& 15
 		if(xNow>7 && xFirst<=7 && yNow>5 && yFirst>5)
 		{
@@ -172,7 +172,7 @@ public class Kangaroo {
 		
 	}
 	
-	private boolean onlyOne(int ox, int oy, int dx, int dy)
+	public boolean onlyOne(int ox, int oy, int dx, int dy)
 	{	System.out.println("Only One Tried");
 		//current x&y
 		
