@@ -38,27 +38,33 @@ public class Kangaroo {
 		this.team = team;
 	}
 	
-	public int getLapCounter(){
-		return lapCounter ;
+	private int getLapCounter()
+	{
+		return lapCounter;
 	}
 	
-	private void setLapCounter(int x){
-		lapCounter = x ;
-	}
-	
-	private void finsishedLap(){
-		lapCounter++ ;
+	private void finishKangaroo()
+	{
+		System.out.println("Kangaroo has finished");
+		//maybe an in-game notification 
 	}
 	
 	private void checkLap(int xFirst, int yFirst, int xNow, int yNow)
 	{
+		System.out.println("Lap checked");
 		if(getRightLeft(xFirst, yFirst, xNow, yNow))
 		{
-			setLapCounter(lapCounter++);
+			lapCounter++;
+			System.out.println("Lapcounter incremented to " + lapCounter);
+			if(lapCounter == 3)
+				{
+					Main.getState().getLoop().getCurrentPlayer().haveIWon();
+				}
 		}
 		else if(getLeftRight(xFirst, yFirst, xNow, yNow))
 		{
-			setLapCounter(lapCounter--);
+			lapCounter--;
+			System.out.println("Lapcounter decreased to " + lapCounter);
 		}
 		
 	}
@@ -114,7 +120,8 @@ public class Kangaroo {
 		{
 			checkLap(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc());
 			origin.empty();
-			dest.fill(this);
+			if(lapCounter == 3) finishKangaroo();
+			else dest.fill(this);
 			System.out.println("MOVED");
 		}
 		

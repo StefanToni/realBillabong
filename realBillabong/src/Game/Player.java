@@ -75,7 +75,7 @@ public class Player {
 		int cntr = 0 ;
 		
 		for(int i = 0; i < 5; i++){
-			if(kangaroos.get(i).getLapCounter() >= 3){ // isn't it two laps?
+			if(kangaroos.get(i).getLapCounter() == 3){ // isn't it two laps? Yes but the first cross at the start is counted too
 				cntr++ ;
 			}
 		}
