@@ -159,7 +159,7 @@ public class Gameloop implements MouseListener{
 			//display winnner thing
 			System.out.println("Team number " + currentPlayer.getColor() + " wins !!!") ;
 		}
-		else{
+		/*else{
 			//check constraints
 			//System.out.println(currentPlayer.getColor());
 			//currentPlayer.setInput(false);
@@ -168,7 +168,7 @@ public class Gameloop implements MouseListener{
 			System.out.println("repaint loop");
 			getNextPlayer() ;
 			System.out.println("next player selected");
-		}
+		}*/
 		
 	}
 	
