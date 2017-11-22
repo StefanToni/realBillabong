@@ -9,6 +9,7 @@ public class Kangaroo {
 	private Square prevPosition ;
 	private int team ;
 	
+	
 	public Kangaroo(int t){
 		team = t ;
 	}
@@ -110,7 +111,9 @@ public class Kangaroo {
 	}
 	
 	
-	
+	public void terminateTurn(){
+		Main.getState().getLoop().getNextPlayer();
+	}
 
 	
 	public void move(Square origin, Square dest){
@@ -123,6 +126,9 @@ public class Kangaroo {
 			if(lapCounter == 3) finishKangaroo();
 			else dest.fill(this);
 			System.out.println("MOVED");
+			if(Math.abs(origin.getxLoc()- dest.getxLoc()) == 1 || Math.abs(origin.getyLoc()- dest.getyLoc()) == 1){
+				terminateTurn();
+			}
 		}
 		
 		else 
