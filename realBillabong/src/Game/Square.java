@@ -7,12 +7,14 @@ public class Square {
 	private int yLoc ;
 	private boolean isOccupied ;
 	private boolean isWater ;
+	private boolean isSelected;
 	
 	public Square(int y, int x){
 		xLoc = x ;
 		yLoc = y ;
 		isOccupied = false ;
 		isWater = false ;
+		isSelected = false;
 	}
 	
 	public boolean isWater() {
@@ -79,5 +81,12 @@ public class Square {
 		yLoc = y;
 	}
 	
+	public boolean getIsSelected() {
+		return isSelected;
+	}
+	
+	public void setIsSelected(boolean s) {
+		isSelected = s;
+	}
 
 }

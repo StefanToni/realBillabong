@@ -33,7 +33,7 @@ public class Board
 				board[m][n].setWater(true);
 			}
 		}
-			
+		
 		System.out.println("created boardarray in board class..");
 	}
 	
@@ -100,6 +100,15 @@ public class Board
 	//check1 method looks at how many kangaroos are on the board, if there are 5 of them
 	//for each player then, then he cannot add more
 	
+	
+	public void clearSelected() {
+		for(int i = 0 ; i < 14 ; i++){
+			for(int j = 0 ; j < 16 ; j++){
+				board[i][j].setIsSelected(false);
+			}
+		}
+		System.out.println("clearing working");
+	}
 
 	public Square[][] getBoardArray() {
 
