@@ -94,13 +94,11 @@ public class BoardComponent extends JComponent {
 				if(boardArray[m][n].getIsSelected())
 				{
 				g2.setStroke(new BasicStroke(2));
-				Main.getState().getLoop().getCurrentPlayer();
-				if (Player.getTeamCounter()==0) {
+				if (Main.getState().getLoop().getCurrentPlayer().getTeamCounter()==0) {
 					g2.setColor(Color.BLUE);
 					System.out.println("Player 0");
 				}
-				Main.getState().getLoop().getCurrentPlayer();
-				if (Player.getTeamCounter()==1) {
+				if (Main.getState().getLoop().getCurrentPlayer().getTeamCounter()==1) {
 					g2.setColor(Color.RED);
 					System.out.println("Player 1");
 				}
