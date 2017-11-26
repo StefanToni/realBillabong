@@ -26,12 +26,12 @@ public class Nodee {
 	        this.childArray = childArray;
 	    }
 
-	    public Nodee(Nodee Nodee) {
+	    public Nodee(Nodee nodee) {
 	        this.childArray = new ArrayList<>();
-	        this.state = new State(Nodee.getState());
-	        if (Nodee.getParent() != null)
-	            this.parent = Nodee.getParent();
-	        List<Nodee> childArray = Nodee.getChildArray();
+	        this.state = new State(nodee.getState());
+	        if (nodee.getParent() != null)
+	            this.parent = nodee.getParent();
+	        List<Nodee> childArray = nodee.getChildArray();
 	        for (Nodee child : childArray) {
 	            this.childArray.add(new Nodee(child));
 	        }

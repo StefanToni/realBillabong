@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.text.Position;
 
 import Game.Board;
+import realBillabong.Main;
 
 	public class State {
 	    private Board board;
@@ -18,14 +19,14 @@ import Game.Board;
 	    }
 
 	    public State(State state) {
-	        this.board = new Board(state.getBoard());
+	        this.board = Main.getState().getLoop().getBoard();
 	        this.playerNo = state.getPlayerNo();
 	        this.visitCount = state.getVisitCount();
 	        this.winScore = state.getWinScore();
 	    }
 
 	    public State(Board board) {
-	        this.board = new Board(board);
+	        this.board = Main.getState().getLoop().getBoard();
 	    }
 
 	    Board getBoard() {
@@ -70,6 +71,7 @@ import Game.Board;
 	        availablePositions.forEach(p -> {
 	            State newState = new State(this.board);
 	            newState.setPlayerNo(3 - this.playerNo);
+	            //Main.getState().getLoop().getCurrentPlayer().performMove(currentKangaroo, currentKangaroo.getPosition(), currentSquare);
 	            newState.getBoard().performMove(newState.getPlayerNo(), p);
 	            possibleStates.add(newState);
 	        });
