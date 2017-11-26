@@ -1,5 +1,6 @@
 package AI;
 
+import java.util.Collections;
 import java.util.Comparator;
 
 public class UCT {
@@ -11,7 +12,7 @@ public class UCT {
 	        return (nodeWinScore / (double) nodeVisit) + 1.41 * Math.sqrt(Math.log(totalVisit) / (double) nodeVisit);
 	    }
 
-	    static Node findBestNodeWithUCT(Node node) {
+	    static Nodee findBestNodeWithUCT(Nodee node) {
 	        int parentVisit = node.getState().getVisitCount();
 	        return Collections.max(
 	          node.getChildArray(),

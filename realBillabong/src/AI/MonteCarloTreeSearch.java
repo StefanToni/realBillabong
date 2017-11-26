@@ -36,46 +36,46 @@ public class MonteCarloTreeSearch {
 
 	        while (System.currentTimeMillis() < end) {
 	            // Phase 1 - Selection
-	            Node promisingNode = selectPromisingNode(rootNode);
+	            Nodee promisingNode = selectPromisingNode(rootNode);
 	            // Phase 2 - Expansion
 	            if (promisingNode.getState().getBoard().checkStatus() == Board.IN_PROGRESS)
 	                expandNode(promisingNode);
 
 	            // Phase 3 - Simulation
-	            Node nodeToExplore = promisingNode;
+	            Nodee nodeToExplore = promisingNode;
 	            if (promisingNode.getChildArray().size() > 0) {
-	                nodeToExplore = promisingNode.getRandomChildNode();
+	                nodeToExplore = promisingNode.getRandomChildNodee();
 	            }
 	            int playoutResult = simulateRandomPlayout(nodeToExplore);
 	            // Phase 4 - Update
 	            backPropogation(nodeToExplore, playoutResult);
 	        }
 
-	        Node winnerNode = rootNode.getChildWithMaxScore();
+	        Nodee winnerNode = rootNode.getChildWithMaxScore();
 	        tree.setRoot(winnerNode);
 	        return winnerNode.getState().getBoard();
 	    }
 
-	    private Node selectPromisingNode(Node rootNode) {
-	        Node node = rootNode;
+	    private Nodee selectPromisingNode(Nodee rootNode) {
+	        Nodee node = rootNode;
 	        while (node.getChildArray().size() != 0) {
 	            node = UCT.findBestNodeWithUCT(node);
 	        }
 	        return node;
 	    }
 
-	    private void expandNode(Node node) {
+	    private void expandNode(Nodee node) {
 	        List<State> possibleStates = node.getState().getAllPossibleStates();
 	        possibleStates.forEach(state -> {
-	            Node newNode = new Node(state);
+	            Nodee newNode = new Nodee(state);
 	            newNode.setParent(node);
 	            newNode.getState().setPlayerNo(node.getState().getOpponent());
 	            node.getChildArray().add(newNode);
 	        });
 	    }
 
-	    private void backPropogation(Node nodeToExplore, int playerNo) {
-	        Node tempNode = nodeToExplore;
+	    private void backPropogation(Nodee nodeToExplore, int playerNo) {
+	        Nodee tempNode = nodeToExplore;
 	        while (tempNode != null) {
 	            tempNode.getState().incrementVisit();
 	            if (tempNode.getState().getPlayerNo() == playerNo)
