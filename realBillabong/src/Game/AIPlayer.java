@@ -1,5 +1,6 @@
 package Game;
 
+import AI.*;
 import realBillabong.Main;
 
 public class AIPlayer extends Player {
@@ -21,6 +22,13 @@ public class AIPlayer extends Player {
 		mouse = Main.getState().getMouse() ;
 		name = "AI" ;
 	
+	}
+	
+	public Square[][] nextMiniMaxMove() {
+		MiniMax_AlphaBeta minMax = new MiniMax_AlphaBeta();
+		Square[][] nextMove = minMax.getNextMove();
+		
+		return nextMove;
 	}
 
 }
