@@ -94,7 +94,8 @@ public class BoardComponent extends JComponent {
 				if(boardArray[m][n].getIsSelected())
 				{
 				g2.setStroke(new BasicStroke(2));
-				if (Main.getState().getLoop().getCurrentPlayer().getTeamCounter()==0) {
+				g2.setColor(Color.BLACK);
+				/*if (Main.getState().getLoop().getCurrentPlayer().getTeamCounter()==0) {
 					g2.setColor(Color.BLUE);
 					System.out.println("Player 0");
 				}
@@ -102,7 +103,7 @@ public class BoardComponent extends JComponent {
 					g2.setColor(Color.RED);
 					System.out.println("Player 1");
 				}
-				System.out.println(m + " " + n + " is selected"); 
+				System.out.println(m + " " + n + " is selected"); */
 				g2.drawRect(50+(SquareSize*n),50+(SquareSize*m),SquareSize,SquareSize); 
 				}
 				
