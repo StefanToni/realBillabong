@@ -13,6 +13,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.text.Position;
+
+import realBillabong.Main;
 
 public class Board 
 { 
@@ -20,6 +26,10 @@ public class Board
 	private Square[][] board ; 
 	private Kangaroo referee ;
 	private Kangaroo[] kangaroos ;
+	public static final int IN_PROGRESS = -1;
+    public static final int DRAW = 0;
+    public static final int P1 = 1;
+    public static final int P2 = 2;
 	
 	public Board(){
 		board = new Square[14][16] ;
@@ -133,6 +143,24 @@ public class Board
 
 	public void setKangaroos(Kangaroo[] kangaroos) {
 		this.kangaroos = kangaroos;
+	}
+
+	public List<Square[][]> getEmptyPositions() {
+        List<Square[][]> emptyPositions = new ArrayList<>();
+        for (int i = 0; i < 14; i++) {
+            for (int j = 0; j < 16; j++) {
+                if (!board[i][j].isOccupied())
+                    emptyPositions.add(new Square[i][j]);
+            }
+        }
+        return emptyPositions;
+    }
+
+	public int checkStatus() {
+		if (Main.getState().getLoop().getCurrentPlayer().haveIWon()) {
+			return Main.getState().getLoop().getCurrentPlayer().getColor();
+		}
+		else return -1;
 	}
 	
 
