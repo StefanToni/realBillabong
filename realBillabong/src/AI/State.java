@@ -1,11 +1,13 @@
 package AI;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
-import javax.swing.text.Position;
-
 import Game.Board;
+import Game.Kangaroo;
+import Game.Position;
+import Game.Square;
 import realBillabong.Main;
 
 	public class State {
@@ -13,6 +15,8 @@ import realBillabong.Main;
 	    private int playerNo;
 	    private int visitCount;
 	    private double winScore;
+	    private ArrayList<Kangaroo> kangaroos;
+	    
 
 	    public State() {
 	        board = new Board();
@@ -23,10 +27,12 @@ import realBillabong.Main;
 	        this.playerNo = state.getPlayerNo();
 	        this.visitCount = state.getVisitCount();
 	        this.winScore = state.getWinScore();
+	        this.kangaroos = Main.getState().getLoop().getPlayers().get(2).getKangaroos();
+	        
 	    }
 
 	    public State(Board board) {
-	        this.board = Main.getState().getLoop().getBoard();
+	        this.board = Main.getState().getLoop().getBoard(); // dasibogi
 	    }
 
 	    Board getBoard() {
@@ -67,7 +73,7 @@ import realBillabong.Main;
 
 	    public List<State> getAllPossibleStates() {
 	        List<State> possibleStates = new ArrayList<>();
-	        List<Position> availablePositions = this.board.getEmptyPositions();
+	        List<Square[][]> availablePositions = this.board.getEmptyPositions();
 	        availablePositions.forEach(p -> {
 	            State newState = new State(this.board);
 	            newState.setPlayerNo(3 - this.playerNo);
@@ -88,10 +94,11 @@ import realBillabong.Main;
 	    }
 
 	    void randomPlay() {
-	        List<Position> availablePositions = this.board.getEmptyPositions();
+	        List<Square[][]> availablePositions = this.board.getEmptyPositions();
 	        int totalPossibilities = availablePositions.size();
 	        int selectRandom = (int) (Math.random() * ((totalPossibilities - 1) + 1));
-	        this.board.performMove(this.playerNo, availablePositions.get(selectRandom));
+	        //this.board.performMove(this.playerNo, availablePositions.get(selectRandom));
+	        Main.getState().getLoop().getPlayers().get(2).performMove(k, o, availablePositions.get(selectRandom));
 	    }
 
 	    void togglePlayer() {
@@ -100,4 +107,5 @@ import realBillabong.Main;
 	}
 	
 	
-}
+
+

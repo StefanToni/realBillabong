@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Nodee {
-	 State state;
+	 	State state;
 	    Nodee parent;
 	    List<Nodee> childArray;
 
