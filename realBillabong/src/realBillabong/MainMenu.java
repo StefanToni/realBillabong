@@ -130,6 +130,22 @@ public class MainMenu implements GameState {
 
 
 
+	@Override
+	public JPanel getPane() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public void deleteMouse() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 	
 
 }
