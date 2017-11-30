@@ -6,7 +6,7 @@ public class Kangaroo {
 	
 	public boolean moveable = false;
 	private int lapCounter = 0 ;
-	private Square position ;
+	private Square position, or ;
 	private Square prevPosition ;
 	private int team ;
 	
@@ -116,7 +116,7 @@ public class Kangaroo {
 		this.moveable = false;
 		Main.getState().getLoop().getCurrentPlayer().firstmove = true;
 		Main.getState().getLoop().getNextPlayer();
-		
+		or.empty();
 	}
 
 	
@@ -125,9 +125,16 @@ public class Kangaroo {
 		
 		if(checkLegal(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc(), dest)) 
 		{
-			Main.getState().getLoop().getCurrentPlayer().firstmove = false;
+			
 			checkLap(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc());
 			origin.empty();
+			if(Main.getState().getLoop().getCurrentPlayer().firstmove == true) 
+				{
+					origin.fill(new Kangaroo(10));
+					or = origin;
+				}
+			
+			Main.getState().getLoop().getCurrentPlayer().firstmove = false;
 			if(lapCounter == 3) finishKangaroo();
 			else dest.fill(this);
 			System.out.println("MOVED");

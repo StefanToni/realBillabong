@@ -10,7 +10,7 @@ public class MoveCalculator
 	private Square[][] original_board;
 	private Square[][] new_board;
 	private ArrayList<Square[][]> next_boards;
-	private Kangaroo k;
+	private Kangaroo k, r;
 	private Kangaroo[] kangaroos;
 	
 	public ArrayList<Square[][]> getNextBoards() {
