@@ -1,9 +1,16 @@
 package Game;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+
+import realBillabong.Main;
+
+
 import AI.*;
 import realBillabong.Main;
 
-public class AIPlayer extends Player {
+public class AIPlayer extends Player implements MouseListener{
 	
 	private int color;
 	private Gameloop loop ;
@@ -24,6 +31,20 @@ public class AIPlayer extends Player {
 	
 	}
 	
+	public void placePiece(int x, int y){
+
+		
+		
+		
+		//if(loop.isHasClicked()){
+	Kangaroo k = new Kangaroo(color) ;
+	loop.getBoard().getBoardArray()[x][y].fill(k);
+	super.getKangaroos().add(k) ;
+	
+	
+			
+		
+	}
 	public Square[][] nextMiniMaxMove() {
 		MiniMax_AlphaBeta minMax = new MiniMax_AlphaBeta();
 		Square[][] nextMove = minMax.getNextMove();

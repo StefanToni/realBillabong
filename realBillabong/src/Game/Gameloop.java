@@ -23,6 +23,9 @@ public class Gameloop implements MouseListener{
 	private Square s ;
 	private int piececounter ;
 	
+	private boolean placementPhase = true;
+	private boolean gamePhase = false;
+	private ArrayList<AIPlayer> aiPlayers;
 
 	public int getPiececounter() {
 		return piececounter;
@@ -59,14 +62,16 @@ public class Gameloop implements MouseListener{
 	public Gameloop(int p, int a){
 		mouse = Main.getState().getMouse() ;
 		board = new  Board() ;
-		players = new ArrayList<Player>() ;
+		players = new ArrayList<Player>() ;	
+		aiPlayers = new ArrayList<AIPlayer>();
 		for(int i = 0; i < p ; i++){
 			HumanPlayer hPlayer = new HumanPlayer(this) ;
 			players.add(hPlayer) ;
 		}
 		for(int i = 0; i < a ; i++){
 			AIPlayer aiPlayer = new AIPlayer(this) ;
-			players.add(aiPlayer) ;
+			players.add(aiPlayer);
+			aiPlayers.add(aiPlayer) ;
 		}
 		placeNumber = players.size()*5;
 		currentPlayer = players.get(0) ;
@@ -91,6 +96,10 @@ public class Gameloop implements MouseListener{
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
+	
+	public ArrayList<AIPlayer> getAIPlayers(){
+		return aiPlayers;
+	}
 
 	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
@@ -111,12 +120,18 @@ public class Gameloop implements MouseListener{
             	if (i == players.size()-1){
             		System.out.println(i + " i goes to 0");
             		setCurrentPlayer(players.get(0));
+            		if(gamePhase) {
+            			Square[][] newBoard = aiPlayers.get(0).nextMiniMaxMove();
+            			Main.getState().getLoop().getBoard().setBoardArray(newBoard);
+            		}
             		System.out.println("team number " + currentPlayer.getColor());
             		done = true;
             	}
             	else {
             		System.out.println(" i goes up to " + (i+1));
             		setCurrentPlayer(players.get(i+1));
+            		
+            		
             		System.out.println("team number " + currentPlayer.getColor());
             		done = true;
             	}
@@ -144,11 +159,13 @@ public class Gameloop implements MouseListener{
 				
 			}
 		}*/
+		placementPhase = false;
 		gamePhase() ;
 	}
 	
 	
 	public void gamePhase(){
+		gamePhase = true;
 		Main.getState().deleteMouse();
 		mouse = null;
 		System.out.println("start playing");

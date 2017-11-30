@@ -11,7 +11,7 @@ public class MiniMax_AlphaBeta
 	private Evaluator eval = new Evaluator();
 	private Player currentPlayer = Main.getState().getLoop().getCurrentPlayer();
 	private ArrayList<Kangaroo> roos = currentPlayer.getKangaroos();
-	
+	int colorAI = Main.getState().getLoop().getAIPlayers().get(0).getColor();
 	
 	private static final int DEPTH = 1;
 	int bestMoveScore;
@@ -50,7 +50,7 @@ public class MiniMax_AlphaBeta
 		}
 		
 		//minimizing player--sequence of events that occurs
-		if(color == 0){ 		
+		if(color == colorAI){ 		
 			/*
 			 * This for loop goes through all possible moves and calls evaluatePosition on them,
 			 * changing the color.  Alpha-beta pruning is used here to remove obviously poor moves.
