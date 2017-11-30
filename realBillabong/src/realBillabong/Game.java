@@ -48,10 +48,11 @@ public class Game implements GameState {
 
 
 	public Game(int p, int a){
-		loop = new Gameloop(p, a) ;
+		
 		
 		numberPlayers = p ;
 		numberOfAI = a ;
+		loop = new Gameloop(p, a) ;
 		start = new JButton() ;
 		start.setSize(100, 100);
 		start.setText("Start");

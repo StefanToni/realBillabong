@@ -143,7 +143,7 @@ public class Gameloop implements MouseListener{
 	public void placementPhase(){
 		
 		setCurrentPlayer(players.get(0));
-		int placeNumber = players.size()*5;
+		placeNumber = players.size()*5;
 		
 		System.out.println("start placing");
 		x = mouse.getActualX();

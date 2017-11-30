@@ -32,6 +32,7 @@ public class MouseAdapter implements MouseListener {
                	 setActualX(j);
             	 System.out.println(j+ " " + i );
                 }
+                
                
             }
         }
