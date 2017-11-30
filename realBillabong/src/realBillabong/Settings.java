@@ -63,7 +63,7 @@ public class Settings implements GameState {
 		
 		
 		
-		String[] playerStrings = { "2", "3", "4" };
+		String[] playerStrings = { "1", "2", "3" };
 		JComboBox<String> playerList = new JComboBox<>(playerStrings);
 		playerList.setSelectedIndex(0);
 		JLabel strin1 = new JLabel("Choose number of players");
