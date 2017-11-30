@@ -4,6 +4,7 @@ import realBillabong.Main;
 
 public class Kangaroo {
 	
+	public boolean moveable = false;
 	private int lapCounter = 0 ;
 	private Square position ;
 	private Square prevPosition ;
@@ -112,7 +113,10 @@ public class Kangaroo {
 	
 	
 	public void terminateTurn(){
+		this.moveable = false;
+		Main.getState().getLoop().getCurrentPlayer().firstmove = true;
 		Main.getState().getLoop().getNextPlayer();
+		
 	}
 
 	
@@ -121,6 +125,7 @@ public class Kangaroo {
 		
 		if(checkLegal(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc(), dest)) 
 		{
+			Main.getState().getLoop().getCurrentPlayer().firstmove = false;
 			checkLap(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc());
 			origin.empty();
 			if(lapCounter == 3) finishKangaroo();

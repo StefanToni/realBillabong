@@ -7,21 +7,36 @@ public class Evaluator
 {
 	public int Evaluate(Board b, Kangaroo k, Square op, Square np) {
 		int score = 0;
-		int old_x = op.getxLoc();
-		int old_y = op.getyLoc();
-		int new_x = np.getxLoc();
-		int new_y = np.getyLoc();
+		int oldx = op.getxLoc();
+		int oldy = op.getyLoc();
+		int newx = np.getxLoc();
+		int newy = np.getyLoc();
 		
 		// Jump
-		if(k.checkLegal(old_x, old_y, new_x, new_y,np) && !(k.onlyOne(old_x, old_y, new_x, new_y))){
-			score += 1;
+		if(k.checkLegal(oldx, oldy, newx, newy,np) && !(k.onlyOne(oldx, oldy, newx, newy))){
+			score += 3;
 		}
 		
 		// Walk
-		if((k.onlyOne(old_x, old_y, new_x, new_y) && !(k.checkLegal(old_x, old_y, new_x, new_y,np))){
-			score -= 1;
+		if((k.onlyOne(oldx, oldy, newx, newy) && !(k.checkLegal(oldx, oldy, newx, newy,np)))){
+			score += 1;
 		}
+		
+		if(k.getRightLeft(op.getxLoc(), op.getyLoc(), np.getxLoc(), np.getyLoc()))
+		{
+			score+=5;
+		}
+		
+		if(k.getLeftRight(op.getxLoc(), op.getyLoc(), np.getxLoc(), np.getyLoc()))
+		{
+			score-=5;
+		}
+		
+		if(np.getxLoc()<8 && np.getyLoc())
 				
 		return score;
 	}
+	
+	
+	
 }

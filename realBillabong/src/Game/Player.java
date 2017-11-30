@@ -6,6 +6,7 @@ import realBillabong.Main;
 
 public class Player {
 	
+	public boolean firstmove = true;
 	private ArrayList<Kangaroo> kangaroos ;
 	private int color ;
 	private static int teamCounter  ;
@@ -13,6 +14,7 @@ public class Player {
 	private boolean input = false ;
 	private Kangaroo selectedK ;
 	private Square selectedS ;
+	private int finishCounter = 0 ;
 	
 	public boolean isInput() {
 		return input;
@@ -70,12 +72,24 @@ public class Player {
 		Player.teamCounter = teamCounter;
 	}
 
+	private void incrementFinishCounter()
+	{
+		finishCounter++;
+		if(finishCounter == 5) win();
+	}
+	
+	private void win()
+	{
+		System.out.println("Player " + teamCounter + " won!");
+	}
 	public boolean haveIWon(){
 		
 		int cntr = 0 ;
 		
 		for(int i = 0; i < 5; i++){
-			if(kangaroos.get(i).getLapCounter() == 3){ // isn't it two laps? Yes but the first cross at the start is counted too
+			if(kangaroos.get(i).getLapCounter() == 3)
+			{ 
+				// isn't it two laps? Yes but the first cross at the start is counted too
 				cntr++ ;
 			}
 		}

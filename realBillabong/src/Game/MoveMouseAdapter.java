@@ -22,7 +22,6 @@ public class MoveMouseAdapter implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
-		
 		x = e.getX();
 		y = e.getY();
 		System.out.println("mover " + x +" , " + y);
@@ -41,6 +40,7 @@ public class MoveMouseAdapter implements MouseListener {
         }
 		Square[][] boardCopy = Main.getState().getLoop().getBoard().getBoardArray() ;
 		Square currentSquare = boardCopy[actualY][actualX];
+		Player currentPlayer = Main.getState().getLoop().getCurrentPlayer();
 		currentSquare.setIsSelected(true);
 		
 		
@@ -59,6 +59,7 @@ public class MoveMouseAdapter implements MouseListener {
 				rightclick = 2;	
 				System.out.println("rightmousecliked" + rightclick);
 			}
+			
 			else if(rightclick == 2)
 			{
 				rightSquare.setIsHere(null); 
@@ -80,10 +81,19 @@ public class MoveMouseAdapter implements MouseListener {
 		if(counter ==1)//counter is for deciding whether it's the selection of the kangaroo or the square it wants to go to
 		{ System.out.println("Counter1 executed");
 			if(currentSquare.isOccupied() && currentSquare.getIsHere().getTeam() == Main.getState().getLoop().getCurrentPlayer().getColor()){
+				if(currentPlayer.firstmove == true)
+				{
 				//if(currentSquare.getIsHere().getTeam() == Main.getState().getLoop().getCurrentPlayer().getColor())
 				currentKangaroo = currentSquare.getIsHere();
 				counter++ ; 
 				System.out.println("CurrentKangarooSelected");
+				}
+				else if(currentSquare.getIsHere().moveable == true)
+				{
+					currentKangaroo = currentSquare.getIsHere();
+					counter++ ; 
+					System.out.println("CurrentKangarooSelected");
+				}
 			}
 			
 					
@@ -98,6 +108,7 @@ public class MoveMouseAdapter implements MouseListener {
 				/// constraints , x,y +-1 or jump
 				Main.getState().getLoop().getCurrentPlayer().performMove(currentKangaroo, currentKangaroo.getPosition(), currentSquare);
 				currentSquare = null ;
+				currentKangaroo.moveable = true;
 				currentKangaroo = null ; System.out.println("current deleted");
 				//Main.getState().getLoop().getNextPlayer();
 				
