@@ -24,7 +24,7 @@ public class Main {
 		currentState = new MainMenu() ;
 		
 		frame = new JFrame() ;
-		frame.setSize(1000, 1000);
+		frame.setSize(700, 700);
 		frame.setVisible(true) ;
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); ;
 		frame.add(((MainMenu) currentState).getPanel()) ;

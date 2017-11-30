@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Comparator;
 import java.util.List;
+import AI.Nodee;
+
 public class UCT {
 
 	  public static double uctValue(int totalVisit, double nodeWinScore, int nodeVisit) {
