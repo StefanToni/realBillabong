@@ -73,8 +73,7 @@ public class Settings implements GameState {
 		pane.add(playerList);
 		
 		
-		String p = (String) playerList.getSelectedItem();
-		playerNumber = Integer.parseInt(p);
+		
 		AINumber = /*4 - playerNumber;*/ 1;
 		
 		AIButton = new JCheckBox("Enable AI");
@@ -101,6 +100,9 @@ public class Settings implements GameState {
 					        //Selection, enable the fire button.
 				    		Main.setSize(60);
 				    	}
+				  String p = (String) playerList.getSelectedItem();
+					playerNumber = Integer.parseInt(p);
+				  
 				  if (!AIButton.isSelected()) {
 					  AINumber = 0;
 				  }
