@@ -96,6 +96,7 @@ public class Gameloop implements MouseListener{
 		this.players = players;
 	}
 	
+	
 	/*public void setPlayersColors(){
 		for (int i = 0; i < players.size(); i++) {
 			players.get(i).setColor(i);

@@ -1,6 +1,7 @@
 package Game;
 
 import java.applet.Applet;
+
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
@@ -20,16 +21,19 @@ import javax.swing.text.Position;
 
 import realBillabong.Main;
 
+
 public class Board 
 { 
 	int x, y, chk=0; 
 	private Square[][] board ; 
+	int [][] boardValues;
 	private Kangaroo referee ;
 	private Kangaroo[] kangaroos ;
 	public static final int IN_PROGRESS = -1;
     public static final int DRAW = 0;
     public static final int P1 = 1;
     public static final int P2 = 2;
+	int totalMoves;
 	
 	public Board(){
 		board = new Square[14][16] ;
@@ -46,6 +50,17 @@ public class Board
 		
 		System.out.println("created boardarray in board class..");
 	}
+	public Board(int boardSize) {
+		boardValues = new int[14][16];
+	}
+	public Board(int[][] boardValues) {
+		this.boardValues = boardValues;
+		
+	}
+	public Board(int[][] boardValues, int totalMoves) {
+        this.boardValues = boardValues;
+        this.totalMoves = totalMoves;
+    }
 	
 	/*init is like a main method for applets, initializes the board in a frame and adds the listeners
 	public void init() 
@@ -161,6 +176,13 @@ public class Board
 			return Main.getState().getLoop().getCurrentPlayer().getColor();
 		}
 		else return -1;
+	}
+
+	public void performMove(int playerNo, Square[][] p) {
+		// TODO Auto-generated method stub
+		this.totalMoves++;
+		boardValues[p.getX()][p.getY()];
+		
 	}
 	
 
