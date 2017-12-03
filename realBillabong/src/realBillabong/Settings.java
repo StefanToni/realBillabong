@@ -44,8 +44,8 @@ public class Settings implements GameState {
 		play = new JButton() ;
 		play.setSize(100, 100);
 		play.setText("Play");
-		pane = new JPanel(new GridLayout(0,2)) ;
-		pane.setSize(700, 700);
+		pane = new JPanel(new GridLayout(4,2)) ;
+		pane.setSize(700, 800);
 		size = new String[]{"small", "normal", "large"};
 		list = new JList(size); //data has type Object[]
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -63,22 +63,50 @@ public class Settings implements GameState {
 		
 		
 		
-		String[] playerStrings = { "1", "2", "3", "4" };
+		String[] playerStrings = {"0", "1", "2", "3", "4" };
 		JComboBox<String> playerList = new JComboBox<>(playerStrings);
+		
+		JComboBox<String> aiList = new JComboBox<>();
+		
 		playerList.setSelectedIndex(1);
 		JLabel strin1 = new JLabel("Choose number of players");
 		strin1.setHorizontalAlignment(JLabel.CENTER);
 		strin1.setSize(new Dimension(1, 1));
+		JLabel strin2 = new JLabel("Choose number of AI players");
+		strin2.setHorizontalAlignment(JLabel.CENTER);
+		strin2.setSize(new Dimension(1, 1));
 		pane.add(strin1);
 		pane.add(playerList);
+		pane.add(strin2);
+		pane.add(aiList);
+		pane.add(new JLabel());
+		playerList.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				aiList.removeAllItems();
+				String p = (String) playerList.getSelectedItem();
+				playerNumber = Integer.parseInt(p);
+				
+				aiList.addItem("0");
+				for(int i = 1; i<5-playerNumber; i++)
+				{
+					String t = "" + i;
+					aiList.addItem(t);
+				}
+				
+				String aiN = (String) aiList.getSelectedItem();
+				AINumber = Integer.parseInt(aiN);
+				
+			}
+		});
 		
 		
+		//AINumber = /*4 - playerNumber;*/ 0;
 		
-		AINumber = /*4 - playerNumber;*/ 1;
-		
-		AIButton = new JCheckBox("Enable AI");
-		AIButton.setSelected(false);
-		pane.add(AIButton);
+		//AIButton = new JCheckBox("Enable AI");
+		//AIButton.setSelected(false);
+		//pane.add(AIButton);
 		
 		
 		play.addActionListener(new ActionListener(){
@@ -100,12 +128,11 @@ public class Settings implements GameState {
 					        //Selection, enable the fire button.
 				    		Main.setSize(60);
 				    	}
+				  
 				  String p = (String) playerList.getSelectedItem();
 					playerNumber = Integer.parseInt(p);
-				  
-				  if (!AIButton.isSelected()) {
-					  AINumber = 0;
-				  }
+				  String aiN = (String) aiList.getSelectedItem();
+					AINumber = Integer.parseInt(aiN);
 				changeState(new Game(playerNumber, AINumber)) ;
 			}
 			

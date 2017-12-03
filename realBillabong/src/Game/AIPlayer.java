@@ -3,6 +3,7 @@ package Game;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import realBillabong.Main;
 
@@ -16,10 +17,15 @@ public class AIPlayer extends Player implements MouseListener{
 	private Gameloop loop ;
 	private MouseAdapter mouse ;
 	private String name ;
+	public boolean ai=true;
 	
 	public AIPlayer(int color) {
 		this.color = color;
+		
 	}
+	
+
+	
 	
 	public AIPlayer(Gameloop l) {
 		// TODO Auto-generated constructor stub
@@ -28,6 +34,7 @@ public class AIPlayer extends Player implements MouseListener{
 		color = super.getTeamCounter() ;
 		mouse = Main.getState().getMouse() ;
 		name = "AI" ;
+		
 	
 	}
 	

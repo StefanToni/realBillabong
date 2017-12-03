@@ -14,6 +14,7 @@ public class HumanPlayer extends Player implements MouseListener{
 	private int x, y, actualX, actualY ;
 	private Gameloop loop ;
 	private String name ;
+	public boolean ai=false;
 	
 	
 
@@ -43,7 +44,7 @@ public class HumanPlayer extends Player implements MouseListener{
 		}
 		 
 	
-         
+	
 
 
 	public void makeMove(){

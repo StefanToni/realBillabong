@@ -19,6 +19,8 @@ import java.util.List;
 
 import javax.swing.text.Position;
 
+import realBillabong.Main;
+
 
 
 public class Board 
@@ -52,6 +54,16 @@ public class Board
 	public Board(int boardSize) {
 		boardValues = new int[14][16];
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public Board(int[][] boardValues) {
 		this.boardValues = boardValues;
 		
@@ -159,7 +171,7 @@ public class Board
 		this.kangaroos = kangaroos;
 	}
 
-	public List<Square[][]> getEmptyPositions() {
+	/*public List<Square[][]> getEmptyPositions() {
         List<Square[][]> emptyPositions = new ArrayList<>();
         for (int i = 0; i < 14; i++) {
             for (int j = 0; j < 16; j++) {
@@ -168,7 +180,19 @@ public class Board
             }
         }
         return emptyPositions;
+    }*/
+	
+	public List<Square> getEmptyPositions() {
+        List<Square> emptyPositions = new ArrayList<>();
+        for (int i = 0; i < 14; i++) {
+            for (int j = 0; j < 16; j++) {
+                if (!board[i][j].isOccupied())
+                    emptyPositions.add(board[i][j]);
+            }
+        }
+        return emptyPositions;
     }
+
 
 	public int checkStatus() {
 		if (Main.getState().getLoop().getCurrentPlayer().haveIWon()) {

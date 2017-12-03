@@ -1,6 +1,7 @@
 package Game;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import realBillabong.Main;
 
@@ -15,6 +16,16 @@ public class Player {
 	private Kangaroo selectedK ;
 	private Square selectedS ;
 	private int finishCounter = 0 ;
+	public boolean ai;
+	
+	public boolean getAI()
+	{
+		return ai;
+	}
+	public void setAI(Boolean x)
+	{
+		ai = x;
+	}
 	
 	public boolean isInput() {
 		return input;
@@ -128,10 +139,26 @@ public class Player {
 		
 	}
 	
-	public Kangaroo selectPiece(){
-		Kangaroo k = ;//what i click
-		return k ;
+	public void placeRoo()
+	{	System.out.println("I'm being used");
+		List<Square> smartOptions = new ArrayList<Square>();
+		List<Square> options = Main.getState().getLoop().getBoard().getEmptyPositions();
+		for(Square squ:options)
+		{
+			 if(squ.getxLoc()> 7 && squ.getyLoc() > 6)
+			 {
+				 smartOptions.add(squ);
+			 }
+		}
+		
+		Square temp = smartOptions.get((int)(Math.random()*(smartOptions.size()-1)));
+		placePiece(temp.getyLoc(), temp.getxLoc());
 	}
+	
+	//public Kangaroo selectPiece(){
+	//	Kangaroo k = ;//what i click
+	//	return k ;
+	//}
 	
 	public Square selectMove(){
 		Square s ;
