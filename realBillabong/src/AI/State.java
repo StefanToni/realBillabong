@@ -94,12 +94,13 @@ import realBillabong.Main;
 	    }
 
 	    void randomPlay() {
-	        List<Square[][]> availablePositions = this.board.getEmptyPositions();
+	    	Kangaroo ranKan = Main.getState().getLoop().getPlayers().get(2).getKangaroos().get(((int) (1+ (Math.random() * 5))));
+	        List<Square> availablePositions = this.board.getEmptyPositions(ranKan);
 	        int totalPossibilities = availablePositions.size();
 	        int selectRandom = (int) (Math.random() * ((totalPossibilities - 1) + 1));
-	        Main.getState().getLoop().getPlayers().get(2).getKangaroos().get(((int) (1+ (Math.random() * 5))));
+	        
 	        //this.board.performMove(this.playerNo, availablePositions.get(selectRandom));
-	        Main.getState().getLoop().getPlayers().get(2).performMove(k, o, availablePositions.get(selectRandom));
+	        Main.getState().getLoop().getPlayers().get(2).performMove(ranKan, ranKan.getPosition(), availablePositions.get(selectRandom));
 	    }
 
 	    void togglePlayer() {
