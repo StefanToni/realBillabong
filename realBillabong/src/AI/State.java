@@ -97,6 +97,7 @@ import realBillabong.Main;
 	        List<Square[][]> availablePositions = this.board.getEmptyPositions();
 	        int totalPossibilities = availablePositions.size();
 	        int selectRandom = (int) (Math.random() * ((totalPossibilities - 1) + 1));
+	        Main.getState().getLoop().getPlayers().get(2).getKangaroos().get(((int) (1+ (Math.random() * 5))));
 	        //this.board.performMove(this.playerNo, availablePositions.get(selectRandom));
 	        Main.getState().getLoop().getPlayers().get(2).performMove(k, o, availablePositions.get(selectRandom));
 	    }

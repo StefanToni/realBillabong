@@ -19,10 +19,13 @@ public class AIPlayer extends Player implements MouseListener{
 	private String name ;
 	public boolean ai=true;
 	
+	
 	public AIPlayer(int color) {
 		this.color = color;
 		
 	}
+	
+	
 	
 
 	
@@ -57,6 +60,51 @@ public class AIPlayer extends Player implements MouseListener{
 		Square[][] nextMove = minMax.getNextMove();
 		
 		return nextMove;
+	}
+
+
+
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
