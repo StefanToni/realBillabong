@@ -65,15 +65,15 @@ public class Gameloop implements MouseListener{
 		players = new ArrayList<Player>() ;	
 		aiPlayers = new ArrayList<AIPlayer>();
 		for(int i = 0; i < p ; i++){
-			HumanPlayer hPlayer = new HumanPlayer(this) ;
+			Player hPlayer = new HumanPlayer(this) ;
 			hPlayer.setAI(false);
 			players.add(hPlayer) ;
 		}
 		for(int i = 0; i < a ; i++){
-			AIPlayer aiPlayer = new AIPlayer(this) ;
+			Player aiPlayer = new AIPlayer(this) ;
 			aiPlayer.setAI(true);
 			players.add(aiPlayer);
-			aiPlayers.add(aiPlayer) ;
+			aiPlayers.add((AIPlayer) aiPlayer) ;
 		}
 		placeNumber = players.size()*5;
 		currentPlayer = players.get(0) ;

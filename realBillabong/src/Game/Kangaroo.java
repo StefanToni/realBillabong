@@ -139,6 +139,8 @@ public class Kangaroo {
 			if(lapCounter == 3) finishKangaroo();
 			else dest.fill(this);
 			System.out.println("MOVED");
+			
+			dest.setIsSelected(true);
 			if(Math.abs(origin.getxLoc()- dest.getxLoc()) == 1 || Math.abs(origin.getyLoc()- dest.getyLoc()) == 1){
 				terminateTurn();
 			}
