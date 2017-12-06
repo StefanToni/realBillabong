@@ -25,25 +25,23 @@ public class MoveMouseAdapter implements MouseListener {
 		x = e.getX();
 		y = e.getY();
 		System.out.println("mover " + x +" , " + y);
+		
 		for(int i=0; i < 14; i++)
         {
             for(int j=0;j < 16 ;j++ )
             {
                 if((79+(squareSize*j)<=x) && (77+squareSize+(squareSize*j)>=x) &&  (56+(squareSize*i)<=y) && (54+squareSize+(squareSize*i)>=y) )  
                 {
-               	 actualY = i;
-               	 actualX = j;
-            	 System.out.println("mover " + j+ " " + i ); // + Main.getState().getLoop().getCurrentPlayer().getName());
-                }
-               
+               	 	actualY = i;
+               	 	actualX = j;
+               	 	System.out.println("mover " + j+ " " + i ); // + Main.getState().getLoop().getCurrentPlayer().getName());
+                }      
             }
         }
+		
 		Square[][] boardCopy = Main.getState().getLoop().getBoard().getBoardArray() ;
 		Square currentSquare = boardCopy[actualY][actualX];
 		Player currentPlayer = Main.getState().getLoop().getCurrentPlayer();
-		
-		
-		
 		
 		
 		// TODO Auto-generated method stub
@@ -53,19 +51,19 @@ public class MoveMouseAdapter implements MouseListener {
 		//this MoveMouseAdapter still has to be added after placement is done
 		
 		
-		
 		//gets Kangaroo of current square
 		if(counter ==1)//counter is for deciding whether it's the selection of the kangaroo or the square it wants to go to
 		{ System.out.println("Counter1 executed");
 			if(currentSquare.isOccupied() && currentSquare.getIsHere().getTeam() == Main.getState().getLoop().getCurrentPlayer().getColor()){
 				if(currentPlayer.firstmove == true)
 				{
-				currentSquare.setIsSelected(true);
-				//if(currentSquare.getIsHere().getTeam() == Main.getState().getLoop().getCurrentPlayer().getColor())
-				currentKangaroo = currentSquare.getIsHere();
-				counter++ ; 
-				System.out.println("CurrentKangarooSelected");
+					currentSquare.setIsSelected(true);
+					//if(currentSquare.getIsHere().getTeam() == Main.getState().getLoop().getCurrentPlayer().getColor())
+					currentKangaroo = currentSquare.getIsHere();
+					counter++ ; 
+					System.out.println("CurrentKangarooSelected");
 				}
+				
 				else if(currentSquare.getIsHere().moveable == true)
 				{
 					currentSquare.setIsSelected(true);
