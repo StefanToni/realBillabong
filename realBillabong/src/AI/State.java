@@ -18,17 +18,17 @@ import realBillabong.Main;
 	    private ArrayList<Kangaroo> kangaroos;
 	    
 
-	    public State() {
-	        board = new Board();
-	    }
-
+	   
 	    public State(State state) {
 	        this.board = Main.getState().getLoop().getBoard();
 	        this.playerNo = state.getPlayerNo();
 	        this.visitCount = state.getVisitCount();
 	        this.winScore = state.getWinScore();
-	        this.kangaroos = Main.getState().getLoop().getPlayers().get(2).getKangaroos();
+	        this.setKangaroos(Main.getState().getLoop().getPlayers().get(2).getKangaroos());
 	        
+	    }
+	    public State() {
+	        board = new Board();
 	    }
 
 	    public State(Board board) {
@@ -104,6 +104,14 @@ import realBillabong.Main;
 	    void togglePlayer() {
 	        this.playerNo = 3 - this.playerNo;
 	    }
+
+		public ArrayList<Kangaroo> getKangaroos() {
+			return kangaroos;
+		}
+
+		public void setKangaroos(ArrayList<Kangaroo> kangaroos) {
+			this.kangaroos = kangaroos;
+		}
 	}
 	
 	
