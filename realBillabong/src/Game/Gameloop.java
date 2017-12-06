@@ -15,7 +15,7 @@ public class Gameloop implements MouseListener{
 	private Player currentPlayer ;
 	private MouseAdapter mouse;
 	private boolean hasClicked = false ;
-	private int placeNumber;
+	private int placeNumber, currentAI;
 	private RooSelectah rooSelector ;
 	private SquareSelectah squareSelector;
 	private MoveMouseAdapter mover ;
@@ -122,9 +122,11 @@ public class Gameloop implements MouseListener{
             	if (i == players.size()-1){
             		System.out.println(i + " i goes to 0");
             		setCurrentPlayer(players.get(0));
-            		if(gamePhase) {
-            			Square[][] newBoard = aiPlayers.get(0).nextMiniMaxMove();
+            		if(gamePhase && currentPlayer.ai) {
+            			if(currentAI == aiPlayers.size()) currentAI = 0;
+            			Square[][] newBoard = aiPlayers.get(currentAI).nextMiniMaxMove();
             			Main.getState().getLoop().getBoard().setBoardArray(newBoard);
+            			currentAI++;
             		}
             		System.out.println("team number " + currentPlayer.getColor());
             		done = true;

@@ -10,7 +10,7 @@ public class MouseAdapter implements MouseListener {
 	private int x, y, actualX, actualY;
 	private Gameloop loop;
 	private int squareSize = Main.getSize();
-	private Placer aiPlacement = new Placer();
+	
 	
 	
 	

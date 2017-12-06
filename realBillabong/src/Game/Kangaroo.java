@@ -6,7 +6,8 @@ public class Kangaroo {
 	
 	public boolean moveable = false;
 	private int lapCounter = 0 ;
-	private Square position, or ;
+	private Square position;
+	public Square or ;
 	private Square prevPosition ;
 	private int team ;
 	
