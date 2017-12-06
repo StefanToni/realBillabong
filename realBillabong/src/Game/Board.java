@@ -182,15 +182,23 @@ public class Board
         return emptyPositions;
     }*/
 	
-	public List<Square> getEmptyPositions() {
-        List<Square> emptyPositions = new ArrayList<>();
+	public List<Square> getEmptyPositions(Kangaroo k) {
+        List<Square> availablePos = new ArrayList<>();
+        Square[][] boardCopy = Main.getState().getLoop().getBoard().getBoardArray() ;
+		
         for (int i = 0; i < 14; i++) {
             for (int j = 0; j < 16; j++) {
-                if (!board[i][j].isOccupied())
-                    emptyPositions.add(board[i][j]);
+            	Square currentSquare = boardCopy[i][j];
+                if (!board[i][j].isOccupied()) {
+                	Square[][] check = new Square[i][j];
+                	if(k.checkLegal(k.getPosition().getxLoc(), k.getPosition().getyLoc(), j, i,currentSquare)){
+                		availablePos.add(board[i][j]);
+                	}
+                    
+                }
             }
         }
-        return emptyPositions;
+        return availablePos;
     }
 
 
