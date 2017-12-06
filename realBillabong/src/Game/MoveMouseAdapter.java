@@ -41,7 +41,7 @@ public class MoveMouseAdapter implements MouseListener {
 		Square[][] boardCopy = Main.getState().getLoop().getBoard().getBoardArray() ;
 		Square currentSquare = boardCopy[actualY][actualX];
 		Player currentPlayer = Main.getState().getLoop().getCurrentPlayer();
-		currentSquare.setIsSelected(true);
+		
 		
 		
 		
@@ -83,6 +83,7 @@ public class MoveMouseAdapter implements MouseListener {
 			if(currentSquare.isOccupied() && currentSquare.getIsHere().getTeam() == Main.getState().getLoop().getCurrentPlayer().getColor()){
 				if(currentPlayer.firstmove == true)
 				{
+				currentSquare.setIsSelected(true);
 				//if(currentSquare.getIsHere().getTeam() == Main.getState().getLoop().getCurrentPlayer().getColor())
 				currentKangaroo = currentSquare.getIsHere();
 				counter++ ; 
@@ -90,6 +91,7 @@ public class MoveMouseAdapter implements MouseListener {
 				}
 				else if(currentSquare.getIsHere().moveable == true)
 				{
+					currentSquare.setIsSelected(true);
 					currentKangaroo = currentSquare.getIsHere();
 					counter++ ; 
 					System.out.println("CurrentKangarooSelected");
@@ -103,6 +105,7 @@ public class MoveMouseAdapter implements MouseListener {
 		else if(counter == 2)
 		{	System.out.println("Counter2 executed");
 			if(!currentSquare.isOccupied()){
+				currentSquare.setIsSelected(true);
 				System.out.println("Destination square is not occupied");
 				counter = 1 ;
 				/// constraints , x,y +-1 or jump
