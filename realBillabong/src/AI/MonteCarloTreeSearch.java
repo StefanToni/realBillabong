@@ -1,7 +1,9 @@
 package AI;
 import java.util.List;
-
+import AI.Nodee;
+import AI.Tree;
 import Game.Board;
+
 
 public class MonteCarloTreeSearch {
 	  private static final int WIN_SCORE = 5;
