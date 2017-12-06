@@ -105,7 +105,7 @@ public class MoveMouseAdapter implements MouseListener {
 		else if(counter == 2)
 		{	System.out.println("Counter2 executed");
 			if(!currentSquare.isOccupied()){
-				currentSquare.setIsSelected(true);
+				
 				System.out.println("Destination square is not occupied");
 				counter = 1 ;
 				/// constraints , x,y +-1 or jump
