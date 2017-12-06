@@ -46,31 +46,8 @@ public class MoveMouseAdapter implements MouseListener {
 		
 		
 		
-		if(SwingUtilities.isRightMouseButton(e))
-		{	
-			System.out.println("rightmousecliked");
-						
-			if(rightclick == 1)
-			{
-				Kangaroo ref = new Kangaroo(10);
-				ref.setPosition(currentSquare) ;
-				currentSquare.fill(ref) ;
-				rightSquare = currentSquare;
-				rightclick = 2;	
-				System.out.println("rightmousecliked" + rightclick);
-			}
-			
-			else if(rightclick == 2)
-			{
-				rightSquare.setIsHere(null); 
-				rightSquare.empty();
-				rightclick = 1;
-				System.out.println("rightmousecliked" + rightclick);
-			}
-         }		
-		
 		// TODO Auto-generated method stub
-		else{
+		
 		
 //gets the square & kangaroo (Doesn't work yet, it says it wants to make a static reference but I don't see why)
 		//this MoveMouseAdapter still has to be added after placement is done
@@ -125,7 +102,7 @@ public class MoveMouseAdapter implements MouseListener {
 		if(currentSquare == null){
 			System.out.println(" square is null");
 		}
-		}
+		
 	}
 		
 		

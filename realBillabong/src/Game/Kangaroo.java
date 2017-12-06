@@ -10,6 +10,7 @@ public class Kangaroo {
 	public Square or ;
 	private Square prevPosition ;
 	private int team ;
+	private int[] middleCoords = new int[2];
 	
 	
 	public Kangaroo(int t){
@@ -219,7 +220,8 @@ public class Kangaroo {
 					cx--;
 					cy++;
 					if(boardCopy[cy][cx].isOccupied())
-					{
+					{	middleCoords[0] = cy; 
+						middleCoords[1] = cx;
 						middleCounter++;
 					}
 				}
@@ -232,7 +234,8 @@ public class Kangaroo {
 					cx++;
 					cy--;
 					if(boardCopy[cy][cx].isOccupied())
-					{
+					{	middleCoords[0] = cy; 
+						middleCoords[1] = cx;
 						middleCounter++;
 					}
 				}
@@ -245,7 +248,8 @@ public class Kangaroo {
 					cx++;
 					cy++;
 					if(boardCopy[cy][cx].isOccupied())
-					{
+					{	middleCoords[0] = cy; 
+						middleCoords[1] = cx;
 						middleCounter++;
 					}
 				}
@@ -258,14 +262,15 @@ public class Kangaroo {
 					cx--;
 					cy--;
 					if(boardCopy[cy][cx].isOccupied())
-					{
+					{	middleCoords[0] = cy; 
+						middleCoords[1] = cx;
 						middleCounter++;
 					}
 				}
 			}
 			
 			
-			if(middleCounter == 1) return true;
+			if(middleCounter == 1 && middleCoords[0] == (dy+oy)/2 && middleCoords[1] == (dx+ox)/2) return true;
 			
 			else return false;
 			
@@ -280,7 +285,8 @@ public class Kangaroo {
 				{
 					cy++;
 					if(boardCopy[cy][cx].isOccupied())
-					{
+					{	middleCoords[0] = cy; 
+						middleCoords[1] = cx;
 						middleCounter++;
 					}
 				}
@@ -292,7 +298,8 @@ public class Kangaroo {
 				{
 					cy--;
 					if(boardCopy[cy][cx].isOccupied())
-					{
+					{	middleCoords[0] = cy; 
+						middleCoords[1] = cx;
 						middleCounter++;
 					}
 				}
@@ -304,7 +311,8 @@ public class Kangaroo {
 				{
 					cx++;
 					if(boardCopy[cy][cx].isOccupied())
-					{
+					{	middleCoords[0] = cy; 
+						middleCoords[1] = cx;
 						middleCounter++;
 					}
 				}
@@ -316,17 +324,20 @@ public class Kangaroo {
 				{
 					cx--;
 					if(boardCopy[cy][cx].isOccupied())
-					{
+					{	middleCoords[0] = cy; 
+						middleCoords[1] = cx;
 						middleCounter++;
 					}
 				}
 			}
 			
-			if(middleCounter == 1) return true;
+			if(middleCounter == 1 && middleCoords[0] == (dy+oy)/2 && middleCoords[1] == (dx+ox)/2) return true;
 			
 			else return false;
 			
 		}	
 		
 	}
+	
+	
 }
