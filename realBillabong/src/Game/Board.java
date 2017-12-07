@@ -171,16 +171,16 @@ public class Board
 		this.kangaroos = kangaroos;
 	}
 
-	public List<Square> getEmptyPositions() {
-        List<Square> emptyPositions = new ArrayList<>();
+	/*public List<Square[][]> getEmptyPositions() {
+        List<Square[][]> emptyPositions = new ArrayList<>();
         for (int i = 0; i < 14; i++) {
             for (int j = 0; j < 16; j++) {
                 if (!board[i][j].isOccupied())
-                    emptyPositions.add(new Square(i, j));
+                    emptyPositions.add(new Square[i][j]);
             }
         }
         return emptyPositions;
-    }
+    }*/
 	
 	public List<Square> getEmptyPositions(Kangaroo k) {
         List<Square> availablePos = new ArrayList<>();
@@ -209,7 +209,7 @@ public class Board
 		else return -1;
 	}
 
-	public void performMove(int playerNo, Square[][] p) {
+	public void performMove(int playerNo, Square p) {
 		// TODO Auto-generated method stub
 		this.totalMoves++;
 		boardValues[p.getX()][p.getY()];
