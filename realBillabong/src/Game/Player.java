@@ -168,6 +168,7 @@ public class Player {
 	public void performMove(Kangaroo k, Square s){
 		k.getPosition().empty();
 		s.fill(k);
+		Main.getState().getComponent().repaint();
 		//input = true ;
 	}
 	
