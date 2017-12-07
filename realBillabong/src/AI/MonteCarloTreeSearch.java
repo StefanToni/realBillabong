@@ -30,7 +30,7 @@ public class MonteCarloTreeSearch {
 	        long start = System.currentTimeMillis();
 	        long end = start + 60 * getMillisForCurrentLevel();
 
-	        oponent = 3 - playerNo;
+	        oponent = 2;
 	        Tree tree = new Tree();
 	        Nodee rootNode = tree.getRoot();
 	        rootNode.getState().setBoard(board);
