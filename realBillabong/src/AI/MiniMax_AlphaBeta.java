@@ -62,7 +62,7 @@ public class MiniMax_AlphaBeta
 			int newBeta = beta;
 			for(ArrayList<Square[][]> moves : allMoves){ //for child in node
 				for(Square[][] move : moves) {					
-					newBeta = Math.min(newBeta, evaluatePosition(move, alpha, beta, depth -1, 1));
+					newBeta = Math.min(newBeta, evaluatePosition(move, alpha, beta, depth -1, currentPlayer.getColor()-1));
 				}
 				
 				if(newBeta<= alpha) break;
@@ -83,7 +83,7 @@ public class MiniMax_AlphaBeta
 			int newAlpha = alpha;
 			for(ArrayList<Square[][]> moves : allMoves){ //for child in node
 				for(Square[][] move : moves) {
-					newAlpha = Math.max(newAlpha, evaluatePosition(move, alpha, beta, depth -1, 2)); 
+					newAlpha = Math.max(newAlpha, evaluatePosition(move, alpha, beta, depth -1, currentPlayer.getColor())); 
 				}
 				if(beta<= newAlpha) break;
 			}
@@ -102,11 +102,11 @@ public class MiniMax_AlphaBeta
 		}
 		
 		bestMove = allMoves.get(0).get(0);
-		bestMoveScore = evaluatePosition(allMoves.get(0).get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH, 2);
+		bestMoveScore = evaluatePosition(allMoves.get(0).get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH, currentPlayer.getColor());
 		
 		for(int i = 0; i < allMoves.size(); i++) {
 			for(int j = 0; j < allMoves.get(i).size(); j++) {
-				int p = evaluatePosition(allMoves.get(i).get(j), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH, 2);
+				int p = evaluatePosition(allMoves.get(i).get(j), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH, currentPlayer.getColor());
 				
 				if(p >= bestMoveScore){
 					bestMove = allMoves.get(i).get(j);
