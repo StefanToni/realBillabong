@@ -13,7 +13,7 @@ public class MiniMax_AlphaBeta
 	private ArrayList<Kangaroo> roos = currentPlayer.getKangaroos();
 	int colorAI = Main.getState().getLoop().getAIPlayers().get(0).getColor();
 	
-	private static final int DEPTH = 1;
+	private static final int DEPTH = 2;
 	int bestMoveScore;
 	Square[][] bestMove;
 	
