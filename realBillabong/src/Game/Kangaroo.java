@@ -270,9 +270,16 @@ public class Kangaroo {
 			}
 			
 			
-			if(middleCounter == 1 && middleCoords[0] == (dy+oy)/2 && middleCoords[1] == (dx+ox)/2) return true;
+			if(middleCounter == 1 && middleCoords[0] == (dy+oy)/2 && middleCoords[1] == (dx+ox)/2){
+				System.out.println("only one tried successful");
+				return true;
+				
+			}
 			
-			else return false;
+			else {
+				System.out.println("only one tried fail" + middleCounter);
+				return false;
+			}
 			
 		}
 		
