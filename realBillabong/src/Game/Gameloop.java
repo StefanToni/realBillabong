@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
+import Graphics.BoardComponent;
 import realBillabong.Main;
 
 public class Gameloop implements MouseListener{
