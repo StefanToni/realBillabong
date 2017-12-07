@@ -60,7 +60,7 @@ public class Game implements GameState {
 		end = new JButton() ;
 		end.setSize(100, 100);
 		end.setText("End") ;
-		end.addActionListener(new CloseListener());
+		//end.addActionListener(new CloseListener());
 		
 		
 		component = new BoardComponent(loop.getBoard().getBoardArray()) ;
