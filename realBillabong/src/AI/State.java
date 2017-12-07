@@ -73,12 +73,15 @@ import realBillabong.Main;
 
 	    public List<State> getAllPossibleStates() {
 	        List<State> possibleStates = new ArrayList<>();
-	        List<Square[][]> availablePositions = this.board.getEmptyPositions();
+	        Kangaroo k = Main.getState().getLoop().getPlayers().get(2).getKangaroos().get(1);
+	        //Getting just one kangaroo and all its possible moves
+	        List<Square> availablePositions = this.board.getEmptyPositions(k);
 	        availablePositions.forEach(p -> {
 	            State newState = new State(this.board);
-	            newState.setPlayerNo(3 - this.playerNo);
+	            newState.setPlayerNo(2);
 	            //Main.getState().getLoop().getCurrentPlayer().performMove(currentKangaroo, currentKangaroo.getPosition(), currentSquare);
-	            newState.getBoard().performMove(newState.getPlayerNo(), p);
+	            //newState.getBoard().performMove(newState.getPlayerNo(), p);
+	            Main.getState().getLoop().getPlayers().get(2).performMove(k, k.getPosition(), availablePositions.get(p));
 	            possibleStates.add(newState);
 	        });
 	        return possibleStates;
