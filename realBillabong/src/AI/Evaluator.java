@@ -18,15 +18,15 @@ public class Evaluator
 		}
 		
 		// Walk
-		if((k.onlyOne(old_x, old_y, new_x, new_y)) && !(k.checkLegal(old_x, old_y, new_x, new_y,np))){
+		if((k.onlyOne(old_x, old_y, new_x, new_y)) && (k.checkLegal(old_x, old_y, new_x, new_y,np))){
 			score -= 1;
 		}
 		
-		if(k.getRightLeft(old_x, old_y, new_x, new_y)){
+		if(k.getRightLeft(old_x, old_y, new_x, new_y) && k.checkLegal(old_x, old_y, new_x, new_y,np)){
 			score+= 5 ;
 		}
 		
-		if(k.getLeftRight(old_x, old_y, new_x, new_y)){
+		if(k.getLeftRight(old_x, old_y, new_x, new_y) && k.checkLegal(old_x, old_y, new_x, new_y,np)){
 			score-= 3 ;
 		}
 			
