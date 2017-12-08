@@ -126,7 +126,8 @@ public class Gameloop implements MouseListener{
             			System.out.println("starting AI turn!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             			if(currentAI == aiPlayers.size()) currentAI = 0;
             			Square[][] newBoard = aiPlayers.get(currentAI).nextMiniMaxMove();
-            			Main.getState().getLoop().getBoard().setBoardArray(newBoard);
+            			//Main.getState().getLoop().getBoard().setBoardArray(newBoard);
+            			board.setBoardArray(newBoard);
             			System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");
             			getNextPlayer();
             		}
@@ -140,7 +141,8 @@ public class Gameloop implements MouseListener{
             			System.out.println("starting AI turn!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             			if(currentAI == aiPlayers.size()) currentAI = 0;
             			Square[][] newBoard = aiPlayers.get(currentAI).nextMiniMaxMove();
-            			Main.getState().getLoop().getBoard().setBoardArray(newBoard);
+            			//Main.getState().getLoop().getBoard().setBoardArray(newBoard);
+            			board.setBoardArray(newBoard);
             			System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");
             			getNextPlayer();
             		}
