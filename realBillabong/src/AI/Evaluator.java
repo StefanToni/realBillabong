@@ -5,7 +5,7 @@ import Game.*;
 
 public class Evaluator
 {
-	public int Evaluate(Board b, Kangaroo k, Square op, Square np) {
+	public int Evaluate(Square[][] boardArray, Kangaroo k, Square op, Square np) {
 		int score = 0;
 		int old_x = op.getxLoc();
 		int old_y = op.getyLoc();
@@ -33,4 +33,5 @@ public class Evaluator
 		System.out.println("evaluated score = " + score);
 		return score;
 	}
+	
 }

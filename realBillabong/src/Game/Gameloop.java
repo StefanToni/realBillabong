@@ -5,7 +5,6 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-import Graphics.BoardComponent;
 import realBillabong.Main;
 
 public class Gameloop implements MouseListener{
@@ -144,6 +143,7 @@ public class Gameloop implements MouseListener{
             			Square[][] newBoard = aiPlayers.get(currentAI).nextMiniMaxMove();
             			//Main.getState().getLoop().getBoard().setBoardArray(newBoard);
             			board.setBoardArray(newBoard);
+            			
             			System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");
             			getNextPlayer();
             		}
