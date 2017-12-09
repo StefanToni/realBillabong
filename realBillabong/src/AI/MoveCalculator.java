@@ -52,7 +52,7 @@ public class MoveCalculator
 					new_x = np.getxLoc();
 					new_y = np.getyLoc();				
 					new_board[i][j].empty(); // to restore the board to the original gamestate before checking the move
-					if(k.checkLegal(old_x, old_y, new_x, new_y,np) || k.onlyOne(old_x, old_y, new_x, new_y)) {
+					if(k.checkLegal(old_x, old_y, new_x, new_y,np)) {
 						new_board[new_x][new_y].fill(k); // to add the new move to the array of newboards
 						new_board[old_x][old_y].empty();
 						roosNP.add(np);
