@@ -9,6 +9,10 @@ public class MiniMax_AlphaBeta
 	
 	private ArrayList<ArrayList<Square[][]>> allAIMoves = new ArrayList<ArrayList<Square[][]>>();
 	private ArrayList<ArrayList<Square[][]>> allHumanMoves = new ArrayList<ArrayList<Square[][]>>();
+	private ArrayList<Square> AIroosOP = new ArrayList<Square>();
+	private ArrayList<Square> AIroosNP = new ArrayList<Square>();
+	private ArrayList<Square> HumanroosOP = new ArrayList<Square>();
+	private ArrayList<Square> HumanroosNP = new ArrayList<Square>();
 	private Evaluator eval = new Evaluator();
 	private Player currentPlayer = Main.getState().getLoop().getCurrentPlayer();
 	private int currentPlayerColor = Main.getState().getLoop().getCurrentPlayer().getColor();
@@ -17,6 +21,7 @@ public class MiniMax_AlphaBeta
 	private ArrayList<Kangaroo> Humanroos = nextPlayer.getKangaroos();
 	int colorAI = Main.getState().getLoop().getAIPlayers().get(0).getColor();
 	private Square[][] successorMove;
+	private int rooIndex;
 	
 	private static final int DEPTH = 1;
 	int bestMoveScore;
@@ -40,22 +45,18 @@ public class MiniMax_AlphaBeta
 	public int evaluatePosition(Square[][] boardArray, int alpha, int beta, int depth, int color){		
 		System.out.println("Begin evaluating position: depth-" + depth + "for- "+ color);
 		
-		Board b = Main.getState().getLoop().getBoard();		
-		Kangaroo k = AIroos.get(0);
-		Square op = k.getPosition();
-		
 		/*
 		 * Base case: when depth is decremented to 0, evaluatePosition simply returns the result
 		 * of the evaluate function
 		 */
 		if(depth == 0){
 			if(color == colorAI) {
-				int evaluation = eval.Evaluate(successorMove, k, op, op);
+				int evaluation = eval.Evaluate(successorMove, AIroos.get(rooIndex), AIroosOP.get(rooIndex), AIroosNP.get(rooIndex));
 				System.out.println("Evaluated to: " + evaluation);
 				return evaluation;
 			}
 			else {
-				int evaluation = eval.Evaluate(successorMove, k, op, op);
+				int evaluation = eval.Evaluate(successorMove, Humanroos.get(rooIndex), HumanroosOP.get(rooIndex), HumanroosNP.get(rooIndex));
 				System.out.println("Evaluated to: " + evaluation);
 				return evaluation;
 			}
@@ -75,7 +76,7 @@ public class MiniMax_AlphaBeta
 			for(ArrayList<Square[][]> moves : allAIMoves){ //for child in node
 				for(Square[][] move : moves) {
 					successorMove = move;
-					newBeta = Math.min(newBeta, evaluatePosition(move, alpha, beta, depth -1, currentPlayer.getColor()+1));
+					newBeta = Math.min(newBeta, evaluatePosition(move, alpha, beta, depth -1, currentPlayer.getColor()-1));
 				}
 				
 				if(newBeta<= alpha) break;
@@ -104,6 +105,8 @@ public class MiniMax_AlphaBeta
 		 */
 		for(Kangaroo kanga : AIroos) {
 			MoveCalculator moveCalc = new MoveCalculator(kanga);
+			AIroosOP.add(kanga.getPosition());
+			AIroosNP = moveCalc.getNewPositions();
 			allAIMoves.add(moveCalc.getNextBoards());
 		}
 		
@@ -112,6 +115,8 @@ public class MiniMax_AlphaBeta
 		 */
 		for(Kangaroo kanga : Humanroos) {
 			MoveCalculator moveCalc = new MoveCalculator(kanga);
+			HumanroosOP.add(kanga.getPosition());
+			HumanroosNP = moveCalc.getNewPositions();
 			allHumanMoves.add(moveCalc.getNextBoards());
 		}
 		
@@ -121,7 +126,7 @@ public class MiniMax_AlphaBeta
 		for(int i = 0; i < allAIMoves.size(); i++) {
 			for(int j = 0; j < allAIMoves.get(i).size(); j++) {
 				int p = evaluatePosition(allAIMoves.get(i).get(j), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH, currentPlayer.getColor());
-				
+				rooIndex = j;
 				if(p >= bestMoveScore){
 					bestMove = allAIMoves.get(i).get(j);
 					bestMoveScore = p;
