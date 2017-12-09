@@ -27,11 +27,8 @@ public class MoveCalculator
 	{
 		new_board = Main.getState().getLoop().getBoard().getBoardArray();
 		k = kanga;
-		r = Main.getState().getLoop().getBoard().getReferee();
-		kangaroos = Main.getState().getLoop().getBoard().getKangaroos();
 		
-		next_boards = getNextMoves(k);
-			
+		next_boards = getNextMoves(k);		
 	}
 	
 	private ArrayList<Square[][]> getNextMoves(Kangaroo k) 
@@ -55,7 +52,7 @@ public class MoveCalculator
 					new_x = np.getxLoc();
 					new_y = np.getyLoc();				
 					new_board[i][j].empty(); // to restore the board to the original gamestate before checking the move
-					if(k.checkLegal(old_x, old_y, new_x, new_y,np)) {
+					if(k.checkLegal(old_x, old_y, new_x, new_y,np) || k.onlyOne(old_x, old_y, new_x, new_y)) {
 						new_board[new_x][new_y].fill(k); // to add the new move to the array of newboards
 						new_board[old_x][old_y].empty();
 						roosNP.add(np);
