@@ -149,6 +149,7 @@ public class Board
 	public Square[][] getBoardArray() {
 
 		return board ;
+	
 	}
 
 	public void setBoardArray(Square[][] newBoard) {
@@ -171,34 +172,26 @@ public class Board
 		this.kangaroos = kangaroos;
 	}
 
+	/*public List<Square[][]> getEmptyPositions() {
+        List<Square[][]> emptyPositions = new ArrayList<>();
+        for (int i = 0; i < 14; i++) {
+            for (int j = 0; j < 16; j++) {
+                if (!board[i][j].isOccupied())
+                    emptyPositions.add(new Square[i][j]);
+            }
+        }
+        return emptyPositions;
+    }*/
+	
 	public List<Square> getEmptyPositions() {
         List<Square> emptyPositions = new ArrayList<>();
         for (int i = 0; i < 14; i++) {
             for (int j = 0; j < 16; j++) {
                 if (!board[i][j].isOccupied())
-                    emptyPositions.add(new Square(i, j));
+                    emptyPositions.add(board[i][j]);
             }
         }
         return emptyPositions;
-    }
-	
-	public List<Square> getEmptyPositions(Kangaroo k) {
-        List<Square> availablePos = new ArrayList<>();
-        Square[][] boardCopy = Main.getState().getLoop().getBoard().getBoardArray() ;
-		
-        for (int i = 0; i < 14; i++) {
-            for (int j = 0; j < 16; j++) {
-            	Square currentSquare = boardCopy[i][j];
-                if (!board[i][j].isOccupied()) {
-                	Square[][] check = new Square[i][j];
-                	if(k.checkLegal(k.getPosition().getxLoc(), k.getPosition().getyLoc(), j, i,currentSquare)){
-                		availablePos.add(board[i][j]);
-                	}
-                    
-                }
-            }
-        }
-        return availablePos;
     }
 
 
@@ -209,7 +202,7 @@ public class Board
 		else return -1;
 	}
 
-	public void performMove(int playerNo, Square p) {
+	public void performMove(int playerNo, Square[][] p) {
 		// TODO Auto-generated method stub
 		this.totalMoves++;
 		boardValues[p.getX()][p.getY()];
