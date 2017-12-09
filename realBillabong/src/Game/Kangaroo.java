@@ -115,17 +115,21 @@ public class Kangaroo {
 	
 	
 	public void terminateTurn(){
+		
+		System.out.println("Turn terminated");
 		this.moveable = false;
 		Main.getState().getLoop().getCurrentPlayer().firstmove = true;
-		Main.getState().getLoop().getNextPlayer();
 		or.empty();
+		Main.getState().getLoop().getNextPlayer();
+		
+		
 	}
 
 	
 	public void move(Square origin, Square dest){
 				
 		
-		if(checkLegal(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc(), dest)) 
+		if(checkLegal(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc(), dest) && (this.moveable || Main.getState().getLoop().getCurrentPlayer().firstmove)) 
 		{
 			
 			checkLap(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc());
@@ -134,6 +138,7 @@ public class Kangaroo {
 				{
 					origin.fill(new Kangaroo(10));
 					or = origin;
+					this.moveable = true;
 				}
 			
 			Main.getState().getLoop().getCurrentPlayer().firstmove = false;
@@ -143,6 +148,7 @@ public class Kangaroo {
 			
 			dest.setIsSelected(true);
 			if(Math.abs(origin.getxLoc()- dest.getxLoc()) == 1 || Math.abs(origin.getyLoc()- dest.getyLoc()) == 1){
+			
 				terminateTurn();
 			}
 		}
@@ -219,7 +225,7 @@ public class Kangaroo {
 				{
 					cx--;
 					cy++;
-					if(boardCopy[cy][cx].isOccupied())
+					if(boardCopy[cy][cx].isOccupied() && !boardCopy[cy][cx].isWater())
 					{	middleCoords[0] = cy; 
 						middleCoords[1] = cx;
 						middleCounter++;
@@ -233,7 +239,7 @@ public class Kangaroo {
 				{
 					cx++;
 					cy--;
-					if(boardCopy[cy][cx].isOccupied())
+					if(boardCopy[cy][cx].isOccupied()&& !boardCopy[cy][cx].isWater())
 					{	middleCoords[0] = cy; 
 						middleCoords[1] = cx;
 						middleCounter++;
@@ -247,7 +253,7 @@ public class Kangaroo {
 				{
 					cx++;
 					cy++;
-					if(boardCopy[cy][cx].isOccupied())
+					if(boardCopy[cy][cx].isOccupied()&& !boardCopy[cy][cx].isWater())
 					{	middleCoords[0] = cy; 
 						middleCoords[1] = cx;
 						middleCounter++;
@@ -261,7 +267,7 @@ public class Kangaroo {
 				{
 					cx--;
 					cy--;
-					if(boardCopy[cy][cx].isOccupied())
+					if(boardCopy[cy][cx].isOccupied()&& !boardCopy[cy][cx].isWater())
 					{	middleCoords[0] = cy; 
 						middleCoords[1] = cx;
 						middleCounter++;
@@ -291,7 +297,7 @@ public class Kangaroo {
 				while(cy!=dy)
 				{
 					cy++;
-					if(boardCopy[cy][cx].isOccupied())
+					if(boardCopy[cy][cx].isOccupied()&& !boardCopy[cy][cx].isWater())
 					{	middleCoords[0] = cy; 
 						middleCoords[1] = cx;
 						middleCounter++;
@@ -304,7 +310,7 @@ public class Kangaroo {
 				while(cy!=dy)
 				{
 					cy--;
-					if(boardCopy[cy][cx].isOccupied())
+					if(boardCopy[cy][cx].isOccupied()&& !boardCopy[cy][cx].isWater())
 					{	middleCoords[0] = cy; 
 						middleCoords[1] = cx;
 						middleCounter++;
@@ -317,7 +323,7 @@ public class Kangaroo {
 				while(cx!=dx)
 				{
 					cx++;
-					if(boardCopy[cy][cx].isOccupied())
+					if(boardCopy[cy][cx].isOccupied()&& !boardCopy[cy][cx].isWater())
 					{	middleCoords[0] = cy; 
 						middleCoords[1] = cx;
 						middleCounter++;
@@ -330,7 +336,7 @@ public class Kangaroo {
 				while(cx!=dx)
 				{
 					cx--;
-					if(boardCopy[cy][cx].isOccupied())
+					if(boardCopy[cy][cx].isOccupied()&& !boardCopy[cy][cx].isWater())
 					{	middleCoords[0] = cy; 
 						middleCoords[1] = cx;
 						middleCounter++;
