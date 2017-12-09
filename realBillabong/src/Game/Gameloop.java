@@ -82,6 +82,11 @@ public class Gameloop implements MouseListener{
 	public Board getBoard() {
 		return board;
 	}
+	
+	public Square[][] getBoardAr()
+	{
+		return Main.getState().getLoop().getBoard().getBoardArray();
+	}
 
 	public void setBoard(Board board) {
 		this.board = board;
@@ -113,6 +118,32 @@ public class Gameloop implements MouseListener{
 			players.get(i).setColor(i);
 		}
 	}*/
+	public void aiMove(int curAI)
+	{ 	Square[][] nb = aiPlayers.get(curAI).nextMiniMaxMove();
+		Square[][] tempBoard = getBoardAr();
+		Kangaroo tempK = null;
+		Square destination = null;
+		for(int i = 0; i<14; i++)
+		{
+			for(int j = 0; i<16; i++)
+			{
+				if(tempBoard[i][j].isOccupied() && !nb[i][j].isOccupied())
+				{
+					tempK = tempBoard[i][j].getIsHere();
+				}
+				
+				if(!tempBoard[i][j].isOccupied() && nb[i][j].isOccupied())
+				{
+					destination = tempBoard[i][j];
+				}
+			}
+		}
+		Square t = tempK.getPosition();
+		Main.getState().getLoop().getCurrentPlayer().performMove(tempK, tempK.getPosition(), destination);
+		if(Math.abs(t.getxLoc()- destination.getxLoc()) == 1 || Math.abs(t.getyLoc()- destination.getyLoc()) == 1 ) tempK.terminateTurn();
+		else aiMove(curAI);
+		
+	}
 	
 	public void getNextPlayer() {
 		boolean done = false;
@@ -125,9 +156,10 @@ public class Gameloop implements MouseListener{
             		if(gamePhase && currentPlayer.ai) {
             			System.out.println("starting AI turn!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             			if(currentAI == aiPlayers.size()) currentAI = 0;
-            			Square[][] newBoard = aiPlayers.get(currentAI).nextMiniMaxMove();
+            			
             			//Main.getState().getLoop().getBoard().setBoardArray(newBoard);
-            			board.setBoardArray(newBoard);
+            			//board.setBoardArray(newBoard);
+            			aiMove(currentAI);
             			System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");
             			getNextPlayer();
             		}
@@ -140,9 +172,10 @@ public class Gameloop implements MouseListener{
             		if(gamePhase && currentPlayer.ai) {
             			System.out.println("starting AI turn!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             			if(currentAI == aiPlayers.size()) currentAI = 0;
-            			Square[][] newBoard = aiPlayers.get(currentAI).nextMiniMaxMove();
+            			
             			//Main.getState().getLoop().getBoard().setBoardArray(newBoard);
-            			board.setBoardArray(newBoard);
+            			//board.setBoardArray(newBoard);
+            			aiMove(currentAI);
             			
             			System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");
             			getNextPlayer();
