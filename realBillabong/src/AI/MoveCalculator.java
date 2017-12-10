@@ -50,14 +50,24 @@ public class MoveCalculator
 					new_board[i][j].fill(k); // to get new coordinates
 					np = k.getPosition();
 					new_x = np.getxLoc();
-					new_y = np.getyLoc();				
+					new_y = np.getyLoc();
+					k.setPosition(op);
 					new_board[i][j].empty(); // to restore the board to the original gamestate before checking the move
 					if(k.checkLegal(old_x, old_y, new_x, new_y,np)) {
-						new_board[new_x][new_y].fill(k); // to add the new move to the array of newboards
+						// to add the new move to the array of newboards
 						new_board[old_x][old_y].empty();
+						k.setPosition(np);
+						new_board[new_x][new_y].fill(k);
+		
 						roosNP.add(np);
 						possible_moves.add(new_board);
-						new_board[new_x][new_y].empty(); // to restore the board to the original gamestate.
+						
+						// to restore the board to the original gamestate.
+						
+						new_board[new_x][new_y].empty();
+						k.setPosition(op);
+						new_board[old_x][old_y].fill(k); 
+						
 					}				
 				}
 			}
