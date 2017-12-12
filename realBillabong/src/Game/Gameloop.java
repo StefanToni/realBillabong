@@ -23,6 +23,7 @@ public class Gameloop implements MouseListener{
 	private Kangaroo k ;
 	private Square s ;
 	private int piececounter ;
+	private final boolean DEBUG = false;
 	
 	private boolean placementPhase = true;
 	private boolean gamePhase = false;
@@ -144,7 +145,9 @@ public class Gameloop implements MouseListener{
 			}
 		}
 		Square t = tempK.getPosition();
+		
 		Main.getState().getLoop().getCurrentPlayer().performMove(tempK, tempK.getPosition(), destination);
+		
 		if(Math.abs(t.getxLoc()- destination.getxLoc()) == 1 || Math.abs(t.getyLoc()- destination.getyLoc()) == 1 ) tempK.terminateTurn();
 		else aiMove(curAI);
 		
@@ -156,7 +159,7 @@ public class Gameloop implements MouseListener{
 		while(i < players.size() && done != true){
             if (players.get(i) == currentPlayer) {
             	if (i == players.size()-1){
-            		System.out.println(i + " i goes to 0");
+            		if (DEBUG) System.out.println(i + " i goes to 0");
             		setCurrentPlayer(players.get(0));
             		if(gamePhase && currentPlayer.ai) {
             			System.out.println("starting AI turn!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -165,30 +168,28 @@ public class Gameloop implements MouseListener{
             			//Main.getState().getLoop().getBoard().setBoardArray(newBoard);
             			//board.setBoardArray(newBoard);
             			aiMove(currentAI);
-            			System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");
+            			if (DEBUG) System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");
             			getNextPlayer();
             		}
-            		System.out.println("team number " + currentPlayer.getColor());
+            		if (DEBUG) System.out.println("team number " + currentPlayer.getColor());
             		done = true;
             	}
             	else {
-            		System.out.println(" i goes up to " + (i+1));
+            		if (DEBUG) System.out.println(" i goes up to " + (i+1));
             		setCurrentPlayer(players.get(i+1));
             		if(gamePhase && currentPlayer.ai) {
+
             			System.out.println("starting AI turn!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            			/*if(currentAI == aiPlayers.size()) currentAI = 0;
-            			
-            			//Main.getState().getLoop().getBoard().setBoardArray(newBoard);
-            			//board.setBoardArray(newBoard);
-            			aiMove(currentAI);
-            			
-            			System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");
-            			getNextPlayer();*/
+
             			RandomAI r = new RandomAI() ;
+
+            			if (DEBUG) System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");
+            			getNextPlayer();
+
             		}
             		
             		
-            		System.out.println("team number " + currentPlayer.getColor());
+            		if (DEBUG) System.out.println("team number " + currentPlayer.getColor());
             		done = true;
             	}
             }
@@ -201,7 +202,7 @@ public class Gameloop implements MouseListener{
 		setCurrentPlayer(players.get(0));
 		placeNumber = players.size()*5;
 		
-		System.out.println("start placing");
+		if (DEBUG) System.out.println("start placing");
 		x = mouse.getActualX();
 		y = mouse.getActualY();
 		if (x >= 0 && x <= 16 ) {
@@ -231,7 +232,7 @@ public class Gameloop implements MouseListener{
 		
 		if(currentPlayer.haveIWon()){
 			//display winnner thing
-			System.out.println("Team number " + currentPlayer.getColor() + " wins !!!") ;
+			if (DEBUG) System.out.println("Team number " + currentPlayer.getColor() + " wins !!!") ;
 		}
 		/*else{
 			//check constraints

@@ -22,6 +22,7 @@ public class MiniMax_AlphaBeta
 	int colorAI = Main.getState().getLoop().getAIPlayers().get(0).getColor();
 	private Square[][] successorMove;
 	private int rooIndex;
+	private final boolean DEBUG = false;
 	
 	private static final int DEPTH = 1;
 	int bestMoveScore;
@@ -43,7 +44,7 @@ public class MiniMax_AlphaBeta
 	 */
 	
 	public int evaluatePosition(Square[][] boardArray, int alpha, int beta, int depth, int color){		
-		System.out.println("Begin evaluating position: depth-" + depth + "for- "+ color);
+		if (DEBUG) System.out.println("Begin evaluating position: depth-" + depth + "for- "+ color);
 		
 		/*
 		 * Base case: when depth is decremented to 0, evaluatePosition simply returns the result
@@ -52,12 +53,12 @@ public class MiniMax_AlphaBeta
 		if(depth == 0){
 			if(color == colorAI) {
 				int evaluation = eval.Evaluate(successorMove, AIroos.get(rooIndex), AIroosOP.get(rooIndex), AIroosNP.get(rooIndex));
-				System.out.println("Evaluated to: " + evaluation);
+				if (DEBUG) System.out.println("Evaluated to: " + evaluation);
 				return evaluation;
 			}
 			else {
 				int evaluation = eval.Evaluate(successorMove, Humanroos.get(rooIndex), HumanroosOP.get(rooIndex), HumanroosNP.get(rooIndex));
-				System.out.println("Evaluated to: " + evaluation);
+				if (DEBUG) System.out.println("Evaluated to: " + evaluation);
 				return evaluation;
 			}
 		}
