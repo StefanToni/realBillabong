@@ -16,6 +16,7 @@ public class MoveMouseAdapter implements MouseListener {
 	private int squareSize = Main.getSize();
 	private int rightclick = 1;
 	private Square rightSquare;
+	private boolean DEBUG = false;
 //	private HumanPlayer referee;
 	
 	
@@ -61,7 +62,7 @@ public class MoveMouseAdapter implements MouseListener {
 					//if(currentSquare.getIsHere().getTeam() == Main.getState().getLoop().getCurrentPlayer().getColor())
 					currentKangaroo = currentSquare.getIsHere();
 					counter++ ; 
-					System.out.println("CurrentKangarooSelected");
+					if (DEBUG) System.out.println("CurrentKangarooSelected");
 				}
 				
 				else if(currentSquare.getIsHere().moveable == true)
@@ -69,7 +70,7 @@ public class MoveMouseAdapter implements MouseListener {
 					currentSquare.setIsSelected(true);
 					currentKangaroo = currentSquare.getIsHere();
 					counter++ ; 
-					System.out.println("CurrentKangarooSelected");
+					if (DEBUG) System.out.println("CurrentKangarooSelected");
 				}
 			}
 			
@@ -78,10 +79,11 @@ public class MoveMouseAdapter implements MouseListener {
 		
 		//moves to the new square
 		else if(counter == 2)
-		{	System.out.println("Counter2 executed");
+		{	
+			if (DEBUG) System.out.println("Counter2 executed");
 			if(!currentSquare.isOccupied()){
 				
-				System.out.println("Destination square is not occupied");
+				if (DEBUG) System.out.println("Destination square is not occupied");
 				counter = 1 ;
 				/// constraints , x,y +-1 or jump
 				Main.getState().getLoop().getCurrentPlayer().performMove(currentKangaroo, currentKangaroo.getPosition(), currentSquare);
@@ -92,12 +94,12 @@ public class MoveMouseAdapter implements MouseListener {
 			}
 			
 		}
-		System.out.println("clicker is " + counter);
+		if (DEBUG) System.out.println("clicker is " + counter);
 		if(currentKangaroo == null){
-			System.out.println(" roo is null");
+			if (DEBUG) System.out.println(" roo is null");
 		}
 		if(currentSquare == null){
-			System.out.println(" square is null");
+			if (DEBUG) System.out.println(" square is null");
 		}
 		
 	}

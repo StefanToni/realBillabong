@@ -10,6 +10,7 @@ public class MouseAdapter implements MouseListener {
 	private int x, y, actualX, actualY;
 	private Gameloop loop;
 	private int squareSize = Main.getSize();
+	private boolean DEBUG = false;
 
 	
 	@Override
@@ -20,7 +21,8 @@ public class MouseAdapter implements MouseListener {
 			
 			
 			if(Main.getState().getLoop().getCurrentPlayer().getAI())
-			{ 	System.out.println("AI detected");
+			{ 	
+				if (DEBUG) System.out.println("AI detected");
 				Main.getState().getLoop().getCurrentPlayer().placeRoo();
 				Main.getState().getComponent().repaint();
 				Main.getState().getLoop().getNextPlayer();
@@ -32,7 +34,7 @@ public class MouseAdapter implements MouseListener {
 				
 				x = e.getX();
 				y = e.getY();
-				System.out.println(x +" , " + y);
+				if (DEBUG) System.out.println(x +" , " + y);
 				for(int i=0; i < 14; i++)
 				{
 					for(int j=0;j < 16 ;j++ )
@@ -52,7 +54,7 @@ public class MouseAdapter implements MouseListener {
 			
 					//Main.getState().getLoop().setPlaceNumber(k-1);
 					if (k > 0) {
-						System.out.println(Main.getState().getLoop().getCurrentPlayer().getColor());
+						if (DEBUG) System.out.println(Main.getState().getLoop().getCurrentPlayer().getColor());
 				
 				
 						Main.getState().getLoop().getCurrentPlayer().placePiece(actualY, actualX);
