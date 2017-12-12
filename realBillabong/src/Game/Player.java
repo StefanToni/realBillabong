@@ -17,7 +17,14 @@ public class Player {
 	private Square selectedS ;
 	private int finishCounter = 0 ;
 	public boolean ai;
+	private Board b;
 	
+	public Board getB() {
+		return b;
+	}
+	public void setB(Board b) {
+		this.b = b;
+	}
 	public boolean getAI()
 	{
 		return ai;
@@ -49,7 +56,6 @@ public class Player {
 		 teamCounter++ ;
 		 color = teamCounter ;
 		 name = "x" ;
-		 
 		
 	}
 	
@@ -57,6 +63,7 @@ public class Player {
 		kangaroos = new ArrayList<Kangaroo>() ;
 		teamCounter++ ;
 		color = teamCounter ;
+
 	}
  	
 	public ArrayList<Kangaroo> getKangaroos() {
@@ -116,7 +123,7 @@ public class Player {
 		System.out.println("Trying move");
 		try
 		{
-			k.move(o, d);
+			b.move(k, o, d);
 			System.out.println("player perform move executed ");
 		} catch (Exception e)
 		{

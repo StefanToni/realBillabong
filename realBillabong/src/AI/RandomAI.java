@@ -15,10 +15,10 @@ public class RandomAI {
 	ArrayList<Move> possibleMoves ;
 	Move finalMove ;
 	
-	public RandomAI(){
+	public RandomAI(Square[][] bo){
 		System.out.println("new random ai...");
 		currentPlayer = Main.getState().getLoop().getCurrentPlayer() ;
-		board = Main.getState().getLoop().getBoardAr() ;
+		board = bo;//Main.getState().getLoop().getBoard().getBoardArray() ;
 		possibleMoves = new ArrayList<Move>() ;
 		checkForMoves(); 
 	}
@@ -34,7 +34,7 @@ public class RandomAI {
 					for(int y = 0; y < 14; y++){
 						for(int x = 0; x < 16; x++){
 							if(current.checkLegal(j, i, x, y, board[y][x])){
-								Move m = new Move(current, i, j, y, x) ;
+								Move m = new Move(current, board[i][j], board[y][x]) ;
 								possibleMoves.add(m) ;
 								System.out.println("move added to list");
 							}
@@ -67,6 +67,8 @@ public class RandomAI {
 		currentPlayer.performMove(k, o, d) ;
 		System.out.println("move performed");
 		Main.getState().getComponent().repaint();
+		//if(Math.abs(o.getxLoc()- d.getxLoc()) == 1 || Math.abs(o.getyLoc()- d.getyLoc()) == 1 ) k.terminateTurn();
+		if((Math.abs(o.getxLoc()- d.getxLoc()) > 1 || Math.abs(o.getyLoc()- d.getyLoc()) > 1 )) new RandomAI(board);
 	}
 
 }

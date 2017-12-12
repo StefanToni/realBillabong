@@ -19,7 +19,6 @@ public class AIPlayer extends Player implements MouseListener{
 	private String name ;
 	public boolean ai=true;
 	
-	
 	public AIPlayer(int color) {
 		this.color = color;
 		
@@ -37,7 +36,7 @@ public class AIPlayer extends Player implements MouseListener{
 		color = super.getTeamCounter() ;
 		mouse = Main.getState().getMouse() ;
 		name = "AI" ;
-		
+
 	
 	}
 	

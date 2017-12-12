@@ -47,10 +47,10 @@ public class MoveCalculator
 		for(int i = 0 ; i < 14 ; i++){
 			for(int j = 0 ; j < 16 ; j++) {
 				if(!(new_board[i][j].isOccupied() || new_board[i][j].isWater())) {
-					new_board[i][j].fill(k); // to get new coordinates
-					np = k.getPosition();
-					new_x = np.getxLoc();
-					new_y = np.getyLoc();
+					//new_board[i][j].fill(k); // to get new coordinates
+					//np = k.getPosition();
+					new_x = new_board[i][j].getxLoc();
+					new_y = new_board[i][j].getyLoc();
 					k.setPosition(op);
 					new_board[i][j].empty(); // to restore the board to the original gamestate before checking the move
 					if(k.checkLegal(old_x, old_y, new_x, new_y,np)) {

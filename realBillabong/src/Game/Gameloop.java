@@ -69,11 +69,13 @@ public class Gameloop implements MouseListener{
 		for(int i = 0; i < p ; i++){
 			Player hPlayer = new HumanPlayer(this) ;
 			hPlayer.setAI(false);
+			hPlayer.setB(board);
 			players.add(hPlayer) ;
 		}
 		for(int i = 0; i < a ; i++){
 			Player aiPlayer = new AIPlayer(this) ;
 			aiPlayer.setAI(true);
+			aiPlayer.setB(board);
 			players.add(aiPlayer);
 			aiPlayers.add((AIPlayer) aiPlayer) ;
 		}
@@ -168,7 +170,7 @@ public class Gameloop implements MouseListener{
             			//board.setBoardArray(newBoard);
             			aiMove(currentAI);*/
             			
-            			RandomAI r = new RandomAI() ;
+            			RandomAI r = new RandomAI(getBoardAr()) ;
             			if (DEBUG) System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");
             			//getNextPlayer();
             		}
@@ -186,7 +188,7 @@ public class Gameloop implements MouseListener{
             			//board.setBoardArray(newBoard);
             			aiMove(currentAI);*/
 
-            			RandomAI r = new RandomAI() ;
+            			RandomAI r = new RandomAI(getBoardAr()) ;
 
             			if (DEBUG) System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");
             			//getNextPlayer();
