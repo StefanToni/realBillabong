@@ -131,13 +131,14 @@ public class Gameloop implements MouseListener{
 		Square[][] tempBoard = getBoardAr();
 		Kangaroo tempK = null;
 		Square destination = null;
+		Square org = null;
 		for(int i = 0; i<14; i++)
 		{
 			for(int j = 0; i<16; i++)
 			{
 				if(tempBoard[i][j].isOccupied() && !nb[i][j].isOccupied())
 				{
-					tempK = tempBoard[i][j].getIsHere();
+					org = tempBoard[i][j];
 				}
 				
 				if(!tempBoard[i][j].isOccupied() && nb[i][j].isOccupied())
@@ -148,9 +149,9 @@ public class Gameloop implements MouseListener{
 		}
 		Square t = tempK.getPosition();
 		
-		Main.getState().getLoop().getCurrentPlayer().performMove(tempK, tempK.getPosition(), destination);
+		Main.getState().getLoop().getCurrentPlayer().performMove(org.getIsHere(), org, destination);
 		
-		if(Math.abs(t.getxLoc()- destination.getxLoc()) == 1 || Math.abs(t.getyLoc()- destination.getyLoc()) == 1 ) tempK.terminateTurn();
+		if(Math.abs(t.getxLoc()- destination.getxLoc()) == 1 || Math.abs(t.getyLoc()- destination.getyLoc()) == 1 );
 		else aiMove(curAI);
 		
 	}
@@ -168,9 +169,9 @@ public class Gameloop implements MouseListener{
             			
             			/*//Main.getState().getLoop().getBoard().setBoardArray(newBoard);
             			//board.setBoardArray(newBoard);
-            			aiMove(currentAI);*/
-            			
-            			RandomAI r = new RandomAI(getBoardAr()) ;
+            			*/
+            			aiMove(currentAI);
+            			//RandomAI r = new RandomAI(getBoardAr()) ;
             			if (DEBUG) System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");
             			//getNextPlayer();
             		}
@@ -186,9 +187,9 @@ public class Gameloop implements MouseListener{
             			
             			/*//Main.getState().getLoop().getBoard().setBoardArray(newBoard);
             			//board.setBoardArray(newBoard);
-            			aiMove(currentAI);*/
-
-            			RandomAI r = new RandomAI(getBoardAr()) ;
+            			*/
+            			aiMove(currentAI);
+            			//RandomAI r = new RandomAI(getBoardAr()) ;
 
             			if (DEBUG) System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");
             			//getNextPlayer();
