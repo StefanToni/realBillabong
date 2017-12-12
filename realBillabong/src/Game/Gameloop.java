@@ -163,13 +163,10 @@ public class Gameloop implements MouseListener{
             		setCurrentPlayer(players.get(0));
             		if(gamePhase && currentPlayer.ai) {
             			System.out.println("starting AI turn!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            			if(currentAI == aiPlayers.size()) currentAI = 0;
             			
-            			//Main.getState().getLoop().getBoard().setBoardArray(newBoard);
-            			//board.setBoardArray(newBoard);
-            			aiMove(currentAI);
+            			RandomAI r = new RandomAI() ;
             			if (DEBUG) System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");
-            			getNextPlayer();
+            			//getNextPlayer();
             		}
             		if (DEBUG) System.out.println("team number " + currentPlayer.getColor());
             		done = true;
@@ -184,7 +181,7 @@ public class Gameloop implements MouseListener{
             			RandomAI r = new RandomAI() ;
 
             			if (DEBUG) System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");
-            			getNextPlayer();
+            			//getNextPlayer();
 
             		}
             		
