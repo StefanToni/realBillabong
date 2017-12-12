@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
+import AI.RandomAI;
 import realBillabong.Main;
 
 public class Gameloop implements MouseListener{
@@ -86,6 +87,10 @@ public class Gameloop implements MouseListener{
 	public Square[][] getBoardAr()
 	{
 		return Main.getState().getLoop().getBoard().getBoardArray();
+	}
+	
+	public void setBoardAr(Square[][] b){
+		Main.getState().getLoop().getBoard().setBoardArray(b);
 	}
 
 	public void setBoard(Board board) {
@@ -171,14 +176,15 @@ public class Gameloop implements MouseListener{
             		setCurrentPlayer(players.get(i+1));
             		if(gamePhase && currentPlayer.ai) {
             			System.out.println("starting AI turn!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            			if(currentAI == aiPlayers.size()) currentAI = 0;
+            			/*if(currentAI == aiPlayers.size()) currentAI = 0;
             			
             			//Main.getState().getLoop().getBoard().setBoardArray(newBoard);
             			//board.setBoardArray(newBoard);
             			aiMove(currentAI);
             			
             			System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");
-            			getNextPlayer();
+            			getNextPlayer();*/
+            			RandomAI r = new RandomAI() ;
             		}
             		
             		

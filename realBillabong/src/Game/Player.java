@@ -117,6 +117,7 @@ public class Player {
 		try
 		{
 			k.move(o, d);
+			System.out.println("player perform move executed ");
 		} catch (Exception e)
 		{
 			System.out.println("Moving is not valid in this situation.");
