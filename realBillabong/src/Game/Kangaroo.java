@@ -127,6 +127,7 @@ public class Kangaroo {
 		if(Main.getState().getLoop().isAIWORK()) { 
 			Main.getState().getLoop().aiMove();
 		}
+
 		
 	}
 

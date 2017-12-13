@@ -35,8 +35,10 @@ public class Game implements GameState {
 	private Square[][] boardArray ;
 	private BoardComponent component ;
 	private MouseListener mouse ;
+
 	private Keyboard keyboard;
 	private boolean AIWORK = false;
+
 	
 	public MouseAdapter getMouse() {
 		return (MouseAdapter)mouse;
@@ -52,7 +54,9 @@ public class Game implements GameState {
 	}
 
 	
+
 	public Game(int p, int a, boolean AI) {
+
 
 		keyboard = new Keyboard();
 		numberPlayers = p ;
@@ -69,6 +73,7 @@ public class Game implements GameState {
 				Main.getState().getLoop().aiMove();
 			}
 		});
+		
 		//add actionlisteners
 		loop.setAIWORK(AIWORK);
 		

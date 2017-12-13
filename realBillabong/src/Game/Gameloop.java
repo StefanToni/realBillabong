@@ -165,13 +165,15 @@ public class Gameloop implements MouseListener{
 		if(Math.abs(t.getxLoc()- destination.getxLoc()) == 1 || Math.abs(t.getyLoc()- destination.getyLoc()) == 1 );
 		else aiMove(curAI);
 		*/
+	
+		
 		
 		new MiniMax(getBoardAr());
 		//new RandomAI(getBoardAr());
 		
-		
-		
 	}
+	
+	
 	
 	public void getNextPlayer() {
 		boolean done = false;
