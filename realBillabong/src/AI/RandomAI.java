@@ -81,9 +81,9 @@ public class RandomAI {
 			e.printStackTrace();
 		}
 		
-		System.out.println("New RAI made");
+		//System.out.println("New RAI made");
 		
-		new RandomAI(board);
+		//new RandomAI(board);
 	}
 
 }

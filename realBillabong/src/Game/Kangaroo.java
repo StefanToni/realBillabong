@@ -116,18 +116,13 @@ public class Kangaroo {
 	
 	public void terminateTurn(){
 		
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
 		System.out.println("Turn terminated");
 		this.moveable = false;
 		Main.getState().getLoop().getCurrentPlayer().firstmove = true;
 		or.empty();
-		//Main.getState().getLoop().getNextPlayer();
+		Main.getState().getLoop().getNextPlayer();
 		
 		
 	}
@@ -191,8 +186,10 @@ public void move(Square origin, Square dest){
 			dest.setIsSelected(true);
 			if(Math.abs(origin.getxLoc()- dest.getxLoc()) == 1 || Math.abs(origin.getyLoc()- dest.getyLoc()) == 1){
 				
-				terminateTurn();
+				//terminateTurn();
 			}
+			
+			terminateTurn();
 			return;
 		}
 		
