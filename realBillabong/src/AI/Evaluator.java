@@ -101,53 +101,59 @@ public class Evaluator
 		if(x<8 && y>7  && ny<y )
 		{
 			directions = directions + 60 ;
-			if(nx>=x)directions+=15;
+			if(nx>x) directions -= 30;
+			if(ny==y) directions -=5;
+			
 		}
 		
 		else if(x<8 && y<7 && nx>x)
 		{
 			directions = directions + 60 ;
-			if(ny>=y)directions+=15;
+			if(ny>y) directions -= 30;
+			
 		}
 		
 		else if(x>=8 && y<7 && ny>y)
 		{
 			directions = directions + 60 ;
-			if(nx>=x) directions+=15;
+			if(nx<x) directions -= 30;
+			if(nx==x) directions -=5;
+			
 			
 		}
 		
 		else if(x>=8 && y>=7 && nx<x )
 		{
 			directions = directions + 60 ;
-			if(ny>=y) directions+=15;
+			if(ny<y) directions -= 30;
+			
 		}
 		
 		
 
 		/*if(x<8 && y>7)
 		{
-			if(ny>y) directions -=35;
+			if(ny>y) directions -=60;
 			if(nx!=x) directions -=15;
 			
 		}
 		
 		if(x<8 && y<7)
 		{
-			if(nx<x) directions -=35;
+			if(nx<x) directions -=60;
 			if(ny!=y) directions -=15;
 			
 		}
 		
 		if(x>=8 && y<7)
 		{
-			if(ny<y) directions -=35;
+			if(ny<y) directions -=60;
 			if(nx!=x) directions -=15;
 		}
 		
 		if(x>=8 && y>=7)
 		{
-			if(nx>x) directions -=35;
+			if(nx>x) directions -=60;
 			if(ny!=y) directions -=15;
 		}*/
 		

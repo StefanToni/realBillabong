@@ -55,6 +55,7 @@ public class Kangaroo {
 	public void finishKangaroo()
 	{
 		System.out.println("Kangaroo has finished");
+		terminateTurn();
 		//maybe an in-game notification 
 	}
 	
@@ -129,10 +130,7 @@ public class Kangaroo {
 		Main.getState().getLoop().getCurrentPlayer().firstmove = true;
 		or.empty();
 		Main.getState().getLoop().getNextPlayer();
-<<<<<<< HEAD
-		//Main.getState().getLoop().aiMove();
-=======
->>>>>>> branch 'master' of https://github.com/StefanToni/realBillabong.git
+
 		
 		if(Main.getState().getLoop().isAIWORK()) {
 			

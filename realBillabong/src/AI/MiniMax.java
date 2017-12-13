@@ -13,10 +13,10 @@ import realBillabong.Main;
 public class MiniMax {
 
 	private Square[][] b;
-	private Player currentPlayer; 
+	private Player currentPlayer, lastPlayer; 
 	
 	private Evaluator eval;
-	private Move best;
+	private Move best, last;
 	
 	
 	ArrayList<Move> possibleMoves ;
@@ -33,11 +33,13 @@ public class MiniMax {
 			getBestMove();
 		}
 		
-		public MiniMax(Square [][] b, Kangaroo lastKanga)
+		public MiniMax(Square [][] b, Kangaroo lastKanga, Move last)
 		{
 			this.lastKanga = lastKanga;
 			this.b = b;
+			this.last = last;
 			currentPlayer = Main.getState().getLoop().getCurrentPlayer();
+			
 			possibleMoves = new ArrayList<Move>();
 			eval = new Evaluator();
 			checkForMovesKanga();
@@ -57,6 +59,7 @@ public class MiniMax {
 			{
 				m = possibleMoves.get(i);
 				score = eval.evaluateMove(b, m);
+				if (m == last) score-=1000;
 				if(score>bestScore)
 				{	
 					bestScore = score;
@@ -66,6 +69,7 @@ public class MiniMax {
 			}
 			performMove();
 		}
+		
 		
 		
 
@@ -136,7 +140,7 @@ public class MiniMax {
 						System.out.println("New Minimax Created");
 						
 						
-						new MiniMax(b,k);
+						new MiniMax(b, k, best);
 						
 						//Main.getState().getLoop().getBoardAr());
 						
