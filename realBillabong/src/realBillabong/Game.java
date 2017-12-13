@@ -33,6 +33,7 @@ public class Game implements GameState {
 	private Square[][] boardArray ;
 	private BoardComponent component ;
 	private MouseListener mouse ;
+
 	
 	public MouseAdapter getMouse() {
 		return (MouseAdapter)mouse;
@@ -47,7 +48,7 @@ public class Game implements GameState {
 		pane.removeMouseListener(mouse);
 	}
 
-
+	
 	public Game(int p, int a){
 		
 		
@@ -64,6 +65,7 @@ public class Game implements GameState {
 				Main.getState().getLoop().aiMove();
 			}
 		});
+		
 		//add actionlisteners
 		end = new JButton() ;
 		end.setSize(100, 100);

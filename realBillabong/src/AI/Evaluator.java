@@ -96,20 +96,21 @@ public class Evaluator
 			directions = directions + 4 ;
 		}
 		
-		if(x<8 && y<7 && nx>x && ny<=y)
+		else if(x<8 && y<7 && nx>x && ny<=y)
 		{
 			directions = directions + 4 ;
 		}
 		
-		if(x>=8 && y<7 && ny>y && nx>=x)
+		else if(x>=8 && y<7 && ny>y && nx>=x)
 		{
 			directions = directions + 4 ;
 		}
 		
-		if(x>=8 && y>=7 && nx<x && ny>=y)
+		else if(x>=8 && y>=7 && nx<x && ny>=y)
 		{
 			directions = directions + 4 ;
 		}
+		
 		
 		
 		
