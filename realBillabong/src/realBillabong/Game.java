@@ -69,7 +69,10 @@ public class Game implements GameState {
 			public void actionPerformed(ActionEvent e)
 			{
 				//Main.getState().getLoop().getNextPlayer();
-				Main.getState().getLoop().aiMove();
+				if (Main.getState().getLoop().getCurrentPlayer().getAI()) {
+					Main.getState().getLoop().aiMove();
+				}
+				
 			}
 		});
 		
