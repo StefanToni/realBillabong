@@ -34,7 +34,6 @@ public class Game implements GameState {
 	private Square[][] boardArray ;
 	private BoardComponent component ;
 	private MouseListener mouse ;
-
 	private Keyboard keyboard;
 
 	

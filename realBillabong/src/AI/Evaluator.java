@@ -51,12 +51,12 @@ public class Evaluator
 		
 		// Jump
 		if( Math.abs(old_x - new_x) > 1 || Math.abs(old_y - new_y) > 1 ){
-			score += 5;
+			score += 2;
 		}
 		
 		// Walk
 		if(Math.abs(old_x - new_x) <= 1 || Math.abs(old_y - new_y) <= 1){
-			score += 2;
+			score += 1;
 		}
 		
 		if(k.getRightLeft(old_x, old_y, new_x, new_y)){
@@ -64,7 +64,7 @@ public class Evaluator
 		}
 		
 		if(k.getLeftRight(old_x, old_y, new_x, new_y)){
-			score-= 1 ;
+			score-= 3 ;
 		}
 		
 			
@@ -74,7 +74,10 @@ public class Evaluator
 		int varCreate = score ;
 		//System.out.println(" score: " + score);
 		if(varCreate < 0){
-			varCreate = varCreate * -1 ;
+			varCreate = (varCreate * -1 );
+		}
+		if(varCreate == 0){
+			varCreate= varCreate + 1;
 		}
 		//System.out.println("varCreate: "+ varCreate);
 		int variance = rnd.nextInt(varCreate) ;
@@ -95,47 +98,58 @@ public class Evaluator
 	{
 		int directions = 0 ;
 		
-		if(x<8 && y>7  && ny<y && nx<=x)
+		if(x<8 && y>7  && ny<y )
 		{
-			directions = directions + 40 ;
+			directions = directions + 60 ;
+			if(nx>=x)directions+=15;
 		}
 		
-		else if(x<8 && y<7 && nx>x && ny<=y)
+		else if(x<8 && y<7 && nx>x)
 		{
-			directions = directions + 40 ;
+			directions = directions + 60 ;
+			if(ny>=y)directions+=15;
 		}
 		
-		else if(x>=8 && y<7 && ny>y && nx>=x)
+		else if(x>=8 && y<7 && ny>y)
 		{
-			directions = directions + 40 ;
+			directions = directions + 60 ;
+			if(nx>=x) directions+=15;
+			
 		}
 		
-		else if(x>=8 && y>=7 && nx<x && ny>=y)
+		else if(x>=8 && y>=7 && nx<x )
 		{
-			directions = directions + 40 ;
+			directions = directions + 60 ;
+			if(ny>=y) directions+=15;
 		}
 		
 		
 
-		if(x<8 && y>7  && ny>y || nx<x)
+		/*if(x<8 && y>7)
 		{
-			directions = directions - 40  ;
+			if(ny>y) directions -=35;
+			if(nx!=x) directions -=15;
+			
 		}
 		
-		if(x<8 && y<7 && nx<x || ny<y)
+		if(x<8 && y<7)
 		{
-			directions = directions - 40 ;
+			if(nx<x) directions -=35;
+			if(ny!=y) directions -=15;
+			
 		}
 		
-		if(x>=8 && y<7 && ny<y || nx>x)
+		if(x>=8 && y<7)
 		{
-			directions = directions - 40 ;
+			if(ny<y) directions -=35;
+			if(nx!=x) directions -=15;
 		}
 		
-		if(x>=8 && y>=7 && nx>x || ny>y)
+		if(x>=8 && y>=7)
 		{
-			directions = directions - 40 ;
-		}
+			if(nx>x) directions -=35;
+			if(ny!=y) directions -=15;
+		}*/
 		
 		
 

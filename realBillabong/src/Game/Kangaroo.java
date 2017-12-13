@@ -124,7 +124,7 @@ public class Kangaroo {
 		Main.getState().getLoop().getCurrentPlayer().firstmove = true;
 		or.empty();
 		Main.getState().getLoop().getNextPlayer();
-		Main.getState().getLoop().aiMove();
+		//Main.getState().getLoop().aiMove();
 		
 		
 	}
