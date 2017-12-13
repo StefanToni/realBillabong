@@ -34,11 +34,9 @@ public class Game implements GameState {
 	private Square[][] boardArray ;
 	private BoardComponent component ;
 	private MouseListener mouse ;
-<<<<<<< HEAD
 
-=======
 	private Keyboard keyboard;
->>>>>>> branch 'master' of https://github.com/StefanToni/realBillabong.git
+
 	
 	public MouseAdapter getMouse() {
 		return (MouseAdapter)mouse;
