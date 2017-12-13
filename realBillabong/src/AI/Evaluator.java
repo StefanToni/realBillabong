@@ -66,6 +66,8 @@ public class Evaluator
 		if(k.getLeftRight(old_x, old_y, new_x, new_y)){
 			score-= 1 ;
 		}
+		
+		score += getDirections(old_x, old_y, new_x, new_y);
 			
 		if (DEBUG) System.out.println("evaluated score = " + score);
 		
@@ -83,6 +85,32 @@ public class Evaluator
 		score = 0 ;
 		return finalScore;
 				
+	}
+	
+	private int getDirections(int x, int y, int nx, int ny)
+	{
+		
+		if(x<8 && y>7 && nx<=x && ny<y)
+		{
+			return 4;
+		}
+		
+		if(x<8 && y<7 && nx>x)
+		{
+			return 4;
+		}
+		
+		if(x>=8 && y<7 && ny>y)
+		{
+			return 4;
+		}
+		
+		if(x>=8 && y>=7 && nx<x && ny>=y)
+		{
+			return 4;
+		}
+		
+		return 0;
 	}
 	
 }
