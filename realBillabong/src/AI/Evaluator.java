@@ -1,5 +1,7 @@
 package AI;
 
+import java.util.Random;
+
 import Game.*;
 
 
@@ -48,26 +50,38 @@ public class Evaluator
 		Square np = m.getDest();
 		
 		// Jump
-		if(k.checkLegal(old_x, old_y, new_x, new_y,np) && !(k.onlyOne(old_x, old_y, new_x, new_y))){
-			score += 1;
+		if(!(k.onlyOne(old_x, old_y, new_x, new_y))){
+			score += 5;
 		}
 		
 		// Walk
-		if((k.onlyOne(old_x, old_y, new_x, new_y)) && (k.checkLegal(old_x, old_y, new_x, new_y,np))){
-			score -= 1;
+		if((k.onlyOne(old_x, old_y, new_x, new_y))){
+			score += 2;
 		}
 		
-		if(k.getRightLeft(old_x, old_y, new_x, new_y) && k.checkLegal(old_x, old_y, new_x, new_y,np)){
-			score+= 5 ;
+		if(k.getRightLeft(old_x, old_y, new_x, new_y)){
+			score+= 10 ;
 		}
 		
-		if(k.getLeftRight(old_x, old_y, new_x, new_y) && k.checkLegal(old_x, old_y, new_x, new_y,np)){
-			score-= 3 ;
+		if(k.getLeftRight(old_x, old_y, new_x, new_y)){
+			score-= 1 ;
 		}
 			
 		if (DEBUG) System.out.println("evaluated score = " + score);
 		
-		return score;
+		Random rnd = new Random() ;
+		int variance = rnd.nextInt(score) ;
+		score = (score * 20);
+		if(rnd.nextInt(10) < 5){
+			variance = variance * -1 ;
+		}
+		score = score + variance ;
+		System.out.println("score after variances : " + score);
+		
+		int finalScore ;
+		finalScore = score ;
+		score = 0 ;
+		return finalScore;
 				
 	}
 	

@@ -44,7 +44,6 @@ public class MiniMax {
 					best = m;
 				}
 			}
-			
 			performMove();
 		}
 		
