@@ -219,7 +219,7 @@ public void move(Square origin, Square dest){
 		}
 		
 		else 
-		{	System.out.println("MOVE NOT LEGAL");
+		{	System.out.println("MOVE NOT LEGAL, TRIED TO MOVE TO " + dest.getxLoc() + " X " + dest.getyLoc() + " Y ");
 			return;
 		}
 		/*for(int i = 0; i < 13; i++ ){
