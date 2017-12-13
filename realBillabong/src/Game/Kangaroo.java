@@ -209,6 +209,7 @@ public void move(Square origin, Square dest){
 	}	
 	public boolean checkLegal(int ox, int oy, int dx, int dy, Square dest)
 	{
+		//if(dx>13 || dy > 15) return false;
 		int deltaX = dx-ox;
 		int deltaY = dy-oy;
 		

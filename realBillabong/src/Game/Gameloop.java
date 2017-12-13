@@ -157,7 +157,7 @@ public class Gameloop implements MouseListener{
 		else aiMove(curAI);
 		*/
 		
-		MiniMax mima = new MiniMax(getBoardAr());
+		new MiniMax(getBoardAr());
 		
 		
 		
