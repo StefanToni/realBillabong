@@ -14,6 +14,7 @@ public class RandomAI {
 	Square[][] board ;
 	ArrayList<Move> possibleMoves ;
 	Move finalMove ;
+	Kangaroo lastKanga = null;
 	
 	public RandomAI(Square[][] bo){
 		System.out.println("new random ai...");
@@ -22,6 +23,17 @@ public class RandomAI {
 		possibleMoves = new ArrayList<Move>() ;
 		checkForMoves(); 
 	}
+	
+	public RandomAI(Square[][] bo, Kangaroo lastKanga){
+		System.out.println("new random ai...");
+		currentPlayer = Main.getState().getLoop().getCurrentPlayer() ;
+		board = bo;//Main.getState().getLoop().getBoard().getBoardArray() ;
+		this.lastKanga = lastKanga;
+		possibleMoves = new ArrayList<Move>() ;
+		checkForMovesKanga(); 
+	}
+	
+	
 	
 	public void checkForMoves(){
 		System.out.println("checking moves");
@@ -49,6 +61,28 @@ public class RandomAI {
 		
 	}
 	
+	public void checkForMovesKanga(){
+		System.out.println("checking moves kanga");
+		int lastx = lastKanga.getPosition().getxLoc();
+		int lasty = lastKanga.getPosition().getyLoc();
+		
+		
+					for(int y = 0; y < 14; y++){
+						for(int x = 0; x < 16; x++){
+							if(lastKanga.checkLegal(lastx, lasty, x, y, board[y][x])){
+								Move m = new Move(lastKanga, lastKanga.getPosition(), board[y][x]) ;
+								possibleMoves.add(m) ;
+								//System.out.println("move " + y + " " + x + " added to list");
+							}
+						}
+					}
+			
+		
+		selectMove();
+		
+		
+	}
+	
 	public void selectMove(){
 		System.out.println("select move");
 		int s = possibleMoves.size() ;
@@ -71,19 +105,30 @@ public class RandomAI {
 		
 		//if(Math.abs(o.getxLoc()- d.getxLoc()) == 1 || Math.abs(o.getyLoc()- d.getyLoc()) == 1 ) k.terminateTurn();
 		
-		if((Math.abs(o.getxLoc()- d.getxLoc()) > 1 || Math.abs(o.getyLoc()- d.getyLoc()) > 1 )) ;
+		if((Math.abs(o.getxLoc()- d.getxLoc()) > 1 || Math.abs(o.getyLoc()- d.getyLoc()) > 1 )) 
+			{
+			
+			System.out.println("New RAI made");
+			Main.getState().getComponent().repaint();
+
+			Main.getState().getComponent().repaint();
+
+			Main.getState().getComponent().repaint();
+
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Not sleeping");
+				e.printStackTrace();
+			}
+			
+			new RandomAI(board, k);
+			}
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Not sleeping");
-			e.printStackTrace();
-		}
+	
 		
-		//System.out.println("New RAI made");
 		
-		//new RandomAI(board);
 	}
 
 }
