@@ -193,6 +193,7 @@ public void move(Square origin, Square dest){
 		{	System.out.println("Legality checked");
 			
 			checkLap(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc());
+			origin.setIsSelected(true);
 			origin.empty();
 			if(Main.getState().getLoop().getCurrentPlayer().firstmove == true) 
 				{
