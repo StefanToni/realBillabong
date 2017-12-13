@@ -1,5 +1,10 @@
 package Game;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
 import realBillabong.Main;
 
 public class Kangaroo {
@@ -124,9 +129,28 @@ public class Kangaroo {
 		Main.getState().getLoop().getCurrentPlayer().firstmove = true;
 		or.empty();
 		Main.getState().getLoop().getNextPlayer();
+<<<<<<< HEAD
 		//Main.getState().getLoop().aiMove();
+=======
+>>>>>>> branch 'master' of https://github.com/StefanToni/realBillabong.git
 		
-		
+		if(Main.getState().getLoop().isAIWORK()) {
+			
+			 int delay = 1000; //milliseconds
+			  ActionListener taskPerformer = new ActionListener() {
+			      int count=0;
+			      public void actionPerformed(ActionEvent evt) {
+			           if(count==1) {//we did the task 10 times
+			                 ((Timer)evt.getSource()).stop();
+			            }
+
+			           Main.getState().getLoop().aiMove();
+			           count++;
+			      }
+			  };
+			  new Timer(delay, taskPerformer).start();
+		}
+	
 	}
 
 	/*

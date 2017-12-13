@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -35,6 +36,7 @@ public class Game implements GameState {
 	private BoardComponent component ;
 	private MouseListener mouse ;
 	private Keyboard keyboard;
+	private boolean AIWORK = false;
 
 	
 	public MouseAdapter getMouse() {
@@ -51,11 +53,14 @@ public class Game implements GameState {
 	}
 
 	
-	public Game(int p, int a){
-		
+
+	public Game(int p, int a, boolean AI) {
+
+
 		keyboard = new Keyboard();
 		numberPlayers = p ;
 		numberOfAI = a ;
+		AIWORK = AI;
 		loop = new Gameloop(p, a) ;
 		start = new JButton() ;
 		start.setSize(100, 100);
@@ -69,7 +74,7 @@ public class Game implements GameState {
 		});
 		
 		//add actionlisteners
-		
+		loop.setAIWORK(AIWORK);
 		
 		end = new JButton() ;
 		end.setSize(100, 100);
@@ -110,10 +115,8 @@ public class Game implements GameState {
 		System.out.println("finished frame..");
 		//loop.placementPhase() ;
 		
-		
-		
 	}
-	
+
 	public void deleteMouse()
 	{
 		pane.removeMouseListener(mouse);
