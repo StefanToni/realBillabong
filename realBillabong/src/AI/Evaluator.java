@@ -56,7 +56,7 @@ public class Evaluator
 		
 		// Walk
 		if(Math.abs(old_x - new_x) <= 1 || Math.abs(old_y - new_y) <= 1){
-			score += 2;
+			score += 1;
 		}
 		
 		if(k.getRightLeft(old_x, old_y, new_x, new_y)){
@@ -64,7 +64,7 @@ public class Evaluator
 		}
 		
 		if(k.getLeftRight(old_x, old_y, new_x, new_y)){
-			score-= 1 ;
+			score-= 0 ;
 		}
 		
 		score += getDirections(old_x, old_y, new_x, new_y);
@@ -78,7 +78,7 @@ public class Evaluator
 			variance = variance * -1 ;
 		}
 		score = score + variance ;
-		System.out.println("score after variances : " + score);
+		//System.out.println("score after variances : " + score);
 		
 		int finalScore ;
 		finalScore = score ;
@@ -89,28 +89,31 @@ public class Evaluator
 	
 	private int getDirections(int x, int y, int nx, int ny)
 	{
+		int directions = 0 ;
 		
-		if(x<8 && y>7 && nx<=x && ny<y)
+		if(x<8 && y>7  && ny<y && nx<=x)
 		{
-			return 4;
+			directions = directions + 4 ;
 		}
 		
-		if(x<8 && y<7 && nx>x)
+		if(x<8 && y<7 && nx>x && ny<=y)
 		{
-			return 4;
+			directions = directions + 4 ;
 		}
 		
-		if(x>=8 && y<7 && ny>y)
+		if(x>=8 && y<7 && ny>y && nx>=x)
 		{
-			return 4;
+			directions = directions + 4 ;
 		}
 		
 		if(x>=8 && y>=7 && nx<x && ny>=y)
 		{
-			return 4;
+			directions = directions + 4 ;
 		}
 		
-		return 0;
+		
+		
+		return directions;
 	}
 	
 }
