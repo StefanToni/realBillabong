@@ -98,29 +98,47 @@ public class Evaluator
 	{
 		int directions = 0 ;
 		
-		if(x<8 && y>7  && ny<y )
+		if(x < 5 && y < 5 && nx > x)
 		{
 			directions = directions + 60 ;
-			if(nx>=x)directions+=15;
+			if(ny <= y)directions+=15;
 		}
 		
-		else if(x<8 && y<7 && nx>x)
+		else if(x > 4 && x < 11 && y < 6 && nx>x)
 		{
 			directions = directions + 60 ;
-			if(ny>=y)directions+=15;
 		}
 		
-		else if(x>=8 && y<7 && ny>y)
+		else if(x > 10 && y < 5 && ny > y)
 		{
 			directions = directions + 60 ;
-			if(nx>=x) directions+=15;
+			if(nx >= x) directions+=15;
 			
 		}
 		
-		else if(x>=8 && y>=7 && nx<x )
+		else if(x > 9 && y > 4 && y < 9 && ny<y )
 		{
 			directions = directions + 60 ;
-			if(ny>=y) directions+=15;
+		}
+		else if(x > 10 && y > 8 && nx < x ){
+			
+			directions = directions + 60 ;
+			if(ny >= y) directions+=15;
+		}
+		
+		else if(x > 5 && x < 10 && y > 7  && nx<x )
+		{
+			directions = directions + 60 ;
+		}
+		else if(x < 5 && y > 8 && ny < y ){
+					
+					directions = directions + 60 ;
+					if(nx <= x) directions+=15;
+				}
+		
+		else if(x < 6 && y < 9 && y > 4  && ny < y )
+		{
+			directions = directions + 60 ;
 		}
 		
 		

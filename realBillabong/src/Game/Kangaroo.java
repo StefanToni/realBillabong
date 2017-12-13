@@ -129,10 +129,7 @@ public class Kangaroo {
 		Main.getState().getLoop().getCurrentPlayer().firstmove = true;
 		or.empty();
 		Main.getState().getLoop().getNextPlayer();
-<<<<<<< HEAD
-		//Main.getState().getLoop().aiMove();
-=======
->>>>>>> branch 'master' of https://github.com/StefanToni/realBillabong.git
+
 		
 		if(Main.getState().getLoop().isAIWORK()) {
 			
