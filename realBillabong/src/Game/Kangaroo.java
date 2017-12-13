@@ -5,7 +5,7 @@ import realBillabong.Main;
 public class Kangaroo {
 	
 	public boolean moveable = false;
-	private int lapCounter = 0 ;
+	public int lapCounter = 0 ;
 	private Square position;
 	public Square or ;
 	private Square prevPosition ;
@@ -125,7 +125,7 @@ public class Kangaroo {
 		
 	}
 
-	
+	/*
 	public void move(Square origin, Square dest){
 				
 		
@@ -159,7 +159,7 @@ public class Kangaroo {
 		}
 		
 		
-	}
+	}*/
 	
 	public boolean checkLegal(int ox, int oy, int dx, int dy, Square dest)
 	{
@@ -201,7 +201,7 @@ public class Kangaroo {
 	}
 	
 	public boolean onlyOne(int ox, int oy, int dx, int dy)
-	{	System.out.println("Only One Tried");
+	{	//System.out.println("Only One Tried");
 		//current x&y
 		
 		int deltaX = dx - ox;
@@ -225,6 +225,7 @@ public class Kangaroo {
 				{
 					cx--;
 					cy++;
+					if(boardCopy[cy][cx].isWater()) middleCounter++;
 					if(boardCopy[cy][cx].isOccupied() && !boardCopy[cy][cx].isWater())
 					{	middleCoords[0] = cy; 
 						middleCoords[1] = cx;
@@ -239,6 +240,7 @@ public class Kangaroo {
 				{
 					cx++;
 					cy--;
+					if(boardCopy[cy][cx].isWater()) middleCounter++;
 					if(boardCopy[cy][cx].isOccupied()&& !boardCopy[cy][cx].isWater())
 					{	middleCoords[0] = cy; 
 						middleCoords[1] = cx;
@@ -253,6 +255,7 @@ public class Kangaroo {
 				{
 					cx++;
 					cy++;
+					if(boardCopy[cy][cx].isWater()) middleCounter++;
 					if(boardCopy[cy][cx].isOccupied()&& !boardCopy[cy][cx].isWater())
 					{	middleCoords[0] = cy; 
 						middleCoords[1] = cx;
@@ -267,6 +270,7 @@ public class Kangaroo {
 				{
 					cx--;
 					cy--;
+					if(boardCopy[cy][cx].isWater()) middleCounter++;
 					if(boardCopy[cy][cx].isOccupied()&& !boardCopy[cy][cx].isWater())
 					{	middleCoords[0] = cy; 
 						middleCoords[1] = cx;
@@ -297,6 +301,7 @@ public class Kangaroo {
 				while(cy!=dy)
 				{
 					cy++;
+					if(boardCopy[cy][cx].isWater()) middleCounter++;
 					if(boardCopy[cy][cx].isOccupied()&& !boardCopy[cy][cx].isWater())
 					{	middleCoords[0] = cy; 
 						middleCoords[1] = cx;
@@ -310,6 +315,7 @@ public class Kangaroo {
 				while(cy!=dy)
 				{
 					cy--;
+					if(boardCopy[cy][cx].isWater()) middleCounter++;
 					if(boardCopy[cy][cx].isOccupied()&& !boardCopy[cy][cx].isWater())
 					{	middleCoords[0] = cy; 
 						middleCoords[1] = cx;
@@ -323,6 +329,7 @@ public class Kangaroo {
 				while(cx!=dx)
 				{
 					cx++;
+					if(boardCopy[cy][cx].isWater()) middleCounter++;
 					if(boardCopy[cy][cx].isOccupied()&& !boardCopy[cy][cx].isWater())
 					{	middleCoords[0] = cy; 
 						middleCoords[1] = cx;
@@ -336,6 +343,7 @@ public class Kangaroo {
 				while(cx!=dx)
 				{
 					cx--;
+					if(boardCopy[cy][cx].isWater()) middleCounter++;
 					if(boardCopy[cy][cx].isOccupied()&& !boardCopy[cy][cx].isWater())
 					{	middleCoords[0] = cy; 
 						middleCoords[1] = cx;

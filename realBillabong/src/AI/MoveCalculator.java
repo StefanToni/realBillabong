@@ -25,7 +25,7 @@ public class MoveCalculator
 	
 	public MoveCalculator(Kangaroo kanga) 
 	{
-		new_board = Main.getState().getLoop().getBoard().getBoardArray();
+		new_board = Main.getState().getLoop().getBoardAr();
 		k = kanga;
 		
 		next_boards = getNextMoves(k);		
@@ -47,20 +47,25 @@ public class MoveCalculator
 		for(int i = 0 ; i < 14 ; i++){
 			for(int j = 0 ; j < 16 ; j++) {
 				if(!(new_board[i][j].isOccupied() || new_board[i][j].isWater())) {
-					new_board[i][j].fill(k); // to get new coordinates
-					np = k.getPosition();
-					new_x = np.getxLoc();
-					new_y = np.getyLoc();
-					k.setPosition(op);
-					new_board[i][j].empty(); // to restore the board to the original gamestate before checking the move
-					if(k.checkLegal(old_x, old_y, new_x, new_y,np)) {
+					//new_board[i][j].fill(k); // to get new coordinates
+					//np = k.getPosition();
+					new_x = new_board[i][j].getxLoc();
+					new_y = new_board[i][j].getyLoc();
+					//k.setPosition(op);
+					//new_board[i][j].empty(); // to restore the board to the original gamestate before checking the move
+					if(k.checkLegal(old_x, old_y, new_x, new_y, new_board[new_x][new_y])) {
 						// to add the new move to the array of newboards
 						new_board[old_x][old_y].empty();
-						k.setPosition(np);
+						k.setPosition(new_board[new_x][new_y]);
 						new_board[new_x][new_y].fill(k);
-		
-						roosNP.add(np);
-						possible_moves.add(new_board);
+						Square[][] tempB = new Square[14][16] ;
+						for(int m = 0; m < 14 ; m++){
+							for(int n = 0; n < 16 ; n++){
+								tempB[m][n] = new_board[m][n];
+							}
+						}
+						roosNP.add(tempB[new_x][new_y]);
+						possible_moves.add(tempB);
 						
 						// to restore the board to the original gamestate.
 						

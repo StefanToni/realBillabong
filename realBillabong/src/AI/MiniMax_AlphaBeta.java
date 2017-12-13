@@ -101,19 +101,40 @@ public class MiniMax_AlphaBeta
 
 	
 	private void calcNextMove() {
+		Kangaroo kanga = AIroos.get(0);
+		MoveCalculator mc = new MoveCalculator(kanga);
+		AIroosOP.add(kanga.getPosition());
+		AIroosNP = mc.getNewPositions();
+		allAIMoves.add(mc.getNextBoards());
+		
+		bestMove = allAIMoves.get(0).get(0);
+		//bestMoveScore = evaluatePosition(allAIMoves.get(0).get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH, currentPlayer.getColor());
+		bestMoveScore = eval.Evaluate(null, kanga , kanga.getPosition(), AIroosNP.get(0));
+		for(int i = 0; i < allAIMoves.size(); i++) {
+			for(int j = 0; j < allAIMoves.get(i).size(); j++) {
+				//int p = evaluatePosition(allAIMoves.get(i).get(j), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH, currentPlayer.getColor());
+				int p = eval.Evaluate(null, kanga, kanga.getPosition(), AIroosNP.get(j));
+				rooIndex = j;
+				if(p >= bestMoveScore){
+					bestMove = allAIMoves.get(i).get(j);
+					bestMoveScore = p;
+				}
+			}
+		}
 		/*
 		 * Iterate through the board, collect all possible moves of the minimizing player
 		 */
-		for(Kangaroo kanga : AIroos) {
+		
+		/*for(Kangaroo kanga : AIroos) {
 			MoveCalculator moveCalc = new MoveCalculator(kanga);
 			AIroosOP.add(kanga.getPosition());
 			AIroosNP = moveCalc.getNewPositions();
 			allAIMoves.add(moveCalc.getNextBoards());
 		}
+	
 		
-		/*
 		 * Iterate through the board, collect all possible moves of the maximizing player
-		 */
+		 
 		for(Kangaroo kanga : Humanroos) {
 			MoveCalculator moveCalc = new MoveCalculator(kanga);
 			HumanroosOP.add(kanga.getPosition());
@@ -134,7 +155,7 @@ public class MiniMax_AlphaBeta
 				}
 			}
 		}
-	}
+	*/}
 
 	public Square[][] getNextMove() {
 		calcNextMove();

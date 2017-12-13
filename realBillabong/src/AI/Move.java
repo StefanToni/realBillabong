@@ -15,12 +15,12 @@ public class Move {
 		this.d = d ;
 	}
 	
-	public Move(Kangaroo ka, int oy, int ox, int dy, int dx){
-		k = ka ;
-		o = new Square(oy, ox) ;
-		d = new Square(dy, dx) ;
-		
-	}
+	//public Move(Kangaroo ka, int oy, Square o, Square d){
+	//	k = ka ;
+	//	this.o = new Square(oy, ox) ;
+	//	d = new Square(dy, dx) ;
+	//	
+	//}
 	
 	public Kangaroo getKangaroo(){
 		return k ;

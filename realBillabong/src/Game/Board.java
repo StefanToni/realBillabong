@@ -55,14 +55,53 @@ public class Board
 		boardValues = new int[14][16];
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+public void move(Kangaroo k, Square origin, Square dest){
+				
+		
+		if(k.checkLegal(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc(), dest) && (k.moveable || Main.getState().getLoop().getCurrentPlayer().firstmove)) 
+		{
+			
+			k.checkLap(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc());
+			origin.empty();
+			if(Main.getState().getLoop().getCurrentPlayer().firstmove == true) 
+				{
+					origin.fill(new Kangaroo(10));
+					k.or = origin;
+					k.moveable = true;
+				}
+			
+			Main.getState().getLoop().getCurrentPlayer().firstmove = false;
+			if(k.lapCounter == 3) k.finishKangaroo();
+			else dest.fill(k);
+			
+			System.out.println("MOVED FROM: " + origin.getyLoc()+ ", " + origin.getxLoc()+   " TO: " + dest.getyLoc()+ ", " + dest.getxLoc());
+			
+			dest.setIsSelected(true);
+			if(Math.abs(origin.getxLoc()- dest.getxLoc()) == 1 || Math.abs(origin.getyLoc()- dest.getyLoc()) == 1){
+			
+				k.terminateTurn();
+			}
+		}
+		
+		else 
+		{	System.out.println("MOVE NOT LEGAL");
+			return;
+		}
+		for(int i = 0; i < 13; i++ ){
+			for(int j = 0; j < 15; j++){
+				if( board[i][j].isOccupied() ){
+					System.out.print(" " + board[i][j].getIsHere().getTeam()+ " ");
+				}
+				else{
+					System.out.print(" X ");
+					
+				}
+			}
+			System.out.println();
+		}
+		
+		
+	}	
 	
 	public Board(int[][] boardValues) {
 		this.boardValues = boardValues;
@@ -73,67 +112,8 @@ public class Board
         this.totalMoves = totalMoves;
     }
 	
-	/*init is like a main method for applets, initializes the board in a frame and adds the listeners
-	public void init() 
-	{ 
 
-		f1=new Frame (); 
-		f1.setLayout(new BorderLayout()); 
-		Panel p=new Panel(); 
-		p.add(b1); 
-		p.add(b2); 
-		f1.add("South",p); 
-		f1.setSize(250,150); 
-
-		b1.addActionListener(this); 
-		b2.addActionListener(this); 
-
-		f1.addWindowListener(new WindowAdapter() 
-		{ 
-			public void windowClosing(WindowEvent e) 
-			{ 
-				System.exit(0); 
-			} 
-		}); 
-		//mouse listeners gets x and y and creates kangaroos depending on a player
-		addMouseListener(new MouseAdapter() 
-		{ 
-			public void mousePressed(MouseEvent e) 
-			{ 
-				int x = e.getX(); 
-				int y = e.getY(); 
-
-				for(int i=0; i < 14; i++) 
-				{ 
-					for(int j=0;j < 16 ;j++ ) 
-					{ 
-
-						if((51+(20*j)<=x) && (69+(20*j)>=x) && 	(51+(20*i)<=y) && (69+(20*i)>=y) )  
-						{ 
-							if(a[i][j]==0) 
-							{ 
-								if(chk==0 && check1()) 
-								{ 
-									a[i][j]=1; 
-									chk=1;
-								} 
-								else if(chk==1 && check1()) 
-								{ 
-									a[i][j]=2; 
-									chk=0; 
-
-									
-								} 
-							} 
-						} 
-					} 
-				} 
-				repaint(); 
-			} 
-		}); 
-	} */
-	
-	//check1 method looks at how many kangaroos are on the board, if there are 5 of them
+	//k.check1 method looks at how many kangaroos are on the board, if there are 5 of them
 	//for each player then, then he cannot add more
 	
 	
@@ -202,12 +182,12 @@ public class Board
 		else return -1;
 	}
 
-	public void performMove(int playerNo, Square[][] p) {
-		// TODO Auto-generated method stub
-		this.totalMoves++;
-		boardValues[p.getX()][p.getY()];
-		
-	}
+//	public void performMove(int playerNo, Square[][] p) {
+//		// TODO Auto-generated method stub
+//		this.totalMoves++;
+//		boardValues[p.getX()][p.getY()];
+//		
+//	}
 	
 
 }
