@@ -70,6 +70,8 @@ public class Evaluator
 			
 		if (DEBUG) System.out.println("evaluated score = " + score);
 		
+		score += getDirections(old_x, old_y, new_x, new_y);
+		
 		Random rnd = new Random() ;
 		int varCreate = score ;
 		//System.out.println(" score: " + score);
@@ -88,7 +90,7 @@ public class Evaluator
 		score = score + variance ;
 		//System.out.println("score after variances : " + score);
 		
-		score += getDirections(old_x, old_y, new_x, new_y);
+		
 		
 		return score;
 				
@@ -100,50 +102,50 @@ public class Evaluator
 		
 		if(x < 5 && y < 5 && nx > x)
 		{
-			directions = directions + 60 ;
+			directions = directions + 5 ;
 
-			if(ny <= y)directions+=15;
+			if(ny > 5)directions-=5;
 
 		}
 		
 		else if(x > 4 && x < 11 && y < 6 && nx>x)
 		{
-			directions = directions + 60 ;
+			directions = directions + 5 ;
 
 		}
 		
 		else if(x > 10 && y < 5 && ny > y)
 		{
-			directions = directions + 60 ;
+			directions = directions + 5 ;
 
-			if(nx >= x) directions+=15;
+			if(nx < 10) directions-=5;
 			
 		}
 		
 		else if(x > 9 && y > 4 && y < 9 && ny<y )
 		{
-			directions = directions + 60 ;
+			directions = directions + 5 ;
 
 		}
 		else if(x > 10 && y > 8 && nx < x ){
 			
-			directions = directions + 60 ;
-			if(ny >= y) directions+=15;
+			directions = directions + 5 ;
+			if(ny < 8) directions-=5;
 		}
 		
 		else if(x > 5 && x < 10 && y > 7  && nx<x )
 		{
-			directions = directions + 60 ;
+			directions = directions + 5 ;
 		}
 		else if(x < 5 && y > 8 && ny < y ){
 					
-					directions = directions + 60 ;
-					if(nx <= x) directions+=15;
+					directions = directions + 5 ;
+					if(nx > 5) directions-=5 ;
 				}
 		
 		else if(x < 6 && y < 9 && y > 4  && ny < y )
 		{
-			directions = directions + 60 ;
+			directions = directions + 5 ;
 
 		}
 		
