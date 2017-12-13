@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
@@ -33,7 +34,11 @@ public class Game implements GameState {
 	private Square[][] boardArray ;
 	private BoardComponent component ;
 	private MouseListener mouse ;
+<<<<<<< HEAD
 
+=======
+	private Keyboard keyboard;
+>>>>>>> branch 'master' of https://github.com/StefanToni/realBillabong.git
 	
 	public MouseAdapter getMouse() {
 		return (MouseAdapter)mouse;
@@ -51,7 +56,7 @@ public class Game implements GameState {
 	
 	public Game(int p, int a){
 		
-		
+		keyboard = new Keyboard();
 		numberPlayers = p ;
 		numberOfAI = a ;
 		loop = new Gameloop(p, a) ;
@@ -67,6 +72,8 @@ public class Game implements GameState {
 		});
 		
 		//add actionlisteners
+		
+		
 		end = new JButton() ;
 		end.setSize(100, 100);
 		end.setText("End") ;

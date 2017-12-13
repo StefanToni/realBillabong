@@ -132,8 +132,7 @@ public class MiniMax {
 				//if(Math.abs(o.getxLoc()- d.getxLoc()) == 1 || Math.abs(o.getyLoc()- d.getyLoc()) == 1 ) k.terminateTurn();
 				if((Math.abs(o.getxLoc()- d.getxLoc()) > 1 || Math.abs(o.getyLoc()- d.getyLoc()) > 1 )) 
 					{
-						
-						
+
 						System.out.println("New Minimax Created");
 						
 						
