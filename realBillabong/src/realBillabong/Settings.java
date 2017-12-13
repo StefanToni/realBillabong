@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -39,20 +41,27 @@ public class Settings implements GameState {
 	private int playerNumber=1;
 	private int AINumber=1;
 	private JCheckBox AIButton;
+	private boolean AIButtonSelected;
+	
 	
 	public Settings() {
+		//PLAY BUTTON////////
 		play = new JButton() ;
 		play.setSize(100, 100);
 		play.setText("Play");
+		/////////////////////
+		
+		//PANEL SIZE AND GRIDLAYOUT//
 		pane = new JPanel(new GridLayout(4,2)) ;
 		pane.setSize(700, 800);
+		/////////////////////////////
+		
+		//LIST WITH SIZE/////////////
 		size = new String[]{"small", "normal", "large"};
 		list = new JList(size); //data has type Object[]
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setLayoutOrientation(JList.VERTICAL);
 		list.setVisibleRowCount(-1);
-		
-		
 		JScrollPane listScroller = new JScrollPane(list);
 		listScroller.setPreferredSize(new Dimension(150, 80));
 		JLabel strin = new JLabel("Choose size");
@@ -60,27 +69,54 @@ public class Settings implements GameState {
 		strin.setSize(new Dimension(1, 1));
 		pane.add(strin);
 		pane.add(listScroller);
+		//////////////////////////////
 		
-		
-		
+		//PLAYER NUMBER///////////////
 		String[] playerStrings = {"0", "1", "2", "3", "4" };
 		JComboBox<String> playerList = new JComboBox<>(playerStrings);
-		
-		JComboBox<String> aiList = new JComboBox<>(playerStrings);
-		
 		playerList.setSelectedIndex(1);
-		aiList.setSelectedIndex(1);
 		JLabel strin1 = new JLabel("Choose number of players");
 		strin1.setHorizontalAlignment(JLabel.CENTER);
+		pane.add(strin1);
+		pane.add(playerList);
 		strin1.setSize(new Dimension(1, 1));
+		//////////////////////////////
+		
+		//AI NUMBER///////////////////
+		JComboBox<String> aiList = new JComboBox<>(playerStrings);
+		aiList.setSelectedIndex(1);
 		JLabel strin2 = new JLabel("Choose number of AI players");
 		strin2.setHorizontalAlignment(JLabel.CENTER);
 		strin2.setSize(new Dimension(1, 1));
-		pane.add(strin1);
-		pane.add(playerList);
 		pane.add(strin2);
 		pane.add(aiList);
-		pane.add(new JLabel());
+		//////////////////////////////
+		
+		//AIBUTTON////////////////////
+		AIButton = new JCheckBox("press space to move AI");
+		AIButton.setSelected(true);
+		AIButton.setHorizontalAlignment(JLabel.CENTER);
+		
+		pane.add(AIButton);
+		AIButtonSelected = true;
+		//////////////////////////////
+		
+		//AIBUTTON LISTENER///////////
+		AIButton.addItemListener(new ItemListener() {    
+            public void itemStateChanged(ItemEvent e) { 
+            	if (AIButton.isSelected()) {
+            		AIButtonSelected = true;
+            	}
+            	else {
+            		AIButtonSelected = false;
+            	}
+                
+            }    
+         });    
+		//////////////////////////////
+		
+		
+		//ACTION LISTENER FOR AI//////
 		playerList.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e)
@@ -101,7 +137,7 @@ public class Settings implements GameState {
 				
 			}
 		});
-		
+		//////////////////////////////
 		
 		//AINumber = /*4 - playerNumber;*/ 0;
 		
@@ -134,7 +170,7 @@ public class Settings implements GameState {
 					playerNumber = Integer.parseInt(p);
 				  String aiN = (String) aiList.getSelectedItem();
 					AINumber = Integer.parseInt(aiN);
-				changeState(new Game(playerNumber, AINumber)) ;
+				changeState(new Game(playerNumber, AINumber, AIButtonSelected)) ;
 			}
 			
 			

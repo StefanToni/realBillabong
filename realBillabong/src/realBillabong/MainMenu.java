@@ -30,7 +30,7 @@ public class MainMenu implements GameState {
 		play.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				changeState(new Game(playerNm, AINm)) ;
+				changeState(new Game(playerNm, AINm, false)) ;
 			}
 			
 		});

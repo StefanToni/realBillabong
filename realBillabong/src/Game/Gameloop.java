@@ -26,6 +26,7 @@ public class Gameloop implements MouseListener{
 	private Square s ;
 	private int piececounter ;
 	private final boolean DEBUG = false;
+	private boolean AIWORK = false;
 	
 	private boolean placementPhase = true;
 	private boolean gamePhase = false;
@@ -85,6 +86,14 @@ public class Gameloop implements MouseListener{
 		currentPlayer = players.get(0) ;
 	}
 	
+	public boolean isAIWORK() {
+		return AIWORK;
+	}
+
+	public void setAIWORK(boolean aIWORK) {
+		AIWORK = aIWORK;
+	}
+
 	public Board getBoard() {
 		return board;
 	}
