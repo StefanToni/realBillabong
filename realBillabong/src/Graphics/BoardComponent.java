@@ -79,7 +79,7 @@ public class BoardComponent extends JComponent {
 				{ 
 					g.setColor(Color.black); 
 					g.drawOval((50+(SquareSize*n)),(50+(SquareSize*m)),SquareSize,SquareSize); 
-					g.setColor(Color.blue); 
+					g.setColor(Color.pink); 
 					g.fillOval((50+(SquareSize*n)),(50+(SquareSize*m)),SquareSize,SquareSize); 
 				} 
 				if(boardArray[m][n].getIsHere().getTeam()==4) 
