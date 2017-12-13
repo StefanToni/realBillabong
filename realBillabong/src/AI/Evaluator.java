@@ -51,20 +51,20 @@ public class Evaluator
 		
 		// Jump
 		if( Math.abs(old_x - new_x) > 1 || Math.abs(old_y - new_y) > 1 ){
-			score += 4;
+			score += 10;
 		}
 		
 		// Walk
 		if(Math.abs(old_x - new_x) <= 1 || Math.abs(old_y - new_y) <= 1){
-			score += 1;
+			score += 7;
 		}
 		
 		if(k.getRightLeft(old_x, old_y, new_x, new_y)){
-			score+= 5 ;
+			score+= 11 ;
 		}
 		
 		if(k.getLeftRight(old_x, old_y, new_x, new_y)){
-			score-= 0 ;
+			score-= 2 ;
 		}
 		
 		score += getDirections(old_x, old_y, new_x, new_y);
@@ -72,7 +72,13 @@ public class Evaluator
 		if (DEBUG) System.out.println("evaluated score = " + score);
 		
 		Random rnd = new Random() ;
-		int variance = rnd.nextInt(score) ;
+		int varCreate = score ;
+		//System.out.println(" score: " + score);
+		if(varCreate < 0){
+			varCreate = varCreate * -1 ;
+		}
+		//System.out.println("varCreate: "+ varCreate);
+		int variance = rnd.nextInt(varCreate) ;
 		score = (score * 20);
 		if(rnd.nextInt(10) < 5){
 			variance = variance * -1 ;
@@ -80,10 +86,8 @@ public class Evaluator
 		score = score + variance ;
 		//System.out.println("score after variances : " + score);
 		
-		int finalScore ;
-		finalScore = score ;
-		score = 0 ;
-		return finalScore;
+		
+		return score;
 				
 	}
 	
@@ -109,6 +113,28 @@ public class Evaluator
 		if(x>=8 && y>=7 && nx<x && ny>=y)
 		{
 			directions = directions + 4 ;
+		}
+		
+		
+		
+		if(x<8 && y>7  && ny>y || nx<x)
+		{
+			directions = directions - 2 ;
+		}
+		
+		if(x<8 && y<7 && nx<x || ny<y)
+		{
+			directions = directions - 2 ;
+		}
+		
+		if(x>=8 && y<7 && ny<y || nx>x)
+		{
+			directions = directions - 2 ;
+		}
+		
+		if(x>=8 && y>=7 && nx>x || ny>y)
+		{
+			directions = directions - 2 ;
 		}
 		
 		

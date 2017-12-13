@@ -129,12 +129,6 @@ public class MiniMax {
 				//if(Math.abs(o.getxLoc()- d.getxLoc()) == 1 || Math.abs(o.getyLoc()- d.getyLoc()) == 1 ) k.terminateTurn();
 				if((Math.abs(o.getxLoc()- d.getxLoc()) > 1 || Math.abs(o.getyLoc()- d.getyLoc()) > 1 )) 
 					{
-						try {
-							Thread.sleep(3000);
-						} catch (InterruptedException e) {
-							 //TODO Auto-generated catch block
-							e.printStackTrace();
-						}
 						System.out.println("New Minimax Created");
 						new MiniMax(b, k);//Main.getState().getLoop().getBoardAr());
 					}
