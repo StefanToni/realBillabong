@@ -6,6 +6,7 @@ import java.util.Random;
 import Game.Kangaroo;
 import Game.Player;
 import Game.Square;
+import Graphics.BoardComponent;
 import realBillabong.Main;
 
 public class RandomAI {
@@ -66,7 +67,7 @@ public class RandomAI {
 		Square d = finalMove.getDest() ;
 		currentPlayer.performMove(k, o, d) ;
 		System.out.println("move performed");
-		Main.getState().getComponent().repaint();
+		
 	}
 
 }
