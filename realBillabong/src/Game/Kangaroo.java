@@ -55,6 +55,7 @@ public class Kangaroo {
 	public void finishKangaroo()
 	{
 		System.out.println("Kangaroo has finished");
+		terminateTurn();
 		//maybe an in-game notification 
 	}
 	
