@@ -51,23 +51,22 @@ public class Evaluator
 		
 		// Jump
 		if( Math.abs(old_x - new_x) > 1 || Math.abs(old_y - new_y) > 1 ){
-			score += 10;
+			score += 5;
 		}
 		
 		// Walk
 		if(Math.abs(old_x - new_x) <= 1 || Math.abs(old_y - new_y) <= 1){
-			score += 7;
+			score += 2;
 		}
 		
 		if(k.getRightLeft(old_x, old_y, new_x, new_y)){
-			score+= 11 ;
+			score+= 5 ;
 		}
 		
 		if(k.getLeftRight(old_x, old_y, new_x, new_y)){
-			score-= 2 ;
+			score-= 1 ;
 		}
 		
-		score += getDirections(old_x, old_y, new_x, new_y);
 			
 		if (DEBUG) System.out.println("evaluated score = " + score);
 		
@@ -86,6 +85,7 @@ public class Evaluator
 		score = score + variance ;
 		//System.out.println("score after variances : " + score);
 		
+		score += getDirections(old_x, old_y, new_x, new_y);
 		
 		return score;
 				
@@ -97,44 +97,44 @@ public class Evaluator
 		
 		if(x<8 && y>7  && ny<y && nx<=x)
 		{
-			directions = directions + 4 ;
+			directions = directions + 40 ;
 		}
 		
 		else if(x<8 && y<7 && nx>x && ny<=y)
 		{
-			directions = directions + 4 ;
+			directions = directions + 40 ;
 		}
 		
 		else if(x>=8 && y<7 && ny>y && nx>=x)
 		{
-			directions = directions + 4 ;
+			directions = directions + 40 ;
 		}
 		
 		else if(x>=8 && y>=7 && nx<x && ny>=y)
 		{
-			directions = directions + 4 ;
+			directions = directions + 40 ;
 		}
 		
 		
 
 		if(x<8 && y>7  && ny>y || nx<x)
 		{
-			directions = directions - 2 ;
+			directions = directions - 40  ;
 		}
 		
 		if(x<8 && y<7 && nx<x || ny<y)
 		{
-			directions = directions - 2 ;
+			directions = directions - 40 ;
 		}
 		
 		if(x>=8 && y<7 && ny<y || nx>x)
 		{
-			directions = directions - 2 ;
+			directions = directions - 40 ;
 		}
 		
 		if(x>=8 && y>=7 && nx>x || ny>y)
 		{
-			directions = directions - 2 ;
+			directions = directions - 40 ;
 		}
 		
 		
