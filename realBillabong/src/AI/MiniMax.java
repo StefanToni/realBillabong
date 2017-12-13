@@ -59,9 +59,10 @@ public class MiniMax {
 				for(int j = 0 ;  j < 16; j++){
 					if(b[i][j].isOccupied() && b[i][j].getIsHere().getTeam() == currentPlayer.getColor()){
 						current = b[i][j].getIsHere() ;
+						
 						for(int y = 0; y < 14; y++){
 							for(int x = 0; x < 16; x++){
-								if(current.checkLegal(j, i, y, x, b[y][x])){
+								if(current.checkLegal(j, i, x, y, b[y][x])){
 									Move m = new Move(current, b[i][j], b[y][x]) ;
 									System.out.println("Dest coords are " + b[y][x].getxLoc() + " " + b[y][x].getyLoc());
 									allMoves.add(m) ;

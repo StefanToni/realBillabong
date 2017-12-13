@@ -18,8 +18,8 @@ public class MainMenu implements GameState {
 	private JPanel panel ;
 	private JButton settings ;
 	private JButton play ;
-	private static int playerNm = 2;
-	private static int AINm = 0;
+	private static int playerNm = 0;
+	private static int AINm = 2;
 	
 	public MainMenu(){
 		panel = new JPanel() ;
@@ -34,6 +34,7 @@ public class MainMenu implements GameState {
 			}
 			
 		});
+		
 		panel.add(play) ;
 		
 		settings = new JButton() ;

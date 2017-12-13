@@ -157,8 +157,8 @@ public class Gameloop implements MouseListener{
 		else aiMove(curAI);
 		*/
 		
-		new MiniMax(getBoardAr());
-		
+		//new MiniMax(getBoardAr());
+		new RandomAI(getBoardAr());
 		
 		
 		

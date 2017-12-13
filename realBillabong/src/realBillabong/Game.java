@@ -57,6 +57,13 @@ public class Game implements GameState {
 		start = new JButton() ;
 		start.setSize(100, 100);
 		start.setText("Start");
+		start.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				//Main.getState().getLoop().getNextPlayer();
+				Main.getState().getLoop().aiMove();
+			}
+		});
 		//add actionlisteners
 		end = new JButton() ;
 		end.setSize(100, 100);

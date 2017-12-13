@@ -36,7 +36,7 @@ public class RandomAI {
 							if(current.checkLegal(j, i, x, y, board[y][x])){
 								Move m = new Move(current, board[i][j], board[y][x]) ;
 								possibleMoves.add(m) ;
-								System.out.println("move added to list");
+								//System.out.println("move " + y + " " + x + " added to list");
 							}
 						}
 					}
@@ -56,19 +56,34 @@ public class RandomAI {
 		int r = rnd.nextInt(s) ;
 		finalMove = possibleMoves.get(r) ;
 		System.out.println("move " + r + " selected");
-		performMove() ;
+		System.out.println("Moving from: "+finalMove.getOrigin().getyLoc() +" "+finalMove.getOrigin().getxLoc()+" to:  "+ finalMove.getDest().getyLoc()+" "+finalMove.getDest().getxLoc());
+		pMove() ;
 	}
 	
-	public void performMove(){
-		System.out.println("perform move");
+	public void pMove(){
+		//System.out.println("perform move");
 		Kangaroo k = finalMove.getKangaroo() ;
 		Square o = finalMove.getOrigin() ;
 		Square d = finalMove.getDest() ;
 		currentPlayer.performMove(k, o, d) ;
-		System.out.println("move performed");
+		System.out.println("move pformed");
 		Main.getState().getComponent().repaint();
+		
 		//if(Math.abs(o.getxLoc()- d.getxLoc()) == 1 || Math.abs(o.getyLoc()- d.getyLoc()) == 1 ) k.terminateTurn();
-		if((Math.abs(o.getxLoc()- d.getxLoc()) > 1 || Math.abs(o.getyLoc()- d.getyLoc()) > 1 )) new RandomAI(board);
+		
+		if((Math.abs(o.getxLoc()- d.getxLoc()) > 1 || Math.abs(o.getyLoc()- d.getyLoc()) > 1 )) ;
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Not sleeping");
+			e.printStackTrace();
+		}
+		
+		System.out.println("New RAI made");
+		
+		new RandomAI(board);
 	}
 
 }

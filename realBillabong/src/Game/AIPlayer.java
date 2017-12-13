@@ -47,7 +47,7 @@ public class AIPlayer extends Player implements MouseListener{
 		
 		//if(loop.isHasClicked()){
 	Kangaroo k = new Kangaroo(color) ;
-	loop.getBoard().getBoardArray()[x][y].fill(k);
+	loop.getBoard().getBoardArray()[y][x].fill(k);
 	super.getKangaroos().add(k) ;
 	
 	

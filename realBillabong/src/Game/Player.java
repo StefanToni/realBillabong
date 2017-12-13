@@ -155,7 +155,7 @@ public class Player {
 		}
 		
 		Square temp = smartOptions.get((int)(Math.random()*(smartOptions.size()-1)));
-		placePiece(temp.getyLoc(), temp.getxLoc());
+		placePiece(temp.getxLoc(), temp.getyLoc());
 	}
 	
 	//public Kangaroo selectPiece(){
@@ -169,8 +169,7 @@ public class Player {
 	}
 	
 	public void performMove(Kangaroo k, Square s){
-		k.getPosition().empty();
-		s.fill(k);
+		k.move(k.getPosition(), s);
 		Main.getState().getComponent().repaint();
 		//input = true ;
 	}
