@@ -50,17 +50,17 @@ public class Evaluator
 		Square np = m.getDest();
 		
 		// Jump
-		if(!(k.onlyOne(old_x, old_y, new_x, new_y))){
-			score += 5;
+		if( Math.abs(old_x - new_x) > 1 || Math.abs(old_y - new_y) > 1 ){
+			score += 4;
 		}
 		
 		// Walk
-		if((k.onlyOne(old_x, old_y, new_x, new_y))){
+		if(Math.abs(old_x - new_x) <= 1 || Math.abs(old_y - new_y) <= 1){
 			score += 2;
 		}
 		
 		if(k.getRightLeft(old_x, old_y, new_x, new_y)){
-			score+= 10 ;
+			score+= 5 ;
 		}
 		
 		if(k.getLeftRight(old_x, old_y, new_x, new_y)){
