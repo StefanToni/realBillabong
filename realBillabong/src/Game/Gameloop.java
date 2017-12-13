@@ -5,6 +5,8 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
+import AI.MiniMax;
+import AI.Move;
 import AI.RandomAI;
 import realBillabong.Main;
 
@@ -126,8 +128,8 @@ public class Gameloop implements MouseListener{
 			players.get(i).setColor(i);
 		}
 	}*/
-	public void aiMove(int curAI)
-	{ 	Square[][] nb = aiPlayers.get(curAI).nextMiniMaxMove();
+	public void aiMove()
+	{ 	/*Square[][] nb = aiPlayers.get(curAI).nextMiniMaxMove();
 		Square[][] tempBoard = getBoardAr();
 		Kangaroo tempK = null;
 		Square destination = null;
@@ -153,6 +155,12 @@ public class Gameloop implements MouseListener{
 		
 		if(Math.abs(t.getxLoc()- destination.getxLoc()) == 1 || Math.abs(t.getyLoc()- destination.getyLoc()) == 1 );
 		else aiMove(curAI);
+		*/
+		
+		new MiniMax(getBoardAr());
+		
+		
+		
 		
 	}
 	
@@ -170,7 +178,7 @@ public class Gameloop implements MouseListener{
             			/*//Main.getState().getLoop().getBoard().setBoardArray(newBoard);
             			//board.setBoardArray(newBoard);
             			*/
-            			aiMove(currentAI);
+            			aiMove();
             			//RandomAI r = new RandomAI(getBoardAr()) ;
             			if (DEBUG) System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");
             			//getNextPlayer();
@@ -188,7 +196,7 @@ public class Gameloop implements MouseListener{
             			/*//Main.getState().getLoop().getBoard().setBoardArray(newBoard);
             			//board.setBoardArray(newBoard);
             			*/
-            			aiMove(currentAI);
+            			aiMove();
             			//RandomAI r = new RandomAI(getBoardAr()) ;
 
             			if (DEBUG) System.out.println("ai move performed !!!!!!!!!!!!!!!!!!!111!!!!!!!");

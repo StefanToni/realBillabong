@@ -160,16 +160,63 @@ public class Kangaroo {
 		
 		
 	}*/
-	
+public void move(Square origin, Square dest){
+				
+		
+		if(checkLegal(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc(), dest) && (moveable || Main.getState().getLoop().getCurrentPlayer().firstmove)) 
+		{	System.out.println("Legality checked");
+			
+			checkLap(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc());
+			origin.empty();
+			if(Main.getState().getLoop().getCurrentPlayer().firstmove == true) 
+				{
+					origin.fill(new Kangaroo(10));
+					or = origin;
+					moveable = true;
+				}
+			
+			Main.getState().getLoop().getCurrentPlayer().firstmove = false;
+			if(lapCounter == 3) finishKangaroo();
+			else dest.fill(this);
+			
+			System.out.println("MOVED FROM: " + origin.getyLoc()+ ", " + origin.getxLoc()+   " TO: " + dest.getyLoc()+ ", " + dest.getxLoc());
+			
+			dest.setIsSelected(true);
+			if(Math.abs(origin.getxLoc()- dest.getxLoc()) == 1 || Math.abs(origin.getyLoc()- dest.getyLoc()) == 1){
+			
+				terminateTurn();
+			}
+		}
+		
+		else 
+		{	System.out.println("MOVE NOT LEGAL");
+			return;
+		}
+		/*for(int i = 0; i < 13; i++ ){
+			for(int j = 0; j < 15; j++){
+				if( board[i][j].isOccupied() ){
+					System.out.print(" " + board[i][j].getIsHere().getTeam()+ " ");
+				}
+				else{
+					System.out.print(" X ");
+					
+				}
+			}
+			System.out.println();
+		}*/
+		
+		
+	}	
 	public boolean checkLegal(int ox, int oy, int dx, int dy, Square dest)
 	{
+		//if(dx>13 || dy > 15) return false;
 		int deltaX = dx-ox;
 		int deltaY = dy-oy;
 		
 		if((Math.abs(deltaX) == Math.abs(deltaY) || deltaX == 0 || deltaY == 0) && !(dest.isOccupied() || dest.isWater()))
 		{
 			
-			System.out.println("delta = diagonal or 0");
+			//System.out.println("delta = diagonal or 0");
 			
 			if(Math.abs(deltaX) <=1 && Math.abs(deltaY) <=1)
 			{
@@ -184,7 +231,7 @@ public class Kangaroo {
 				int midSquare_y = oy + ((dy-oy)/2);
 			
 				Square midSquare = boardCopy[midSquare_y][midSquare_x];
-				System.out.println("Midsquare found");
+				//System.out.println("Midsquare found");
 				if(midSquare.isOccupied() && onlyOne(ox, oy, dx, dy))
 				{
 					return true;
@@ -281,13 +328,13 @@ public class Kangaroo {
 			
 			
 			if(middleCounter == 1 && middleCoords[0] == (dy+oy)/2 && middleCoords[1] == (dx+ox)/2){
-				System.out.println("only one tried successful");
+				//System.out.println("only one tried successful");
 				return true;
 				
 			}
 			
 			else {
-				System.out.println("only one tried fail" + middleCounter);
+				//System.out.println("only one tried fail" + middleCounter);
 				return false;
 			}
 			

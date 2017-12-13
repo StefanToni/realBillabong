@@ -123,9 +123,10 @@ public class Player {
 		System.out.println("Trying move");
 		try
 		{
-			b.move(k, o, d);
-			System.out.println("player perform move executed ");
+			k.move(o, d);
+			System.out.println("perform move executed ");
 		} catch (Exception e)
+		
 		{
 			System.out.println("Moving is not valid in this situation.");
 		}
@@ -139,13 +140,7 @@ public class Player {
 		
 	}
 	
-	public void movePiece(){
-		Kangaroo k = selectPiece() ;
-		Square s = selectMove() ;
-		performMove(k, s) ;
-		
-		
-	}
+	
 	
 	public void placeRoo()
 	{	System.out.println("I'm being used");

@@ -36,8 +36,8 @@ public class Settings implements GameState {
 	private JList list;
 	private String[] size;
 	private int Size;
-	private int playerNumber;
-	private int AINumber;
+	private int playerNumber=1;
+	private int AINumber=1;
 	private JCheckBox AIButton;
 	
 	public Settings() {
@@ -66,9 +66,10 @@ public class Settings implements GameState {
 		String[] playerStrings = {"0", "1", "2", "3", "4" };
 		JComboBox<String> playerList = new JComboBox<>(playerStrings);
 		
-		JComboBox<String> aiList = new JComboBox<>();
+		JComboBox<String> aiList = new JComboBox<>(playerStrings);
 		
 		playerList.setSelectedIndex(1);
+		aiList.setSelectedIndex(1);
 		JLabel strin1 = new JLabel("Choose number of players");
 		strin1.setHorizontalAlignment(JLabel.CENTER);
 		strin1.setSize(new Dimension(1, 1));
