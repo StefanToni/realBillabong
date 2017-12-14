@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
@@ -107,6 +108,8 @@ public class Game implements GameState {
 		}*/
 		//System.out.println(component.toString());
 		mouse = new MouseAdapter() ;
+		
+		
 		pane.add(component) ;
 		pane.add(start);
 		pane.add(end ) ;
