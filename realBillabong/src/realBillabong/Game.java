@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
@@ -15,6 +16,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import AI.Diffuser;
 import Game.Board;
 import Game.DrawGraphics;
 import Game.Gameloop;
@@ -68,8 +70,12 @@ public class Game implements GameState {
 		start.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
+				//new Diffuser();
 				//Main.getState().getLoop().getNextPlayer();
-				Main.getState().getLoop().aiMove();
+				if (Main.getState().getLoop().getCurrentPlayer().getAI()) {
+					Main.getState().getLoop().aiMove();
+				}
+				
 			}
 		});
 		
@@ -102,6 +108,8 @@ public class Game implements GameState {
 		}*/
 		//System.out.println(component.toString());
 		mouse = new MouseAdapter() ;
+		
+		
 		pane.add(component) ;
 		pane.add(start);
 		pane.add(end ) ;

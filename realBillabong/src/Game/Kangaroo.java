@@ -22,7 +22,6 @@ public class Kangaroo {
 		team = t ;
 	}
 	
-	
 	public Square getPosition() {
 		return position;
 	}
@@ -55,69 +54,22 @@ public class Kangaroo {
 	public void finishKangaroo()
 	{
 		System.out.println("Kangaroo has finished");
+		this.getPosition().empty();
+		Main.getState().getLoop().getCurrentPlayer().deleteRoo(this);
+		if(Main.getState().getLoop().getCurrentPlayer().haveIWon())
+		{
+			System.out.println("This player moved " + Main.getState().getLoop().getCurrentPlayer().getMoveCounter() + " times!");
+			System.out.println("Out of " + Main.getState().getLoop().getTotalMoves() + " total moves." );
+			System.out.println("This player had " + Main.getState().getLoop().getCurrentPlayer().getPlayerTurns() + " turns, out of " + Main.getState().getLoop().getTotalTurns() + " total turns");
+			System.out.println("Congrats bruv");
+			System.exit(0);
+		}
+		
 		terminateTurn();
 		//maybe an in-game notification 
 	}
 	
-	public void checkLap(int xFirst, int yFirst, int xNow, int yNow)
-	{
-		System.out.println("Lap checked");
-		if(getRightLeft(xFirst, yFirst, xNow, yNow))
-		{
-			lapCounter++;
-			System.out.println("Lapcounter incremented to " + lapCounter);
-			if(lapCounter == 3)
-				{
-					Main.getState().getLoop().getCurrentPlayer().haveIWon();
-				}
-		}
-		else if(getLeftRight(xFirst, yFirst, xNow, yNow))
-		{
-			lapCounter--;
-			System.out.println("Lapcounter decreased to " + lapCounter);
-		}
-		
-	}
-	//These check if the kangaroo goes over the blue line & in which direction
-	public boolean getRightLeft(int xFirst, int yFirst, int xNow, int yNow)
-	{ //13& 15
-		if(xFirst>7 && xNow<=7 && yFirst>5 && yNow>5)
-		{
-			return true;
-		}
-		
-		else if(xFirst>7 && xNow<=7 && yFirst<=6 && yNow>=8)
-		{
-			return true;
-		}
-		
-		else if(xFirst>7 && xNow<=7 && yFirst>=8 && yNow<=6)
-		{
-			return true;
-		}
-		
-		else return false;
-	}
-	
-	public boolean getLeftRight(int xFirst, int yFirst, int xNow, int yNow)
-	{ //13& 15
-		if(xNow>7 && xFirst<=7 && yNow>5 && yFirst>5)
-		{
-			return true;
-		}
-		
-		else if(xNow>7 && xFirst<=7 && yNow<=6 && yFirst>=8)
-		{
-			return true;
-		}
-		
-		else if(xNow>7 && xFirst<=7 && yNow>=8 && yFirst<=6)
-		{
-			return true;
-		}
-		
-		else return false;
-	}
+
 	
 	
 	public void terminateTurn(){
@@ -127,20 +79,21 @@ public class Kangaroo {
 		
 		System.out.println("Turn terminated");
 		this.moveable = false;
+		Main.getState().getLoop().getCurrentPlayer().incrementTurns();
 		Main.getState().getLoop().getCurrentPlayer().firstmove = true;
 		or.empty();
 		Main.getState().getLoop().getNextPlayer();
-
+		//Main.getState().getLoop().aiMove();
 		
 		if(Main.getState().getLoop().isAIWORK()) {
 			
-			 int delay = 1000; //milliseconds
+			 int delay = 100; //milliseconds
 			  ActionListener taskPerformer = new ActionListener() {
 			      int count=0;
 			      public void actionPerformed(ActionEvent evt) {
 			           if(count==1) {//we did the task 10 times
-			                 ((Timer)evt.getSource()).stop();
-			            }
+			                 ((Timer) evt.getSource()).stop();
+							}
 
 			           Main.getState().getLoop().aiMove();
 			           count++;
@@ -192,9 +145,19 @@ public void move(Square origin, Square dest){
 		if(checkLegal(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc(), dest) && (this.moveable || Main.getState().getLoop().getCurrentPlayer().firstmove)) 
 		{	System.out.println("Legality checked");
 			
-			checkLap(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc());
 			origin.setIsSelected(true);
 			origin.empty();
+			dest.fill(this);
+			LapChecker lc = new LapChecker();
+			lapCounter = lc.checkLap(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc(), lapCounter);
+			if(lapCounter == 3)
+			{	dest.empty();
+				
+				finishKangaroo();
+			}
+			//else lapCounter = laps;
+			
+			
 			if(Main.getState().getLoop().getCurrentPlayer().firstmove == true) 
 				{
 					origin.fill(new Kangaroo(10));
@@ -203,8 +166,8 @@ public void move(Square origin, Square dest){
 				}
 			
 			Main.getState().getLoop().getCurrentPlayer().firstmove = false;
-			if(lapCounter == 3) finishKangaroo();
-			else dest.fill(this);
+			
+			
 			
 			System.out.println("MOVED FROM: " + origin.getyLoc()+ ", " + origin.getxLoc()+   " TO: " + dest.getyLoc()+ ", " + dest.getxLoc());
 			
@@ -219,7 +182,7 @@ public void move(Square origin, Square dest){
 		}
 		
 		else 
-		{	System.out.println("MOVE NOT LEGAL, TRIED TO MOVE TO " + dest.getxLoc() + " X " + dest.getyLoc() + " Y ");
+		{	System.out.println("MOVE NOT LEGAL, "+ origin.getxLoc()+ " " + origin.getyLoc()+ " TRIED TO MOVE TO " + dest.getxLoc() + " X " + dest.getyLoc() + " Y ");
 			return;
 		}
 		/*for(int i = 0; i < 13; i++ ){

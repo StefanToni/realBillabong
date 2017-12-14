@@ -18,9 +18,15 @@ public class Player {
 	private int finishCounter = 0 ;
 	public boolean ai;
 	private Board b;
+	public int moveCounter = 0;
+	public int tt = 0;
 	
 	public Board getB() {
 		return b;
+	}
+	public int getMoveCounter()
+	{
+		return moveCounter;
 	}
 	public void setB(Board b) {
 		this.b = b;
@@ -101,19 +107,15 @@ public class Player {
 		System.out.println("Player " + teamCounter + " won!");
 	}
 	public boolean haveIWon(){
-		
-		int cntr = 0 ;
-		
-		for(int i = 0; i < 5; i++){
-			if(kangaroos.get(i).getLapCounter() == 3)
-			{ 
-				// isn't it two laps? Yes but the first cross at the start is counted too
-				cntr++ ;
-			}
+		finishCounter++;
+	
+		if(finishCounter == 5)
+		{
+			return true;
 		}
-		if(cntr == 5){
-			return true ;
-		}
+		if(kangaroos.size() == 0) return true;
+		
+		
 		else{
 			return false ;
 		}
@@ -124,11 +126,14 @@ public class Player {
 		try
 		{
 			k.move(o, d);
+			moveCounter++;
+			Main.getState().getLoop().incrementCounter();
 			System.out.println("perform move executed ");
 		} catch (Exception e)
 		
 		{
 			System.out.println("Moving is not valid in this situation.");
+			k.terminateTurn();
 		}
 		
 		
@@ -158,20 +163,39 @@ public class Player {
 		placePiece(temp.getxLoc(), temp.getyLoc());
 	}
 	
+	public void incrementTurns()
+	{
+		tt++;
+		Main.getState().getLoop().incrementTurns();
+	}
+	
+	public int getPlayerTurns()
+	{
+		return tt;
+	}
 	//public Kangaroo selectPiece(){
 	//	Kangaroo k = ;//what i click
 	//	return k ;
 	//}
 	
-	public Square selectMove(){
-		Square s ;
-		return s ;
-	}
 	
-	public void performMove(Kangaroo k, Square s){
-		k.move(k.getPosition(), s);
-		Main.getState().getComponent().repaint();
-		//input = true ;
+//	public void performMove(Kangaroo k, Square s){
+//		k.move(k.getPosition(), s);
+//		
+//		Main.getState().getComponent().repaint();
+//		//input = true ;
+//	}
+	
+	public void deleteRoo(Kangaroo kangaroo) {
+		for(int i = 0; i< kangaroos.size(); i++)
+		{
+			if(kangaroos.get(i) == kangaroo)
+			{
+				kangaroos.remove(i);
+				kangaroo = null;
+			}
+		}
+		
 	}
 	
 	

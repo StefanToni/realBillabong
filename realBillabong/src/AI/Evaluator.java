@@ -51,12 +51,12 @@ public class Evaluator
 		
 		// Jump
 		if( Math.abs(old_x - new_x) > 1 || Math.abs(old_y - new_y) > 1 ){
-			score += 2;
+			score += 5;
 		}
 		
 		// Walk
 		if(Math.abs(old_x - new_x) <= 1 || Math.abs(old_y - new_y) <= 1){
-			score += 1;
+			score += 3;
 		}
 		
 		if(k.getRightLeft(old_x, old_y, new_x, new_y)){
@@ -73,7 +73,7 @@ public class Evaluator
 		score += getDirections(old_x, old_y, new_x, new_y);
 		
 		Random rnd = new Random() ;
-		int varCreate = score ;
+		/*int varCreate = score ;
 		//System.out.println(" score: " + score);
 		if(varCreate < 0){
 			varCreate = (varCreate * -1 );
@@ -87,9 +87,9 @@ public class Evaluator
 		if(rnd.nextInt(10) < 5){
 			variance = variance * -1 ;
 		}
-		score = score + variance ;
+		score = score + variance ;*/
 		//System.out.println("score after variances : " + score);
-		
+		if (score<0) score = 0;
 		
 		
 		return score;
@@ -102,9 +102,10 @@ public class Evaluator
 		
 		if(x < 5 && y < 5 && nx > x)
 		{
+			
 			directions = directions + 5 ;
 
-			if(ny > 5)directions-=5;
+			if(ny > 5)directions -= 10;
 
 		}
 		
@@ -116,9 +117,10 @@ public class Evaluator
 		
 		if(x > 10 && y < 5 && ny > y)
 		{
+			
 			directions = directions + 5 ;
 
-			if(nx < 10) directions-=5;
+			if(nx < 10) directions -= 10;
 			
 		}
 		
@@ -130,7 +132,7 @@ public class Evaluator
 		if(x > 10 && y > 8 && nx < x ){
 			
 			directions = directions + 5 ;
-			if(ny < 8) directions-=5;
+			if(ny < 8) directions -= 10;
 		}
 		
 		if(x > 4 && x < 11 && y > 7  && nx<x )
@@ -139,9 +141,9 @@ public class Evaluator
 		}
 		if(x < 5 && y > 8 && ny < y ){
 					
-					directions = directions + 5 ;
-					if(nx > 5) directions-=5 ;
-				}
+			directions = directions + 5 ;
+			if(nx > 5) directions -= 10 ;
+		}
 		
 		if(x < 6 && y < 9 && y > 4  && ny < y )
 		{
