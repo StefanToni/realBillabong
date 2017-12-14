@@ -14,7 +14,7 @@ public class MiniMax {
 
 	private Square[][] b;
 	private Player currentPlayer, lastPlayer; 
-	
+	private double timeStart, timeEnd, timeTaken;
 	private Eval eval;
 	private Move best, last;
 	
@@ -42,9 +42,10 @@ public class MiniMax {
 			
 			possibleMoves = new ArrayList<Move>();
 			eval = new Eval();
-			
+			timeStart = System.currentTimeMillis();
 			checkForMovesKanga();
 			getBestMove();
+			
 		}
 		
 		
@@ -134,7 +135,10 @@ public class MiniMax {
 				Kangaroo k = best.getKangaroo() ;
 				Square o = best.getOrigin() ;
 				Square d = best.getDest() ;
-				
+				timeEnd = System.currentTimeMillis();
+				timeTaken = timeEnd - timeStart;
+				System.out.println("Time taken: " + timeTaken + " milliseconds");
+				Main.getState().getLoop().addTime(timeTaken);
 				currentPlayer.performMove(k, o, d) ;
 				//System.out.println("move performed: " + d.getxLoc()+ " "+  d.getyLoc());
 				Main.getState().getComponent().repaint();

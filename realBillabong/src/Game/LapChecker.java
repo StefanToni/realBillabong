@@ -10,18 +10,18 @@ public class LapChecker {
 	
 	public int checkLap(int xFirst, int yFirst, int xNow, int yNow, int lapCounter)
 	{
-		System.out.println("Lap checked");
+		//System.out.println("Lap checked");
 		if(getRightLeft(xFirst, yFirst, xNow, yNow))
 		{
 			lapCounter++;
-			System.out.println("Lapcounter incremented to " + lapCounter);
+			//System.out.println("Lapcounter incremented to " + lapCounter);
 			
 			
 		}
 		else if(getLeftRight(xFirst, yFirst, xNow, yNow))
 		{
 			lapCounter--;
-			System.out.println("Lapcounter decreased to " + lapCounter);
+			//System.out.println("Lapcounter decreased to " + lapCounter);
 			
 		}
 		
