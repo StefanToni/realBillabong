@@ -180,6 +180,7 @@ public class Player {
 			if(kangaroos.get(i) == kangaroo)
 			{
 				kangaroos.remove(i);
+				kangaroo = null;
 			}
 		}
 		

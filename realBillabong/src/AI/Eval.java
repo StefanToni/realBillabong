@@ -1,6 +1,7 @@
 package AI;
 
 import Game.Kangaroo;
+import Game.LapChecker;
 import Game.Square;
 import realBillabong.Main;
 
@@ -27,14 +28,17 @@ public class Eval {
 		Diffuser diff = Main.getState().getLoop().getDiffuser();
 		score += diff.getWeight(nx, ny)/diff.getWeight(x, y);
 				
-				
-				if(k.getRightLeft(x, y, nx, ny) && k.checkLegal(x, y, nx, ny,np)){
-					score+= 20000 ;
+				LapChecker co = new LapChecker();
+				int lap = co.checkLap(x, y, nx, ny, 1);
+				if(lap == 0)
+				{
+					score = -1000000.0;
+				}
+				if(lap == 2)
+				{
+					score += 2000;
 				}
 				
-				if(k.getLeftRight(x, y, nx, ny) && k.checkLegal(x, y, nx, ny,np)){
-					score-= 10000000000.0 ;
-				}
 		System.out.println("SCORE IS :  "+score);
 		
 		return score;

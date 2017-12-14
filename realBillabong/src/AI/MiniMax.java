@@ -52,7 +52,7 @@ public class MiniMax {
 		{	
 			Move m = null;
 			double score = 0;
-			double bestScore = Integer.MIN_VALUE;
+			double bestScore = 0;
 			
 			
 			
@@ -60,11 +60,11 @@ public class MiniMax {
 			{
 				m = possibleMoves.get(i);
 				score = eval.getScore(m.getKangaroo(), m.getOrigin(), m.getDest());
-				if (m == last) 
-					{
-						System.out.println("Move = last");
-						score-=1000;
-					}
+				//if (m == last) 
+				//	{
+				//		System.out.println("Move = last");
+				//		score-=1000;
+				//	}
 				if(score>bestScore)
 				{	
 					bestScore = score;
@@ -131,7 +131,7 @@ public class MiniMax {
 			private void performMove(){
 				
 				//System.out.println("perform move");
-				Kangaroo k = best.getKangaroo();
+				Kangaroo k = best.getKangaroo() ;
 				Square o = best.getOrigin() ;
 				Square d = best.getDest() ;
 				
@@ -139,7 +139,9 @@ public class MiniMax {
 				//System.out.println("move performed: " + d.getxLoc()+ " "+  d.getyLoc());
 				Main.getState().getComponent().repaint();
 				//if(Math.abs(o.getxLoc()- d.getxLoc()) == 1 || Math.abs(o.getyLoc()- d.getyLoc()) == 1 ) k.terminateTurn();
-				if((Math.abs(o.getxLoc()- d.getxLoc()) > 1 || Math.abs(o.getyLoc()- d.getyLoc()) > 1 )) 
+				if(k.getLapCounter() == 3) k.finishKangaroo();
+				
+				if((Math.abs(o.getxLoc()- d.getxLoc()) > 1 || Math.abs(o.getyLoc()- d.getyLoc()) > 1 ) && k.getLapCounter()<3) 
 					{
 
 						//System.out.println("New Minimax Created");
