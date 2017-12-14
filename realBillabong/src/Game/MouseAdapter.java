@@ -1,5 +1,7 @@
 package Game;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -11,73 +13,75 @@ public class MouseAdapter implements MouseListener {
 	private Gameloop loop;
 	private int squareSize = Main.getSize();
 	private boolean DEBUG = false;
-
+	
+	
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		int k = Main.getState().getLoop().getPlaceNumber();
-		if (k>0)
-		{
-			
-			
-			if(Main.getState().getLoop().getCurrentPlayer().getAI())
-			{ 	
-				if (DEBUG) System.out.println("AI detected");
-				Main.getState().getLoop().getCurrentPlayer().placeRoo();
-				Main.getState().getComponent().repaint();
-				Main.getState().getLoop().getNextPlayer();
-		        Main.getState().getLoop().setPlaceNumber(k-1);
-			}	
-			
-			else{
+//		int k = Main.getState().getLoop().getPlaceNumber();
+//		if (k>0)
+//		{
+//			
+//			
+//			if(Main.getState().getLoop().getCurrentPlayer().getAI())
+//			{ 	
+//				if (DEBUG) System.out.println("AI detected");
+//				Main.getState().getLoop().getCurrentPlayer().placeRoo();
+//				Main.getState().getComponent().repaint();
+//				Main.getState().getLoop().getNextPlayer();
+//		        Main.getState().getLoop().setPlaceNumber(k-1);
+//			}	
+//			
+//			else{
+//		
+//				
+//				x = e.getX();
+//				y = e.getY();
+//				if (DEBUG) System.out.println(x +" , " + y);
+//				for(int i=0; i < 14; i++)
+//				{
+//					for(int j=0;j < 16 ;j++ )
+//					{
+//						if((79+(squareSize*j)<=x) && (77+squareSize+(squareSize*j)>=x) &&  (56+(squareSize*i)<=y) && (54+squareSize+(squareSize*i)>=y) )  
+//						{
+//							setActualY(i);
+//							setActualX(j);
+//							System.out.println(j+ " " + i );
+//						}
+//                
+//               
+//					}
+//				}
+//				if (!Main.getState().getLoop().getBoard().getBoardArray()[actualY][actualX].isOccupied() ) {
+//				
+//			
+//					//Main.getState().getLoop().setPlaceNumber(k-1);
+//					if (k > 0) {
+//						if (DEBUG) System.out.println(Main.getState().getLoop().getCurrentPlayer().getColor());
+//				
+//				
+//						Main.getState().getLoop().getCurrentPlayer().placePiece(actualY, actualX);
+//				
+//				
+//						//Main.getState().getLoop().setCurrentPlayer(Main.getState().getLoop().getPlayers().get(Main.getState().getLoop().getCurrentPlayer().getColor()+1));
+//						//loop.setHasClicked(true);
+//						Main.getState().getComponent().repaint();
+//						Main.getState().getLoop().getNextPlayer();
+//						Main.getState().getLoop().setPlaceNumber(k-1);
+//				
+//								}
+//			
+//			
+//					}
+//				}
+//		}
 		
-				
-				x = e.getX();
-				y = e.getY();
-				if (DEBUG) System.out.println(x +" , " + y);
-				for(int i=0; i < 14; i++)
-				{
-					for(int j=0;j < 16 ;j++ )
-					{
-						if((79+(squareSize*j)<=x) && (77+squareSize+(squareSize*j)>=x) &&  (56+(squareSize*i)<=y) && (54+squareSize+(squareSize*i)>=y) )  
-						{
-							setActualY(i);
-							setActualX(j);
-							System.out.println(j+ " " + i );
-						}
-                
-               
-					}
-				}
-				if (!Main.getState().getLoop().getBoard().getBoardArray()[actualY][actualX].isOccupied() ) {
-				
-			
-					//Main.getState().getLoop().setPlaceNumber(k-1);
-					if (k > 0) {
-						if (DEBUG) System.out.println(Main.getState().getLoop().getCurrentPlayer().getColor());
-				
-				
-						Main.getState().getLoop().getCurrentPlayer().placePiece(actualY, actualX);
-				
-				
-						//Main.getState().getLoop().setCurrentPlayer(Main.getState().getLoop().getPlayers().get(Main.getState().getLoop().getCurrentPlayer().getColor()+1));
-						//loop.setHasClicked(true);
-						Main.getState().getComponent().repaint();
-						Main.getState().getLoop().getNextPlayer();
-						Main.getState().getLoop().setPlaceNumber(k-1);
-				
-								}
-			
-			
-					}
-				}
-		}
 		
-		else{
-			Main.getState().getLoop().gamePhase() ;
+			Main.getState().getLoop().autoPlace();
+			//Main.getState().getLoop().gamePhase() ;
 			System.out.println("start boyyyyyy");
 			
-		}
+		
 	
 		
 		

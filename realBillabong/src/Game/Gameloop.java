@@ -29,11 +29,27 @@ public class Gameloop implements MouseListener{
 	private int piececounter ;
 	private final boolean DEBUG = false;
 	private boolean AIWORK = false;
-	
+	public int totalMoves = 0;
 	private boolean placementPhase = true;
 	private boolean gamePhase = false;
 	private ArrayList<AIPlayer> aiPlayers;
+	public int totalTurns = 0;
 
+	public int getTotalMoves()
+	{
+		return totalMoves;
+	}
+	
+	public void incrementTurns()
+	{
+		totalTurns++;
+		
+	}
+	
+	public int getTotalTurns()
+	{
+		return totalTurns;
+	}
 	public Diffuser getDiffuser()
 	{
 		return diff;
@@ -181,6 +197,11 @@ public class Gameloop implements MouseListener{
 		
 	}
 	
+	public void incrementCounter()
+	{
+		totalMoves++;
+	}
+	
 	
 	
 	public void getNextPlayer() {
@@ -322,6 +343,21 @@ public class Gameloop implements MouseListener{
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void autoPlace() {
+		if(getPlaceNumber()>0){
+			getCurrentPlayer().placeRoo();
+			Main.getState().getComponent().repaint();
+			setPlaceNumber(getPlaceNumber() - 1);
+			getNextPlayer();
+			
+			autoPlace();
+		}
+		
+		else if(getPlaceNumber()==0) gamePhase();
+        // TODO Auto-generated method stub
 		
 	}
 	

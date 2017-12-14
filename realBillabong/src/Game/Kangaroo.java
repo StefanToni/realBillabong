@@ -22,7 +22,6 @@ public class Kangaroo {
 		team = t ;
 	}
 	
-	
 	public Square getPosition() {
 		return position;
 	}
@@ -57,11 +56,15 @@ public class Kangaroo {
 		System.out.println("Kangaroo has finished");
 		this.getPosition().empty();
 		Main.getState().getLoop().getCurrentPlayer().deleteRoo(this);
-//		if(Main.getState().getLoop().getCurrentPlayer().haveIWon())
-//		{
-//			System.out.println("Congrats bruv");
-//			System.exit(0);
-//		}
+		if(Main.getState().getLoop().getCurrentPlayer().haveIWon())
+		{
+			System.out.println("This player moved " + Main.getState().getLoop().getCurrentPlayer().getMoveCounter() + " times!");
+			System.out.println("Out of " + Main.getState().getLoop().getTotalMoves() + " total moves." );
+			System.out.println("This player had " + Main.getState().getLoop().getCurrentPlayer().getPlayerTurns() + " turns, out of " + Main.getState().getLoop().getTotalTurns() + " total turns");
+			System.out.println("Congrats bruv");
+			System.exit(0);
+		}
+		
 		terminateTurn();
 		//maybe an in-game notification 
 	}
@@ -76,27 +79,28 @@ public class Kangaroo {
 		
 		System.out.println("Turn terminated");
 		this.moveable = false;
+		Main.getState().getLoop().getCurrentPlayer().incrementTurns();
 		Main.getState().getLoop().getCurrentPlayer().firstmove = true;
 		or.empty();
 		Main.getState().getLoop().getNextPlayer();
-		Main.getState().getLoop().aiMove();
+		//Main.getState().getLoop().aiMove();
 		
-//		if(Main.getState().getLoop().isAIWORK()) {
-//			
-//			 int delay = 1000; //milliseconds
-//			  ActionListener taskPerformer = new ActionListener() {
-//			      int count=0;
-//			      public void actionPerformed(ActionEvent evt) {
-//			           if(count==1) {//we did the task 10 times
-//			                 ((Timer) evt.getSource()).stop();
-//			            }
-//
-//			           Main.getState().getLoop().aiMove();
-//			           count++;
-//			      }
-//			  };
-//			  new Timer(delay, taskPerformer).start();
-//		}
+		if(Main.getState().getLoop().isAIWORK()) {
+			
+			 int delay = 100; //milliseconds
+			  ActionListener taskPerformer = new ActionListener() {
+			      int count=0;
+			      public void actionPerformed(ActionEvent evt) {
+			           if(count==1) {//we did the task 10 times
+			                 ((Timer) evt.getSource()).stop();
+							}
+
+			           Main.getState().getLoop().aiMove();
+			           count++;
+			      }
+			  };
+			  new Timer(delay, taskPerformer).start();
+		}
 	
 	}
 
