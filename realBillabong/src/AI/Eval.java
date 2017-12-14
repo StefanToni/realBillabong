@@ -36,7 +36,7 @@ public class Eval {
 				}
 				if(lap == 2)
 				{
-					score += 2000;
+					score += 200000.0;
 				}
 				
 		System.out.println("SCORE IS :  "+score);

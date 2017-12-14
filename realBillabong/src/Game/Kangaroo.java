@@ -57,6 +57,11 @@ public class Kangaroo {
 		System.out.println("Kangaroo has finished");
 		this.getPosition().empty();
 		Main.getState().getLoop().getCurrentPlayer().deleteRoo(this);
+//		if(Main.getState().getLoop().getCurrentPlayer().haveIWon())
+//		{
+//			System.out.println("Congrats bruv");
+//			System.exit(0);
+//		}
 		terminateTurn();
 		//maybe an in-game notification 
 	}
@@ -74,24 +79,24 @@ public class Kangaroo {
 		Main.getState().getLoop().getCurrentPlayer().firstmove = true;
 		or.empty();
 		Main.getState().getLoop().getNextPlayer();
-		//Main.getState().getLoop().aiMove();
+		Main.getState().getLoop().aiMove();
 		
-		if(Main.getState().getLoop().isAIWORK()) {
-			
-			 int delay = 1000; //milliseconds
-			  ActionListener taskPerformer = new ActionListener() {
-			      int count=0;
-			      public void actionPerformed(ActionEvent evt) {
-			           if(count==1) {//we did the task 10 times
-			                 ((Timer) evt.getSource()).stop();
-			            }
-
-			           Main.getState().getLoop().aiMove();
-			           count++;
-			      }
-			  };
-			  new Timer(delay, taskPerformer).start();
-		}
+//		if(Main.getState().getLoop().isAIWORK()) {
+//			
+//			 int delay = 1000; //milliseconds
+//			  ActionListener taskPerformer = new ActionListener() {
+//			      int count=0;
+//			      public void actionPerformed(ActionEvent evt) {
+//			           if(count==1) {//we did the task 10 times
+//			                 ((Timer) evt.getSource()).stop();
+//			            }
+//
+//			           Main.getState().getLoop().aiMove();
+//			           count++;
+//			      }
+//			  };
+//			  new Timer(delay, taskPerformer).start();
+//		}
 	
 	}
 
@@ -173,7 +178,7 @@ public void move(Square origin, Square dest){
 		}
 		
 		else 
-		{	System.out.println("MOVE NOT LEGAL, TRIED TO MOVE TO " + dest.getxLoc() + " X " + dest.getyLoc() + " Y ");
+		{	System.out.println("MOVE NOT LEGAL, "+ origin.getxLoc()+ " " + origin.getyLoc()+ " TRIED TO MOVE TO " + dest.getxLoc() + " X " + dest.getyLoc() + " Y ");
 			return;
 		}
 		/*for(int i = 0; i < 13; i++ ){
