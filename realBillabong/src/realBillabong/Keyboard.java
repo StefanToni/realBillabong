@@ -20,7 +20,10 @@ public class Keyboard implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if(e.getKeyCode()== KeyEvent.VK_SPACE) {
-			Main.getState().getLoop().aiMove();
+			if (Main.getState().getLoop().getCurrentPlayer().getAI()) {
+				Main.getState().getLoop().aiMove();
+			}
+			
 		}
 		
 	}

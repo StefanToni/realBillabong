@@ -71,7 +71,10 @@ public class Game implements GameState {
 			{
 				//new Diffuser();
 				//Main.getState().getLoop().getNextPlayer();
-				Main.getState().getLoop().aiMove();
+				if (Main.getState().getLoop().getCurrentPlayer().getAI()) {
+					Main.getState().getLoop().aiMove();
+				}
+				
 			}
 		});
 		
