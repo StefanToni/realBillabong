@@ -259,7 +259,7 @@ public class Gameloop implements MouseListener{
 		
 		if(currentPlayer.haveIWon()){
 			//display winnner thing
-			if (DEBUG) System.out.println("Team number " + currentPlayer.getColor() + " wins !!!") ;
+			System.out.println("Team number " + currentPlayer.getColor() + " wins !!!") ;
 		}
 		/*else{
 			//check constraints
