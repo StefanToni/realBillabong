@@ -61,6 +61,7 @@ public class Kangaroo {
 			System.out.println("This player moved " + Main.getState().getLoop().getCurrentPlayer().getMoveCounter() + " times!");
 			System.out.println("Out of " + Main.getState().getLoop().getTotalMoves() + " total moves." );
 			System.out.println("This player had " + Main.getState().getLoop().getCurrentPlayer().getPlayerTurns() + " turns, out of " + Main.getState().getLoop().getTotalTurns() + " total turns");
+			System.out.println("Average MiniMax time = "  + (Main.getState().getLoop().getAverageMiniMaxTime()/1000) + " seconds");
 			System.out.println("Congrats bruv");
 			System.exit(0);
 		}

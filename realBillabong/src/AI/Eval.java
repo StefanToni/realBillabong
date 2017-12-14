@@ -34,14 +34,28 @@ public class Eval {
 				{
 					score = -1000000.0;
 				}
+				
 				if(lap == 2)
 				{
 					score += 200000.0;
 				}
 				
-		System.out.println("SCORE IS :  "+score);
+		//System.out.println("SCORE IS :  "+score);
 		
 		return score;
+	}
+	
+	public double getScoreVariance(Kangaroo k, Square op, Square np)
+	{
+		double score = 0;
+		score = getScore(k,op,np);
+		double variance = score*0.1;
+		if(Math.random()*1>0.5) variance = variance*-1;
+		System.out.println("Variance = " + variance);
+		score = score +variance;
+		
+		return score;
+		
 	}
 	
 	

@@ -34,6 +34,8 @@ public class Gameloop implements MouseListener{
 	private boolean gamePhase = false;
 	private ArrayList<AIPlayer> aiPlayers;
 	public int totalTurns = 0;
+	public double totalTimeTaken = 0;
+	public int totalMiniMax = 0; 
 
 	public int getTotalMoves()
 	{
@@ -44,6 +46,23 @@ public class Gameloop implements MouseListener{
 	{
 		totalTurns++;
 		
+	}
+	
+	public void incrementCounter()
+	{
+		totalMoves++;
+	}
+	
+	public void addTime(double time)
+	{
+		totalTimeTaken += time;
+		totalMiniMax ++;
+	}
+	
+	public double getAverageMiniMaxTime()
+	{
+		
+		return (totalTimeTaken/totalMiniMax);
 	}
 	
 	public int getTotalTurns()
@@ -191,16 +210,14 @@ public class Gameloop implements MouseListener{
 		*/
 	
 		
-		
+	
 		new MiniMax(getBoardAr());
+		
 		//new RandomAI(getBoardAr());
 		
 	}
 	
-	public void incrementCounter()
-	{
-		totalMoves++;
-	}
+	
 	
 	
 	
@@ -347,6 +364,7 @@ public class Gameloop implements MouseListener{
 	}
 
 	public void autoPlace() {
+		
 		if(getPlaceNumber()>0){
 			getCurrentPlayer().placeRoo();
 			Main.getState().getComponent().repaint();
