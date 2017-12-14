@@ -15,6 +15,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import AI.Diffuser;
 import Game.Board;
 import Game.DrawGraphics;
 import Game.Gameloop;
@@ -68,6 +69,7 @@ public class Game implements GameState {
 		start.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
+				//new Diffuser();
 				//Main.getState().getLoop().getNextPlayer();
 				Main.getState().getLoop().aiMove();
 			}

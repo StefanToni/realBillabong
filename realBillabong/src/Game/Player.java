@@ -174,6 +174,17 @@ public class Player {
 		//input = true ;
 	}
 	
+	public void deleteRoo(Kangaroo kangaroo) {
+		for(int i = 0; i< kangaroos.size(); i++)
+		{
+			if(kangaroos.get(i) == kangaroo)
+			{
+				kangaroos.remove(i);
+			}
+		}
+		
+	}
+	
 	
 	
 	

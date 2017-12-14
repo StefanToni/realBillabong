@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
+import AI.Diffuser;
 import AI.MiniMax;
 import AI.Move;
 import AI.RandomAI;
@@ -24,6 +25,7 @@ public class Gameloop implements MouseListener{
 	private MoveMouseAdapter mover ;
 	private Kangaroo k ;
 	private Square s ;
+	public Diffuser diff;
 	private int piececounter ;
 	private final boolean DEBUG = false;
 	private boolean AIWORK = false;
@@ -32,6 +34,11 @@ public class Gameloop implements MouseListener{
 	private boolean gamePhase = false;
 	private ArrayList<AIPlayer> aiPlayers;
 
+	public Diffuser getDiffuser()
+	{
+		return diff;
+	}
+	
 	public int getPiececounter() {
 		return piececounter;
 	}
@@ -67,6 +74,7 @@ public class Gameloop implements MouseListener{
 	public Gameloop(int p, int a){
 		mouse = Main.getState().getMouse() ;
 		board = new  Board() ;
+		diff = new Diffuser();
 		players = new ArrayList<Player>() ;	
 		aiPlayers = new ArrayList<AIPlayer>();
 		for(int i = 0; i < p ; i++){

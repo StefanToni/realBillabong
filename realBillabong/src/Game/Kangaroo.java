@@ -55,6 +55,7 @@ public class Kangaroo {
 	public void finishKangaroo()
 	{
 		System.out.println("Kangaroo has finished");
+		Main.getState().getLoop().getCurrentPlayer().deleteRoo(this);
 		terminateTurn();
 		//maybe an in-game notification 
 	}
@@ -66,10 +67,12 @@ public class Kangaroo {
 		{
 			lapCounter++;
 			System.out.println("Lapcounter incremented to " + lapCounter);
+			
 			if(lapCounter == 3)
-				{
+				{	
 					Main.getState().getLoop().getCurrentPlayer().haveIWon();
 				}
+			
 		}
 		else if(getLeftRight(xFirst, yFirst, xNow, yNow))
 		{
@@ -130,7 +133,7 @@ public class Kangaroo {
 		Main.getState().getLoop().getCurrentPlayer().firstmove = true;
 		or.empty();
 		Main.getState().getLoop().getNextPlayer();
-
+		//Main.getState().getLoop().aiMove();
 		
 		if(Main.getState().getLoop().isAIWORK()) {
 			

@@ -15,7 +15,7 @@ public class MiniMax {
 	private Square[][] b;
 	private Player currentPlayer, lastPlayer; 
 	
-	private Evaluator eval;
+	private Eval eval;
 	private Move best, last;
 	
 	
@@ -28,7 +28,7 @@ public class MiniMax {
 			this.b = b;
 			currentPlayer = Main.getState().getLoop().getCurrentPlayer();
 			possibleMoves = new ArrayList<Move>();
-			eval = new Evaluator();
+			eval = new Eval();
 			checkForMoves();
 			getBestMove();
 		}
@@ -41,7 +41,8 @@ public class MiniMax {
 			currentPlayer = Main.getState().getLoop().getCurrentPlayer();
 			
 			possibleMoves = new ArrayList<Move>();
-			eval = new Evaluator();
+			eval = new Eval();
+			
 			checkForMovesKanga();
 			getBestMove();
 		}
@@ -50,16 +51,20 @@ public class MiniMax {
 		public void getBestMove()
 		{	
 			Move m = null;
-			int score = 0;
-			int bestScore = Integer.MIN_VALUE;
+			double score = 0;
+			double bestScore = Integer.MIN_VALUE;
 			
 			
 			
 			for(int i = 0; i<possibleMoves.size(); i++)
 			{
 				m = possibleMoves.get(i);
-				score = eval.evaluateMove(b, m);
-				if (m == last) score-=1000;
+				score = eval.getScore(m.getKangaroo(), m.getOrigin(), m.getDest());
+				if (m == last) 
+					{
+						System.out.println("Move = last");
+						score-=1000;
+					}
 				if(score>bestScore)
 				{	
 					bestScore = score;
@@ -75,7 +80,7 @@ public class MiniMax {
 
 		
 		public void checkForMoves(){
-			System.out.println("checking moves");
+			//System.out.println("checking moves");
 			Kangaroo current; 
 			
 			for(int i = 0; i < 14; i++){
@@ -101,7 +106,7 @@ public class MiniMax {
 		}
 		
 		public void checkForMovesKanga(){
-			System.out.println("checking moves kanga");
+			//System.out.println("checking moves kanga");
 			int lastx = lastKanga.getPosition().getxLoc();
 			int lasty = lastKanga.getPosition().getyLoc();
 			
@@ -125,19 +130,19 @@ public class MiniMax {
 		
 			private void performMove(){
 				
-				System.out.println("perform move");
+				//System.out.println("perform move");
 				Kangaroo k = best.getKangaroo();
 				Square o = best.getOrigin() ;
 				Square d = best.getDest() ;
 				
 				currentPlayer.performMove(k, o, d) ;
-				System.out.println("move performed: " + d.getxLoc()+ " "+  d.getyLoc());
+				//System.out.println("move performed: " + d.getxLoc()+ " "+  d.getyLoc());
 				Main.getState().getComponent().repaint();
 				//if(Math.abs(o.getxLoc()- d.getxLoc()) == 1 || Math.abs(o.getyLoc()- d.getyLoc()) == 1 ) k.terminateTurn();
 				if((Math.abs(o.getxLoc()- d.getxLoc()) > 1 || Math.abs(o.getyLoc()- d.getyLoc()) > 1 )) 
 					{
 
-						System.out.println("New Minimax Created");
+						//System.out.println("New Minimax Created");
 						
 						
 						new MiniMax(b, k, best);
@@ -146,7 +151,7 @@ public class MiniMax {
 						
 				
 				
-			}
+					}
 			
 		
 		
