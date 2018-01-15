@@ -14,14 +14,15 @@ public class MiniMax {
 
 	private Square[][] b;
 	private Player currentPlayer, lastPlayer; 
-	private double timeStart, timeEnd, timeTaken;
+	private long timeStart, timeEnd, timeTaken;
 	private Eval eval;
 	private Move best, last;
+	private int tx, ty, tnx, tny = -1;
 	
 	
 	ArrayList<Move> possibleMoves ;
 	Move finalMove ;
-	Kangaroo lastKanga = null;
+	Kangaroo lastKanga = null ;
 	
 		public MiniMax(Square [][] b)
 		{
@@ -48,6 +49,17 @@ public class MiniMax {
 			
 		}
 		
+		//When program crashes Kangaroo recognized an illegal move. When that happens Kangaroo makes a new MiniMax with the tried coords.
+		//Those are made illegal
+		public MiniMax(Square[][] b, int tx, int ty, int tnx, int tny)
+		{
+			this.tx = tx;
+			this.ty = ty;
+			this.tnx = tnx;
+			this.tny = tny;
+			checkForMoves();
+		}
+		
 		
 		public void getBestMove()
 		{	
@@ -61,11 +73,13 @@ public class MiniMax {
 			{
 				m = possibleMoves.get(i);
 				score = eval.getScore(m.getKangaroo(), m.getOrigin(), m.getDest());
-				//if (m == last) 
-				//	{
-				//		System.out.println("Move = last");
-				//		score-=1000;
-				//	}
+//				if (m == last) 
+//					{
+//						System.out.println("Move = last");
+//						score-=1000;
+//					}
+//				
+				
 				if(score>bestScore)
 				{	
 					bestScore = score;
@@ -90,7 +104,11 @@ public class MiniMax {
 						current = b[i][j].getIsHere() ;
 						for(int y = 0; y < 14; y++){
 							for(int x = 0; x < 16; x++){
-								if(current.checkLegal(j, i, x, y, b[y][x])){
+								if(tx!=-1 && ((tx == j && ty == i && tnx == x && tny == y)||(tx == i && ty == j && tnx == y && tny == x)) )
+								{
+									System.out.println( "Move is not added to movelist!" );
+								}
+								else if(current.checkLegal(j, i, x, y, b[y][x])){
 									Move m = new Move(current, b[i][j], b[y][x]) ;
 									possibleMoves.add(m) ;
 									//System.out.println("move " + y + " " + x + " added to list");

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import AI.MiniMax;
 import realBillabong.Main;
 
 public class Kangaroo {
@@ -58,11 +59,13 @@ public class Kangaroo {
 		Main.getState().getLoop().getCurrentPlayer().deleteRoo(this);
 		if(Main.getState().getLoop().getCurrentPlayer().haveIWon())
 		{
+			Main.getState().getLoop().et = System.currentTimeMillis();
 			System.out.println("This player moved " + Main.getState().getLoop().getCurrentPlayer().getMoveCounter() + " times!");
 			System.out.println("Out of " + Main.getState().getLoop().getTotalMoves() + " total moves." );
 			System.out.println("This player had " + Main.getState().getLoop().getCurrentPlayer().getPlayerTurns() + " turns, out of " + Main.getState().getLoop().getTotalTurns() + " total turns");
-			System.out.println("Average MiniMax time = "  + (Main.getState().getLoop().getAverageMiniMaxTime()/1000) + " seconds");
+			System.out.println("Time = "  + ((Main.getState().getLoop().et-Main.getState().getLoop().st)) + " seconds");
 			System.out.println("Congrats bruv");
+			System.out.println(Main.getState().getLoop().errorCounter + "  errors made");
 			System.exit(0);
 		}
 		
@@ -87,8 +90,8 @@ public class Kangaroo {
 		//Main.getState().getLoop().aiMove();
 		
 		if(Main.getState().getLoop().isAIWORK()) {
-			
-			 int delay = 100; //milliseconds
+		
+			 int delay = 200; //milliseconds
 			  ActionListener taskPerformer = new ActionListener() {
 			      int count=0;
 			      public void actionPerformed(ActionEvent evt) {
@@ -143,7 +146,7 @@ public class Kangaroo {
 public void move(Square origin, Square dest){
 				
 		
-		if(checkLegal(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc(), dest) && (this.moveable || Main.getState().getLoop().getCurrentPlayer().firstmove)) 
+		if(checkLegal(origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc(), dest) && (moveable || Main.getState().getLoop().getCurrentPlayer().firstmove)) 
 		{	System.out.println("Legality checked");
 			
 			origin.setIsSelected(true);
@@ -160,11 +163,11 @@ public void move(Square origin, Square dest){
 			
 			
 			if(Main.getState().getLoop().getCurrentPlayer().firstmove == true) 
-				{
-					origin.fill(new Kangaroo(10));
-					or = origin;
-					moveable = true;
-				}
+			{
+				origin.fill(new Kangaroo(10));
+				or = origin;
+				moveable = true;
+			}
 			
 			Main.getState().getLoop().getCurrentPlayer().firstmove = false;
 			
@@ -184,8 +187,14 @@ public void move(Square origin, Square dest){
 		
 		else 
 		{	System.out.println("MOVE NOT LEGAL, "+ origin.getxLoc()+ " " + origin.getyLoc()+ " TRIED TO MOVE TO " + dest.getxLoc() + " X " + dest.getyLoc() + " Y ");
+			Main.getState().getLoop().incrementErrors(); 
+			or.empty();
+			Main.getState().getLoop().getCurrentPlayer().firstmove = true;
+			new MiniMax(Main.getState().getLoop().getBoardAr(), origin.getxLoc(), origin.getyLoc(), dest.getxLoc(), dest.getyLoc());
+			
 			return;
 		}
+		
 		/*for(int i = 0; i < 13; i++ ){
 			for(int j = 0; j < 15; j++){
 				if( board[i][j].isOccupied() ){
@@ -199,8 +208,8 @@ public void move(Square origin, Square dest){
 			System.out.println();
 		}*/
 		
-		
 	}	
+
 	public boolean checkLegal(int ox, int oy, int dx, int dy, Square dest)
 	{
 		//if(dx>13 || dy > 15) return false;
@@ -237,8 +246,6 @@ public void move(Square origin, Square dest){
 		}
 		
 		else return false;
-		
-		
 	}
 	
 	public boolean onlyOne(int ox, int oy, int dx, int dy)
