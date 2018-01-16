@@ -6,11 +6,12 @@ import java.util.List;
 
 import Game.Board;
 import Game.Kangaroo;
+import Game.Player;
 import Game.Position;
 import Game.Square;
 import realBillabong.Main;
 
-	public class State {
+	public class MState {
 	    private Board board;
 	    private int playerNo;
 	    private int visitCount;
@@ -19,23 +20,29 @@ import realBillabong.Main;
 	    private int[] middleCoords = new int[2];
 	    private Square b[][];
 	    private ArrayList<Move> possibleMoves;
+	    private int playerNumber;
 	    
 
 	   
-	    public State(State state) {
-	        this.board = Main.getState().getLoop().getBoard();
+	    public MState(MState state) {
+	        this.board = new Board(state.getBoard());
 	        this.playerNo = state.getPlayerNo();
 	        this.visitCount = state.getVisitCount();
 	        this.winScore = state.getWinScore();
 	        this.setKangaroos(Main.getState().getLoop().getPlayers().get(2).getKangaroos());
-	        possibleMoves = new ArrayList<Move>();
-	        
+	        possibleMoves = new ArrayList<Move>();	        
 	    }
-	    public State() {
+	    
+	    public MState(int playerNum) {
+	    	this.playerNumber = playerNum;
+	    	board = new Board();
+	    }
+	    
+	    public MState() {
 	        board = new Board();
 	    }
 
-	    public State(Board board) {
+	    public MState(Board board) {
 	        this.board = Main.getState().getLoop().getBoard(); // dasibogi
 	    }
 
@@ -75,14 +82,14 @@ import realBillabong.Main;
 	        this.winScore = winScore;
 	    }
 
-	    public List<State> getAllPossibleStates() {
-	        List<State> possibleStates = new ArrayList<>();
+	    public List<MState> getAllPossibleStates() {
+	        List<MState> possibleStates = new ArrayList<>();
 	        Kangaroo k = Main.getState().getLoop().getCurrentPlayer().getKangaroos().get(1);
 	        //Getting just one kangaroo and all its possible moves
 	        List<Move> availablePositions = checkForMoves(k);
+	        getNextPlayer();
 	        availablePositions.forEach(p -> {
-	            State newState = new State(this.board);
-	            newState.setPlayerNo();
+	            MState newState = new MState(this.board);
 	            //Main.getState().getLoop().getCurrentPlayer().performMove(currentKangaroo, currentKangaroo.getPosition(), currentSquare);
 	            //newState.getBoard().performMove(newState.getPlayerNo(), p);
 	            Main.getState().getLoop().getPlayers().get(2).performMove(k, k.getPosition(), availablePositions.get(p));
@@ -345,8 +352,27 @@ import realBillabong.Main;
 		}	
 		
 	}
-		
+	
+	public void getNextPlayer() {
+		boolean done = false;
+		int i = 0;
+		while(i < playerNumber && done != true){
+            if (i == playerNo) {
+            	if (i == playerNumber){
+            		playerNo = 0;  
+            		done = true;
+            	}
+            	else {
+            		playerNo++;
+            		done = true;
+            	}
+            }
+            i++;
+        }
 	}
+	
+		
+}
 	
 	
 

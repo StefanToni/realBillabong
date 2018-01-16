@@ -71,6 +71,23 @@ public class Board
 	//for each player then, then he cannot add more
 	
 	
+	public Board(Board board) {
+		int boardLength = board.getBoardValues().length;
+        this.boardValues = new int[boardLength][boardLength];
+        int[][] boardValues = board.getBoardValues();
+        int n = boardValues.length;
+        for (int i = 0; i < n; i++) {
+            int m = boardValues[i].length;
+            for (int j = 0; j < m; j++) {
+                this.boardValues[i][j] = boardValues[i][j];
+            }
+        }
+	}
+	
+	private int[][] getBoardValues() {
+		// TODO Auto-generated method stub
+		return boardValues;
+	}
 	public void clearSelected() {
 		for(int i = 0 ; i < 14 ; i++){
 			for(int j = 0 ; j < 16 ; j++){

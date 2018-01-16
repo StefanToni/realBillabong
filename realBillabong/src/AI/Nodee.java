@@ -6,21 +6,21 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Nodee {
-	 	State state;
+	 	MState state;
 	    Nodee parent;
 	    List<Nodee> childArray;
 
 	    public Nodee() {
-	        this.state = new State();
+	        this.state = new MState();
 	        childArray = new ArrayList<>();
 	    }
 
-	    public Nodee(State state) {
+	    public Nodee(MState state) {
 	        this.state = state;
 	        childArray = new ArrayList<>();
 	    }
 
-	    public Nodee(State state, Nodee parent, List<Nodee> childArray) {
+	    public Nodee(MState state, Nodee parent, List<Nodee> childArray) {
 	        this.state = state;
 	        this.parent = parent;
 	        this.childArray = childArray;
@@ -28,7 +28,7 @@ public class Nodee {
 
 	    public Nodee(Nodee nodee) {
 	        this.childArray = new ArrayList<>();
-	        this.state = new State(nodee.getState());
+	        this.state = new MState(nodee.getState());
 	        if (nodee.getParent() != null)
 	            this.parent = nodee.getParent();
 	        List<Nodee> childArray = nodee.getChildArray();
@@ -37,11 +37,11 @@ public class Nodee {
 	        }
 	    }
 
-	    public State getState() {
+	    public MState getState() {
 	        return state;
 	    }
 
-	    public void setState(State state) {
+	    public void setState(MState state) {
 	        this.state = state;
 	    }
 
