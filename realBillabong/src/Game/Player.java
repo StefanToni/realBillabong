@@ -3,6 +3,7 @@ package Game;
 import java.util.ArrayList;
 import java.util.List;
 
+import AI.MiniMax;
 import realBillabong.Main;
 
 public class Player {
@@ -106,6 +107,7 @@ public class Player {
 	{
 		System.out.println("Player " + teamCounter + " won!");
 	}
+	
 	public boolean haveIWon(){
 		finishCounter++;
 	
@@ -132,7 +134,11 @@ public class Player {
 		} catch (Exception e)
 		
 		{
+			
 			System.out.println("Moving is not valid in this situation.");
+
+			
+			//new MiniMax(Main.getState().getLoop().getBoardAr());
 			k.terminateTurn();
 		}
 		

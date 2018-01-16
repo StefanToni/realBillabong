@@ -34,12 +34,23 @@ public class Gameloop implements MouseListener{
 	private boolean gamePhase = false;
 	private ArrayList<AIPlayer> aiPlayers;
 	public int totalTurns = 0;
-	public double totalTimeTaken = 0;
-	public int totalMiniMax = 0; 
+	public long totalTimeTaken = 0;
+	public int totalMiniMax, errorCounter = 0; 
+	public long st, et;
 
 	public int getTotalMoves()
 	{
 		return totalMoves;
+	}
+	
+	public void incrementErrors()
+	{
+		errorCounter += 1;
+	}
+	
+	public int getErrors()
+	{
+		return errorCounter;
 	}
 	
 	public void incrementTurns()
@@ -53,16 +64,18 @@ public class Gameloop implements MouseListener{
 		totalMoves++;
 	}
 	
-	public void addTime(double time)
+	public void addTime(long time)
 	{
 		totalTimeTaken += time;
 		totalMiniMax ++;
 	}
 	
-	public double getAverageMiniMaxTime()
+	public long getAverageMiniMaxTime()
 	{
+		long t = totalTimeTaken/totalMiniMax;
+		//System.out.println( " T = " + totalMiniMax);
+		return t;
 		
-		return (totalTimeTaken/totalMiniMax);
 	}
 	
 	public int getTotalTurns()
@@ -107,6 +120,7 @@ public class Gameloop implements MouseListener{
 	}
 
 	public Gameloop(int p, int a){
+		st = System.currentTimeMillis();
 		mouse = Main.getState().getMouse() ;
 		board = new  Board() ;
 		diff = new Diffuser();
