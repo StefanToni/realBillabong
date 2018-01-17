@@ -97,10 +97,10 @@ public class Player {
 		Player.teamCounter = teamCounter;
 	}
 
-	private void incrementFinishCounter()
+	public void incrementFinishCounter()
 	{
 		finishCounter++;
-		if(finishCounter == 5) win();
+		
 	}
 	
 	private void win()
@@ -109,13 +109,12 @@ public class Player {
 	}
 	
 	public boolean haveIWon(){
-		finishCounter++;
-	
-		if(finishCounter == 5)
-		{
-			return true;
-		}
-		if(kangaroos.size() == 0) return true;
+		
+		if(finishCounter == 5 || kangaroos.size() == 0) 
+			{
+				win(); 
+				return true;
+			}
 		
 		
 		else{

@@ -104,7 +104,7 @@ public class MiniMax {
 						current = b[i][j].getIsHere() ;
 						for(int y = 0; y < 14; y++){
 							for(int x = 0; x < 16; x++){
-								if(tx!=-1 && ((tx == j && ty == i && tnx == x && tny == y)||(tx == i && ty == j && tnx == y && tny == x)) )
+								if(tx!=-1 && ((tx == j && ty == i && tnx == x && tny == y)||(tnx == j && tny == i && tx == x && ty == y)) )
 								{
 									System.out.println( "Move is not added to movelist!" );
 								}

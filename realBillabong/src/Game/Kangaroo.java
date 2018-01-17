@@ -56,7 +56,7 @@ public class Kangaroo {
 	{
 		System.out.println("Kangaroo has finished");
 		this.getPosition().empty();
-		Main.getState().getLoop().getCurrentPlayer().deleteRoo(this);
+		Main.getState().getLoop().getCurrentPlayer().incrementFinishCounter();
 		if(Main.getState().getLoop().getCurrentPlayer().haveIWon())
 		{
 			Main.getState().getLoop().et = System.currentTimeMillis();
@@ -66,10 +66,13 @@ public class Kangaroo {
 			System.out.println("Time = "  + ((Main.getState().getLoop().et-Main.getState().getLoop().st)) + " seconds");
 			System.out.println("Congrats bruv");
 			System.out.println(Main.getState().getLoop().errorCounter + "  errors made");
-			System.exit(0);
+			//System.exit(0);
 		}
+		else {
+			Main.getState().getLoop().getCurrentPlayer().deleteRoo(this);
+
 		
-		terminateTurn();
+		terminateTurn();}
 		//maybe an in-game notification 
 	}
 	
