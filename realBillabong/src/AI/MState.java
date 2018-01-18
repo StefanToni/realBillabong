@@ -21,6 +21,7 @@ import realBillabong.Main;
 	    private Square b[][];
 	    private ArrayList<Move> possibleMoves;
 	    private int playerNumber;
+	    private Player currentPlayer = Main.getState().getLoop().getCurrentPlayer();
 	    
 
 	   
@@ -88,13 +89,13 @@ import realBillabong.Main;
 	        //Getting just one kangaroo and all its possible moves
 	        List<Move> availablePositions = checkForMoves(k);
 	        getNextPlayer();
-	        availablePositions.forEach(p -> {
+	        for (int i = 0; i < availablePositions.size(); i++) {
 	            MState newState = new MState(this.board);
 	            //Main.getState().getLoop().getCurrentPlayer().performMove(currentKangaroo, currentKangaroo.getPosition(), currentSquare);
 	            //newState.getBoard().performMove(newState.getPlayerNo(), p);
-	            Main.getState().getLoop().getPlayers().get(2).performMove(k, k.getPosition(), availablePositions.get(p));
+	            newState.getBoard().performMove(k, k.getPosition(), availablePositions.get(i).getDest());
 	            possibleStates.add(newState);
-	        });
+	        }
 	        return possibleStates;
 	    }
 
@@ -148,6 +149,36 @@ import realBillabong.Main;
 					
 				}
 			return possibleMoves;
+			
+		}
+		
+		public void checkForMoves(){
+			//System.out.println("checking moves");
+			Kangaroo current; 
+			
+			for(int i = 0; i < 14; i++){
+				for(int j = 0 ;  j < 16; j++){
+					if(b[i][j].isOccupied() && b[i][j].getIsHere().getTeam() == currentPlayer.getColor()){
+						current = b[i][j].getIsHere() ;
+						for(int y = 0; y < 14; y++){
+							for(int x = 0; x < 16; x++){
+								/*if(tx!=-1 && ((tx == j && ty == i && tnx == x && tny == y)||(tx == i && ty == j && tnx == y && tny == x)) )
+								{
+									System.out.println( "Move is not added to movelist!" );
+								}
+								else*/ if(current.checkLegal(j, i, x, y, b[y][x])){
+									Move m = new Move(current, b[i][j], b[y][x]) ;
+									possibleMoves.add(m) ;
+									//System.out.println("move " + y + " " + x + " added to list");
+								}
+							}
+						}
+					}
+					
+				}
+			}
+			
+			
 			
 		}
 		

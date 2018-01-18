@@ -152,6 +152,29 @@ public class Board
 		}
 		else return -1;
 	}
+	
+	public void performMove(Kangaroo k, Square o, Square d){
+		System.out.println("Trying move");
+		try
+		{
+			k.move(o, d);
+			//moveCounter++;
+			Main.getState().getLoop().incrementCounter();
+			System.out.println("perform move executed ");
+		} catch (Exception e)
+		
+		{
+			
+			System.out.println("Moving is not valid in this situation.");
+
+			
+			//new MiniMax(Main.getState().getLoop().getBoardAr());
+			k.terminateTurn();
+		}
+		
+		
+		//Main.getState().getComponent().repaint();
+	}
 
 //	public void performMove(int playerNo, Square[][] p) {
 //		// TODO Auto-generated method stub
