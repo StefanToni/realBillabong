@@ -9,16 +9,17 @@ import realBillabong.Main;
 
 public class MiniMaxAB {
 	
-	Player curren ;
-	Player originalGangster ;
-	int level ;
-	Square[][] board ;
-	Diffuser diff ;
-	double score ;
-	ArrayList<Move> possibleMoves ;
+	private Player curren ;
+	private Player originalGangster ;
+	private int level ;
+	private Square[][] board ;
+	private Diffuser diff ;
+	private double score ;
+	private ArrayList<Move> possibleMoves ;
 	private int tx, ty, tnx, tny = -1;
-	double bestScore ;
-	ArrayList<Player> players ;
+	private double bestScore ;
+	private ArrayList<Player> players ;
+	private Move bestMove ; //this is where the move needs to be stored to be getted after 
 	
 	public MiniMaxAB(Player og, int lvl, Square[][] bo){
 		curren = og ;
@@ -28,6 +29,7 @@ public class MiniMaxAB {
 		originalGangster = og ;
 		possibleMoves = new ArrayList<Move>() ;
 		players = Main.getState().getLoop().getPlayers() ;
+		miniMaxABMove(level, board) ;
 	}
 	
 	public double miniMaxABMove(int l, Square[][] b){
