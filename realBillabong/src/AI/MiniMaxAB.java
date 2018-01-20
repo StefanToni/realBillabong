@@ -20,7 +20,7 @@ public class MiniMaxAB {
 	double bestScore ;
 	ArrayList<Player> players ;
 	
-	public MiniMaxAB(Player p, Player og, int lvl, Square[][] bo){
+	public MiniMaxAB(Player og, int lvl, Square[][] bo){
 		curren = og ;
 		level = lvl ;
 		board = bo ;
@@ -31,6 +31,8 @@ public class MiniMaxAB {
 	}
 	
 	public double miniMaxABMove(int l, Square[][] b){
+		curren = Main.getState().getLoop().getCurrentPlayer() ;
+		//evaluation/base case
 		if(curren.haveIWon() || l == 0){
 			for(int i = 0; i < 5; i++){
 				int x = curren.getKangaroos().get(i).getPosition().getxLoc() ;
@@ -44,19 +46,19 @@ public class MiniMaxAB {
 			return score ;
 		}
 		else{
-			
+			//load all possible moves
 			checkForMoves() ;
 			for(int i = 0; i < possibleMoves.size() - 1; i++){
 				curren.performMove(possibleMoves.get(i).getKangaroo(), possibleMoves.get(i).getOrigin(), possibleMoves.get(i).getDest());
 			
 				if(curren == originalGangster){ //max player
 					bestScore = Integer.MIN_VALUE ;
-					if(curren.getColor() == players.size() - 1){
+					/*if(curren.getColor() == players.size() - 1){
 						curren = players.get(0) ;
 					}
 					else{
 						curren = players.get(curren.getColor() + 1) ;
-					}
+					}*/
 					score = miniMaxABMove( l - 1, b) ;
 					curren.performMove(possibleMoves.get(i).getKangaroo(), possibleMoves.get(i).getDest(), possibleMoves.get(i).getOrigin());
 					if(score > bestScore){
@@ -66,12 +68,12 @@ public class MiniMaxAB {
 				}
 				else{ // min player
 					bestScore = Integer.MAX_VALUE ;
-					if(curren.getColor() == players.size()){
+					/*if(curren.getColor() == players.size()){
 						curren = players.get(0) ;
 					}
 					else{
 						curren = players.get(curren.getColor() + 1) ;
-					}
+					}*/
 					score = miniMaxABMove( l - 1, b) ;
 					curren.performMove(possibleMoves.get(i).getKangaroo(), possibleMoves.get(i).getDest(), possibleMoves.get(i).getOrigin());
 					if(score < bestScore){
