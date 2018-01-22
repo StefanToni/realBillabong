@@ -69,7 +69,7 @@ public class MiniMaxAB {
 	
 	public double miniMaxABMove(int l, Square[][] b){
 		int rooC = checkRooCount() ;
-		rooC -= 8 ; // because of 8 lake pieces/squares being occupied 
+		rooC -= 8 ; // because of 8 being occupied by default
 		System.out.println("there are " + rooC + " roos on the field") ;
 		curren = Main.getState().getLoop().getCurrentPlayer() ;
 		//evaluation/base case
@@ -167,8 +167,8 @@ public class MiniMaxAB {
 					return bestScore ;
 				}
 			}
-			System.out.println(bestScore);
-			return bestScore;
+			System.out.println(bestScore + " last return ! ! 1 1 1 1 1 1 ");
+			return bestScore; //appears to never be used when checking print statements
 		}
 		
 			
