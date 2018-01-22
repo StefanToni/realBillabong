@@ -79,14 +79,19 @@ public class MiniMaxAB {
 				int x = curren.getKangaroos().get(i).getPosition().getxLoc() ;
 				int y = curren.getKangaroos().get(i).getPosition().getyLoc() ;
 				double rooScore = diff.getWeight(x, y) ;
-				if(curren.getKangaroos().get(i).lapCounter > 2){
-					rooScore = rooScore + 2000000.0 ;
+				if(curren.getKangaroos().get(i).lapCounter > 0){
+					rooScore = rooScore + 1000000.0 ;
 					System.out.println("score increased due to lapcounter > 2");
 				}
-				else if(curren.getKangaroos().get(i).lapCounter > 1){
+				if(curren.getKangaroos().get(i).lapCounter > 1){
 					rooScore = rooScore + 1000000.0 ;
 					System.out.println("score increased due to lapcounter > 1");
 				}
+				if(curren.getKangaroos().get(i).lapCounter > 2){
+					rooScore = rooScore + 1000000.0 ;
+					System.out.println("score increased due to lapcounter > 1");
+				}
+				
 				score = score + rooScore ;
 			}
 			System.out.println("score is : " + score);
@@ -119,7 +124,7 @@ public class MiniMaxAB {
 				}
 			}
 			//for all moves perform recursive minimax
-			System.out.println(possibleMoves.size() + " possible moves");
+			System.out.println(possibleMoves.size() + " possible moves . . . . . .. . . . .. ");
 			for(int i = 0; i < possibleMoves.size() - 1; i++){
 				System.out.println("i is : " + i + " ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !") ;
 				curren.performMove(possibleMoves.get(i).getKangaroo(), possibleMoves.get(i).getOrigin(), possibleMoves.get(i).getDest());
