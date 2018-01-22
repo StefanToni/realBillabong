@@ -82,8 +82,12 @@ public class MiniMaxAB {
 				int y = curren.getKangaroos().get(i).getPosition().getyLoc() ;
 				double rooScore = diff.getWeight(x, y) ;
 				if(curren.getKangaroos().get(i).lapCounter > 2){
-					rooScore = rooScore + 1000000.0 ;
+					rooScore = rooScore + 2000000.0 ;
 					System.out.println("score increased due to lapcounter > 2");
+				}
+				else if(curren.getKangaroos().get(i).lapCounter > 1){
+					rooScore = rooScore + 1000000.0 ;
+					System.out.println("score increased due to lapcounter > 1");
 				}
 				score = score + rooScore ;
 			}
