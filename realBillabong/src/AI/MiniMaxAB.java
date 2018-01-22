@@ -14,7 +14,6 @@ public class MiniMaxAB {
 	private int level ;
 	private Square[][] board ;
 	private Diffuser diff ;
-	private ArrayList<Move> possibleMoves ;
 	private int tx, ty, tnx, tny = -1;
 	private double bestScore ;
 	private ArrayList<Player> players ;
@@ -27,7 +26,6 @@ public class MiniMaxAB {
 		board = bo ;
 		diff = new Diffuser() ;
 		originalGangster = og ;
-		possibleMoves = new ArrayList<Move>() ;
 		players = Main.getState().getLoop().getPlayers() ;
 		miniMaxABMove(level, board) ;
 		performMove() ;
@@ -96,7 +94,31 @@ public class MiniMaxAB {
 		}
 		else{
 			//load all possible moves
-			checkForMoves() ;
+			ArrayList<Move> possibleMoves = new ArrayList<Move>() ;
+			Kangaroo current; 
+			
+			for(int i = 0; i < 14; i++){
+				for(int j = 0 ;  j < 16; j++){
+					if(board[i][j].isOccupied() && board[i][j].getIsHere().getTeam() == curren.getColor()){
+						current = board[i][j].getIsHere() ;
+						for(int y = 0; y < 14; y++){
+							for(int x = 0; x < 16; x++){
+								if(tx!=-1 && ((tx == j && ty == i && tnx == x && tny == y)||(tx == i && ty == j && tnx == y && tny == x)) )
+								{
+									System.out.println( "Move is not added to movelist!" );
+								}
+								else if(current.checkLegal(j, i, x, y, board[y][x])){
+									Move m = new Move(current, board[i][j], board[y][x]) ;
+									possibleMoves.add(m) ;
+									//System.out.println("move " + y + " " + x + " added to list");
+								}
+							}
+						}
+					}
+					
+				}
+			}
+			//for all moves perform recursive minimax
 			System.out.println(possibleMoves.size() + " possible moves");
 			for(int i = 0; i < possibleMoves.size() - 1; i++){
 				System.out.println("i is : " + i + " ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !") ;
@@ -158,7 +180,7 @@ public class MiniMaxAB {
 		
 	
 	
-	public void checkForMoves(){
+	/*public void checkForMoves(){
 		//System.out.println("checking moves");
 		Kangaroo current; 
 		
@@ -186,7 +208,7 @@ public class MiniMaxAB {
 		
 		
 		
-	}
+	}*/
 	
 	
 	
