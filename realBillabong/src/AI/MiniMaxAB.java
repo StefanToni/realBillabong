@@ -19,6 +19,7 @@ public class MiniMaxAB {
 	private double bestScore ;
 	private ArrayList<Player> players ;
 	private Move bestMove ; //this is where the move needs to be stored to be getted after 
+	double score ;
 	
 	public MiniMaxAB(Player og, int lvl, Square[][] bo){
 		curren = og ;
@@ -70,11 +71,10 @@ public class MiniMaxAB {
 	
 	public double miniMaxABMove(int l, Square[][] b){
 		int rooC = checkRooCount() ;
-		rooC -= 8 ;
+		rooC -= 8 ; // because of 8 lake pieces/squares being occupied 
 		System.out.println("there are " + rooC + " roos on the field") ;
 		curren = Main.getState().getLoop().getCurrentPlayer() ;
 		//evaluation/base case
-		double score = 0 ;
 		if(curren.haveIWon() || l == 0){
 			System.out.println("base case");
 			for(int i = 0; i < 5; i++){
@@ -91,6 +91,7 @@ public class MiniMaxAB {
 				}
 				score = score + rooScore ;
 			}
+			System.out.println("score is : " + score);
 			return score ;
 		}
 		else{
