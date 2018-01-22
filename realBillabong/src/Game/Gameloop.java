@@ -226,8 +226,8 @@ public class Gameloop implements MouseListener{
 	
 		
 	
-		new MiniMax(getBoardAr());
-		//new MiniMaxAB(currentPlayer, 1, getBoardAr()) ;
+		//new MiniMax(getBoardAr());
+		new MiniMaxAB(currentPlayer, 1, getBoardAr()) ;
 		//new RandomAI(getBoardAr());
 		
 	}

@@ -75,14 +75,15 @@ public class MiniMaxAB {
 		curren = Main.getState().getLoop().getCurrentPlayer() ;
 		//evaluation/base case
 		double score = 0 ;
-		if(curren.haveIWon() || l == 0){
+		if(!curren.haveIWon() ){//|| l == 0){
 			System.out.println("base case");
 			for(int i = 0; i < 5; i++){
 				int x = curren.getKangaroos().get(i).getPosition().getxLoc() ;
 				int y = curren.getKangaroos().get(i).getPosition().getyLoc() ;
 				double rooScore = diff.getWeight(x, y) ;
-				if(curren.getKangaroos().get(i).lapCounter > 2){
+				if(curren.getKangaroos().get(i).lapCounter > 1){
 					rooScore = rooScore + 1000000.0 ;
+					
 					System.out.println("score increased due to lapcounter > 2");
 				}
 				score = score + rooScore ;
