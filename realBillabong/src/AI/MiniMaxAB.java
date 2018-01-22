@@ -99,6 +99,7 @@ public class MiniMaxAB {
 			checkForMoves() ;
 			System.out.println(possibleMoves.size() + " possible moves");
 			for(int i = 0; i < possibleMoves.size() - 1; i++){
+				System.out.println("i is : " + i + " ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !") ;
 				curren.performMove(possibleMoves.get(i).getKangaroo(), possibleMoves.get(i).getOrigin(), possibleMoves.get(i).getDest());
 			
 				if(curren == originalGangster){ //max player
@@ -145,7 +146,7 @@ public class MiniMaxAB {
 				}
 			}
 			System.out.println(bestScore);
-			return bestScore ;
+			return bestScore;
 		}
 		
 			
