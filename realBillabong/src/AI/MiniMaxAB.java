@@ -153,7 +153,6 @@ public class MiniMaxAB {
 						System.out.println("Move " + i + " selected");
 					}
 					System.out.println(bestScore);
-					return bestScore ;
 				}
 				else{ // min player
 					System.out.println("min player");
@@ -174,7 +173,6 @@ public class MiniMaxAB {
 						System.out.println("Move " + i + " selected");
 					}
 					System.out.println(bestScore);
-					return bestScore ;
 				}
 			}
 			System.out.println(bestScore + " last return ! ! 1 1 1 1 1 1 ");
