@@ -14,11 +14,11 @@ public class MiniMaxAB {
 	private int level ;
 	private Square[][] board ;
 	private Diffuser diff ;
-	private ArrayList<Move> possibleMoves ;
 	private int tx, ty, tnx, tny = -1;
 	private double bestScore ;
 	private ArrayList<Player> players ;
 	private Move bestMove ; //this is where the move needs to be stored to be getted after 
+	double score ;
 	
 	public MiniMaxAB(Player og, int lvl, Square[][] bo){
 		curren = og ;
@@ -26,7 +26,6 @@ public class MiniMaxAB {
 		board = bo ;
 		diff = new Diffuser() ;
 		originalGangster = og ;
-		possibleMoves = new ArrayList<Move>() ;
 		players = Main.getState().getLoop().getPlayers() ;
 		miniMaxABMove(level, board) ;
 		performMove() ;
@@ -70,31 +69,69 @@ public class MiniMaxAB {
 	
 	public double miniMaxABMove(int l, Square[][] b){
 		int rooC = checkRooCount() ;
-		rooC -= 8 ;
+		rooC -= 8 ; // because of 8 being occupied by default
 		System.out.println("there are " + rooC + " roos on the field") ;
 		curren = Main.getState().getLoop().getCurrentPlayer() ;
 		//evaluation/base case
-		double score = 0 ;
-		if(!curren.haveIWon() ){//|| l == 0){
+
+		if(curren.haveIWon() || l == 0){
+
 			System.out.println("base case");
 			for(int i = 0; i < 5; i++){
 				int x = curren.getKangaroos().get(i).getPosition().getxLoc() ;
 				int y = curren.getKangaroos().get(i).getPosition().getyLoc() ;
 				double rooScore = diff.getWeight(x, y) ;
-				if(curren.getKangaroos().get(i).lapCounter > 1){
+
+				if(curren.getKangaroos().get(i).lapCounter > 0){
+
 					rooScore = rooScore + 1000000.0 ;
 					
 					System.out.println("score increased due to lapcounter > 2");
 				}
+				if(curren.getKangaroos().get(i).lapCounter > 1){
+					rooScore = rooScore + 1000000.0 ;
+					System.out.println("score increased due to lapcounter > 1");
+				}
+				if(curren.getKangaroos().get(i).lapCounter > 2){
+					rooScore = rooScore + 1000000.0 ;
+					System.out.println("score increased due to lapcounter > 1");
+				}
+				
 				score = score + rooScore ;
 			}
+			System.out.println("score is : " + score);
 			return score ;
 		}
 		else{
 			//load all possible moves
-			checkForMoves() ;
-			System.out.println(possibleMoves.size() + " possible moves");
+			ArrayList<Move> possibleMoves = new ArrayList<Move>() ;
+			Kangaroo current; 
+			
+			for(int i = 0; i < 14; i++){
+				for(int j = 0 ;  j < 16; j++){
+					if(board[i][j].isOccupied() && board[i][j].getIsHere().getTeam() == curren.getColor()){
+						current = board[i][j].getIsHere() ;
+						for(int y = 0; y < 14; y++){
+							for(int x = 0; x < 16; x++){
+								if(tx!=-1 && ((tx == j && ty == i && tnx == x && tny == y)||(tx == i && ty == j && tnx == y && tny == x)) )
+								{
+									System.out.println( "Move is not added to movelist!" );
+								}
+								else if(current.checkLegal(j, i, x, y, board[y][x])){
+									Move m = new Move(current, board[i][j], board[y][x]) ;
+									possibleMoves.add(m) ;
+									//System.out.println("move " + y + " " + x + " added to list");
+								}
+							}
+						}
+					}
+					
+				}
+			}
+			//for all moves perform recursive minimax
+			System.out.println(possibleMoves.size() + " possible moves . . . . . .. . . . .. ");
 			for(int i = 0; i < possibleMoves.size() - 1; i++){
+				System.out.println("i is : " + i + " ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !") ;
 				curren.performMove(possibleMoves.get(i).getKangaroo(), possibleMoves.get(i).getOrigin(), possibleMoves.get(i).getDest());
 			
 				if(curren == originalGangster){ //max player
@@ -140,8 +177,8 @@ public class MiniMaxAB {
 					return bestScore ;
 				}
 			}
-			System.out.println(bestScore);
-			return bestScore ;
+			System.out.println(bestScore + " last return ! ! 1 1 1 1 1 1 ");
+			return bestScore; //appears to never be used when checking print statements
 		}
 		
 			
@@ -153,7 +190,7 @@ public class MiniMaxAB {
 		
 	
 	
-	public void checkForMoves(){
+	/*public void checkForMoves(){
 		//System.out.println("checking moves");
 		Kangaroo current; 
 		
@@ -181,7 +218,7 @@ public class MiniMaxAB {
 		
 		
 		
-	}
+	}*/
 	
 	
 	
