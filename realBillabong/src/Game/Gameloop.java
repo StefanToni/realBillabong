@@ -226,7 +226,7 @@ public class Gameloop implements MouseListener{
 		*/
 
 		new MiniMaxDepth();
-		
+
 		//new MiniMax();
 	
 		//new MiniMax(getBoardAr());
