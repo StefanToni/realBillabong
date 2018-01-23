@@ -8,11 +8,6 @@ import java.util.ListIterator;
 import AI.Diffuser;
 import AI.MiniMax;
 import AI.MiniMaxAB;
-
-import AI.MonteCarloTreeSearch;
-
-import AI.MiniMax_AlphaBeta;
-
 import AI.Move;
 import AI.RandomAI;
 import realBillabong.Main;
@@ -43,7 +38,6 @@ public class Gameloop implements MouseListener{
 	public long totalTimeTaken = 0;
 	public int totalMiniMax, errorCounter = 0; 
 	public long st, et;
-	public MonteCarloTreeSearch MCTS;
 
 	public int getTotalMoves()
 	{
@@ -230,18 +224,11 @@ public class Gameloop implements MouseListener{
 		else aiMove(curAI);
 		*/
 	
-		
+		new MiniMax();
 	
 		//new MiniMax(getBoardAr());
 
-		MCTS = new MonteCarloTreeSearch();
-
-
 		//new MiniMaxAB(currentPlayer, 2, getBoardAr()) ;
-		
-		//MiniMax_AlphaBeta mmab = new MiniMax_AlphaBeta() ;
-		//setBoardAr(mmab.getNextMove()) ;
-
 
 		//new RandomAI(getBoardAr());
 		

@@ -122,6 +122,7 @@ public class Player {
 		}
 	}
 	
+	
 	public void performMove(Kangaroo k, Square o, Square d){
 		System.out.println("Trying move");
 		try
