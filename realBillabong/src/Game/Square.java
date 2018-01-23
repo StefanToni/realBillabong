@@ -17,6 +17,16 @@ public class Square {
 		isSelected = false;
 	}
 	
+	public Square(Square s) {
+		xLoc = s.getxLoc() ;
+		yLoc = s.getyLoc() ;
+		isOccupied = s.isOccupied() ;
+		isWater = s.isWater() ;
+		if(s.getIsHere() != null){
+			isHere = new Kangaroo(s.getIsHere()) ;// TODO Auto-generated constructor stub
+		}
+	}
+
 	public boolean isWater() {
 		return isWater;
 	}

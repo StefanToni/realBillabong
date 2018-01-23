@@ -225,7 +225,7 @@ public class Gameloop implements MouseListener{
 		else aiMove(curAI);
 		*/
 
-		new MiniMaxDepth();
+		//new MiniMaxDepth();
 
 		//new MiniMax();
 	
@@ -234,7 +234,7 @@ public class Gameloop implements MouseListener{
 		//MCTS = new MonteCarloTreeSearch();
 
 
-		//new MiniMaxAB(currentPlayer, 2, getBoardAr()) ;
+		new MiniMaxAB(currentPlayer, 2, getBoardAr()) ;
 		
 		//MiniMax_AlphaBeta mmab = new MiniMax_AlphaBeta() ;
 		//setBoardAr(mmab.getNextMove()) ;

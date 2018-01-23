@@ -58,7 +58,7 @@ public MiniMaxDepth(int depthLevel, MiniMaxNode parent)
 		}
 		
 		}
-		
+		counter++;
 		tree(null, finalMovesList);
 		playerCounter = 0;
 		finalMoves(finalMovesList);

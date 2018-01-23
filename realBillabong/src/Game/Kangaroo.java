@@ -29,6 +29,13 @@ public class Kangaroo {
 		or = p ;
 	}
 	
+	public Kangaroo(Kangaroo k) {
+		// TODO Auto-generated constructor stub
+		lapCounter = k.getLapCounter() ;
+		position = k.getPosition() ;
+		team = k.getTeam() ;
+	}
+
 	public Square getPosition() {
 		return position;
 	}
@@ -96,7 +103,7 @@ public class Kangaroo {
 		this.moveable = false;
 		Main.getState().getLoop().getCurrentPlayer().incrementTurns();
 		Main.getState().getLoop().getCurrentPlayer().firstmove = true;
-		or.empty();
+		//or.empty();
 		Main.getState().getLoop().getNextPlayer();
 		//Main.getState().getLoop().aiMove();
 		
