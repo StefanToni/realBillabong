@@ -12,7 +12,7 @@ import realBillabong.Main;
 
 public class MiniMax {
 
-	private Square[][] b;
+	private Square[][] b, clone;
 	private Player currentPlayer, lastPlayer; 
 	private long timeStart, timeEnd, timeTaken;
 	private Eval eval;
@@ -24,6 +24,75 @@ public class MiniMax {
 	Move finalMove ;
 	Kangaroo lastKanga = null ;
 	
+		public MiniMax(Move move)
+		{	
+			
+				b = Main.getState().getLoop().getBoardAr();
+			if( move.getKangaroo() == null)
+			{	
+				checkForMoves();
+			}
+			
+			else
+			{
+				checkMoveMoves(move);
+			}
+		}
+	
+		private void checkMoveMoves(Move move)
+		{	
+			int x = move.getDest().getxLoc();
+			int y = move.getDest().getyLoc();
+			int ox = move.getOrigin().getxLoc();
+			int oy = move.getOrigin().getyLoc();
+
+			//clone = b.clone();
+			b[oy][ox].empty();
+			b[y][x].fill(move.getKangaroo());
+			checkMoves(move.getKangaroo(), x, y, ox, oy);
+			
+			
+			
+		}
+		
+		private void checkMoves(Kangaroo current, int xxx, int yyy, int oxxx, int oyyy)
+		{
+			
+			
+			int i = current.getPosition().getxLoc();
+			int j = current.getPosition().getyLoc();
+			
+					
+						for(int y = 0; y < 14; y++){
+							for(int x = 0; x < 16; x++){
+								if(tx!=-1 && ((tx == j && ty == i && tnx == x && tny == y)||(tnx == j && tny == i && tx == x && ty == y)) )
+								{
+									System.out.println( "Move is not added to movelist!" );
+								}
+								
+								else if(current.checkLegal(j, i, x, y, b[y][x])){
+									Move m = new Move(current, b[i][j], b[y][x]) ;
+									possibleMoves.add(m) ;
+									//System.out.println("move " + y + " " + x + " added to list");
+								}
+							}
+						
+					}
+						
+			b[yyy][xxx].empty();
+			b[oyyy][oxxx].fill(current);
+					
+				
+			
+		}
+		
+		public ArrayList<Move> returnMoves()
+		{
+	
+			return possibleMoves;
+
+		}
+		
 		public MiniMax(Square [][] b)
 		{
 			this.b = b;

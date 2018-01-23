@@ -125,6 +125,7 @@ public class MiniMaxAB {
 			System.out.println("score is : " + score);
 			return score ;
 		}
+		
 		else{
 			//load all possible moves
 			ArrayList<Move> possibleMoves = new ArrayList<Move>() ;
