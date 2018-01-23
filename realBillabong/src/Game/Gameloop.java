@@ -234,10 +234,10 @@ public class Gameloop implements MouseListener{
 	
 		//new MiniMax(getBoardAr());
 
-		MCTS = new MonteCarloTreeSearch();
+		//MCTS = new MonteCarloTreeSearch();
 
 
-		//new MiniMaxAB(currentPlayer, 2, getBoardAr()) ;
+		new MiniMaxAB(currentPlayer, 2, getBoardAr()) ;
 		
 		//MiniMax_AlphaBeta mmab = new MiniMax_AlphaBeta() ;
 		//setBoardAr(mmab.getNextMove()) ;
