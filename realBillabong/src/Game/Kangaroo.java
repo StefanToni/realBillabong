@@ -23,6 +23,12 @@ public class Kangaroo {
 		team = t ;
 	}
 	
+	public Kangaroo(int t, Square p){
+		team = t ;
+		position = p ;
+		or = p ;
+	}
+	
 	public Square getPosition() {
 		return position;
 	}

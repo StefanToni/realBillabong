@@ -13,7 +13,7 @@ public class MiniMax_AlphaBeta
 	private ArrayList<Square> AIroosNP = new ArrayList<Square>();
 	private ArrayList<Square> HumanroosOP = new ArrayList<Square>();
 	private ArrayList<Square> HumanroosNP = new ArrayList<Square>();
-	private Evaluator eval = new Evaluator();
+	private Eval eval = new Eval();
 	private Player currentPlayer = Main.getState().getLoop().getCurrentPlayer();
 	private int currentPlayerColor = Main.getState().getLoop().getCurrentPlayer().getColor();
 	private Player nextPlayer = Main.getState().getLoop().getPlayers().get(0);
@@ -24,7 +24,7 @@ public class MiniMax_AlphaBeta
 	private int rooIndex;
 	private final boolean DEBUG = false;
 	
-	private static final int DEPTH = 1;
+	private static final int DEPTH = 3;
 	int bestMoveScore;
 	Square[][] bestMove;
 	
@@ -52,12 +52,12 @@ public class MiniMax_AlphaBeta
 		 */
 		if(depth == 0){
 			if(color == colorAI) {
-				int evaluation = eval.Evaluate(successorMove, AIroos.get(rooIndex), AIroosOP.get(rooIndex), AIroosNP.get(rooIndex));
+				int evaluation = (int) eval.getScore( AIroos.get(rooIndex), AIroosOP.get(rooIndex), AIroosNP.get(rooIndex));
 				if (DEBUG) System.out.println("Evaluated to: " + evaluation);
 				return evaluation;
 			}
 			else {
-				int evaluation = eval.Evaluate(successorMove, Humanroos.get(rooIndex), HumanroosOP.get(rooIndex), HumanroosNP.get(rooIndex));
+				int evaluation = (int) eval.getScore( Humanroos.get(rooIndex), HumanroosOP.get(rooIndex), HumanroosNP.get(rooIndex));
 				if (DEBUG) System.out.println("Evaluated to: " + evaluation);
 				return evaluation;
 			}
@@ -109,11 +109,11 @@ public class MiniMax_AlphaBeta
 		
 		bestMove = allAIMoves.get(0).get(0);
 		//bestMoveScore = evaluatePosition(allAIMoves.get(0).get(0), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH, currentPlayer.getColor());
-		bestMoveScore = eval.Evaluate(null, kanga , kanga.getPosition(), AIroosNP.get(0));
+		bestMoveScore = (int) eval.getScore( kanga , kanga.getPosition(), AIroosNP.get(0));
 		for(int i = 0; i < allAIMoves.size(); i++) {
 			for(int j = 0; j < allAIMoves.get(i).size(); j++) {
 				//int p = evaluatePosition(allAIMoves.get(i).get(j), Integer.MIN_VALUE, Integer.MAX_VALUE, DEPTH, currentPlayer.getColor());
-				int p = eval.Evaluate(null, kanga, kanga.getPosition(), AIroosNP.get(j));
+				int p = (int) eval.getScore( kanga, kanga.getPosition(), AIroosNP.get(j));
 				rooIndex = j;
 				if(p >= bestMoveScore){
 					bestMove = allAIMoves.get(i).get(j);

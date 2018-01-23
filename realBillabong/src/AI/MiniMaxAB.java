@@ -19,6 +19,7 @@ public class MiniMaxAB {
 	private ArrayList<Player> players ;
 	private Move bestMove ; //this is where the move needs to be stored to be getted after 
 	double score ;
+	private int callcntr ;
 	
 	public MiniMaxAB(Player og, int lvl, Square[][] bo){
 		curren = og ;
@@ -68,6 +69,8 @@ public class MiniMaxAB {
 	}
 	
 	public double miniMaxABMove(int l, Square[][] b){
+		callcntr++;
+		System.out.println("callcntr is: " + callcntr);
 		int rooC = checkRooCount() ;
 		rooC -= 8 ; // because of 8 being occupied by default
 		System.out.println("there are " + rooC + " roos on the field") ;
@@ -77,7 +80,7 @@ public class MiniMaxAB {
 		if(curren.haveIWon() || l == 0){
 
 			System.out.println("base case");
-			for(int i = 0; i < 5; i++){
+			for(int i = 0; i < curren.getKangaroos().size(); i++){
 				int x = curren.getKangaroos().get(i).getPosition().getxLoc() ;
 				int y = curren.getKangaroos().get(i).getPosition().getyLoc() ;
 				double rooScore = diff.getWeight(x, y) ;
@@ -86,7 +89,7 @@ public class MiniMaxAB {
 
 					rooScore = rooScore + 1000000.0 ;
 					
-					System.out.println("score increased due to lapcounter > 2");
+					System.out.println("score increased due to lapcounter > 0");
 				}
 				if(curren.getKangaroos().get(i).lapCounter > 1){
 					rooScore = rooScore + 1000000.0 ;
@@ -94,10 +97,30 @@ public class MiniMaxAB {
 				}
 				if(curren.getKangaroos().get(i).lapCounter > 2){
 					rooScore = rooScore + 1000000.0 ;
-					System.out.println("score increased due to lapcounter > 1");
+					System.out.println("score increased due to lapcounter > 2");
 				}
 				
 				score = score + rooScore ;
+			}
+			if(curren.getKangaroos().size() < 5){
+				score = score + 3000000.0 ;
+				System.out.println("1 roo gone");
+			}
+			if(curren.getKangaroos().size() < 4){
+				score = score + 3000000.0 ;
+				System.out.println("2 roo gone");
+			}
+			if(curren.getKangaroos().size() < 3){
+				score = score + 3000000.0 ;
+				System.out.println("3 roo gone");
+			}
+			if(curren.getKangaroos().size() < 2){
+				score = score + 3000000.0 ;
+				System.out.println("4 roo gone");
+			}
+			if(curren.getKangaroos().size() < 1){
+				score = score + 3000000.0 ;
+				System.out.println("5 roo gone");
 			}
 			System.out.println("score is : " + score);
 			return score ;
@@ -153,6 +176,7 @@ public class MiniMaxAB {
 						System.out.println("Move " + i + " selected");
 					}
 					System.out.println(bestScore);
+					//return bestScore ;
 				}
 				else{ // min player
 					System.out.println("min player");
@@ -173,10 +197,11 @@ public class MiniMaxAB {
 						System.out.println("Move " + i + " selected");
 					}
 					System.out.println(bestScore);
+					//return bestScore ;
 				}
 			}
 			System.out.println(bestScore + " last return ! ! 1 1 1 1 1 1 ");
-			return bestScore; //appears to never be used when checking print statements
+			return bestScore; 
 		}
 		
 			

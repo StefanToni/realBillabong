@@ -8,6 +8,7 @@ import java.util.ListIterator;
 import AI.Diffuser;
 import AI.MiniMax;
 import AI.MiniMaxAB;
+import AI.MiniMax_AlphaBeta;
 import AI.Move;
 import AI.RandomAI;
 import realBillabong.Main;
@@ -228,7 +229,10 @@ public class Gameloop implements MouseListener{
 	
 		//new MiniMax(getBoardAr());
 
-		new MiniMaxAB(currentPlayer, 2, getBoardAr()) ;
+		//new MiniMaxAB(currentPlayer, 2, getBoardAr()) ;
+		
+		MiniMax_AlphaBeta mmab = new MiniMax_AlphaBeta() ;
+		mmab.getNextMove();
 
 		//new RandomAI(getBoardAr());
 		
