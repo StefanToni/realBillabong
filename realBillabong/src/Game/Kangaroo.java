@@ -189,7 +189,7 @@ public void move(Square origin, Square dest){
 		}
 		
 		else 
-		{	System.out.println("MOVE NOT LEGAL, "+ origin.getxLoc()+ " " + origin.getyLoc()+ " TRIED TO MOVE TO " + dest.getxLoc() + " X " + dest.getyLoc() + " Y ");
+		{	System.out.println("MOVE NOT LEGAL, "+ origin.getxLoc()+ "X " + origin.getyLoc()+ "Y TRIED TO MOVE TO " + dest.getxLoc() + "X " + dest.getyLoc() + "Y ");
 			Main.getState().getLoop().incrementErrors(); 
 			or.empty();
 			Main.getState().getLoop().getCurrentPlayer().firstmove = true;

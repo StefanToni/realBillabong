@@ -18,10 +18,10 @@ import realBillabong.Main;
 	    private double winScore;
 	    private ArrayList<Kangaroo> kangaroos;
 	    private int[] middleCoords = new int[2];
-	    private Square b[][];
+	    private Square[][] b;
 	    private ArrayList<Move> possibleMoves;
 	    private int playerNumber;
-	    private Player currentPlayer = Main.getState().getLoop().getCurrentPlayer();
+	    private Player currentPlayer;
 	    
 
 	   
@@ -30,21 +30,29 @@ import realBillabong.Main;
 	        this.playerNo = state.getPlayerNo();
 	        this.visitCount = state.getVisitCount();
 	        this.winScore = state.getWinScore();
-	        this.setKangaroos(Main.getState().getLoop().getPlayers().get(2).getKangaroos());
 	        possibleMoves = new ArrayList<Move>();	        
+	        this.b = board.getBoardArray();
+	        this.playerNumber = state.getPlayerNumber();
+	        System.out.println(playerNumber);
+	        System.out.println(playerNo);
+	        this.setKangaroos(Main.getState().getLoop().getPlayers().get(playerNo).getKangaroos());
+	        currentPlayer = Main.getState().getLoop().getPlayers().get(playerNo);
 	    }
 	    
 	    public MState(int playerNum) {
 	    	this.playerNumber = playerNum;
 	    	board = new Board();
+	    	this.b = board.getBoardArray();
 	    }
 	    
 	    public MState() {
-	        board = new Board();
+	        board = Main.getState().getLoop().getBoard();
+	        this.b = board.getBoardArray();
 	    }
 
 	    public MState(Board board) {
-	        this.board = Main.getState().getLoop().getBoard(); // dasibogi
+	        this.board = new Board(board); // dasibogi
+	        this.b = board.getBoardArray();
 	    }
 
 	    Board getBoard() {
@@ -53,6 +61,15 @@ import realBillabong.Main;
 
 	    void setBoard(Board board) {
 	        this.board = board;
+	        this.b = board.getBoardArray();
+	    }
+	    
+	    public int getPlayerNumber() {
+	    	return playerNumber;
+	    }
+	    
+	    public void setPlayerNumber(int playerNumber) {
+	    	this.playerNumber = playerNumber;
 	    }
 
 	    int getPlayerNo() {
@@ -61,6 +78,7 @@ import realBillabong.Main;
 
 	    void setPlayerNo(int playerNo) {
 	        this.playerNo = playerNo;
+	        currentPlayer = Main.getState().getLoop().getPlayers().get(playerNo);
 	    }
 
 	    int getOpponent() {
@@ -85,16 +103,23 @@ import realBillabong.Main;
 
 	    public List<MState> getAllPossibleStates() {
 	        List<MState> possibleStates = new ArrayList<>();
-	        Kangaroo k = Main.getState().getLoop().getCurrentPlayer().getKangaroos().get(1);
-	        //Getting just one kangaroo and all its possible moves
-	        List<Move> availablePositions = checkForMoves(k);
-	        getNextPlayer();
-	        for (int i = 0; i < availablePositions.size(); i++) {
+	        //Looking for all possible moves
+	        List<Move> availablePositions = checkForMoves();
+	        //getNextPlayer();
+	        for (int i = 0; i < availablePositions.size()-1; i++) {
 	            MState newState = new MState(this.board);
+	            newState.getNextPlayer();
 	            //Main.getState().getLoop().getCurrentPlayer().performMove(currentKangaroo, currentKangaroo.getPosition(), currentSquare);
 	            //newState.getBoard().performMove(newState.getPlayerNo(), p);
-	            newState.getBoard().performMove(k, k.getPosition(), availablePositions.get(i).getDest());
+	            Move mov = availablePositions.get(i);
+	            //while (mov.getMoveable()) {
+	            newState.getBoard().performMove(mov.getKangaroo(), mov.getOrigin(), mov.getDest());
+	            //if(Math.abs(mov.getOrigin().getxLoc()- mov.getDest().getxLoc()) == 1 || Math.abs(mov.getOrigin().getyLoc()- mov.getDest().getyLoc()) == 1){
+	            	//mov.setMoveable(false);
+	            //}
+	           //}
 	            possibleStates.add(newState);
+	           
 	        }
 	        return possibleStates;
 	    }
@@ -109,13 +134,18 @@ import realBillabong.Main;
 	    }
 
 	    void randomPlay() {
-	    	Kangaroo ranKan = Main.getState().getLoop().getCurrentPlayer().getKangaroos().get(((int) (1+ (Math.random() * 5))));
+	    	if (currentPlayer.getKangaroos().size() != 0) {
+
+	    	int randomKanga = (int)(Math.random()*((currentPlayer.getKangaroos().size()-1)));
+	    	Kangaroo ranKan = currentPlayer.getKangaroos().get(randomKanga);
 	        List<Move> availablePositions = checkForMoves(ranKan);
 	        int totalPossibilities = availablePositions.size();
 	        int selectRandom = (int) (Math.random() * ((totalPossibilities - 1) + 1));
-	        
+	        System.out.println(currentPlayer.getKangaroos().size() + " " + randomKanga + " " + totalPossibilities + " " + selectRandom);
+	        System.out.println(currentPlayer.getColor());
 	        //this.board.performMove(this.playerNo, availablePositions.get(selectRandom));
-	        Main.getState().getLoop().getCurrentPlayer().performMove(ranKan, ranKan.getPosition(), availablePositions.get(selectRandom).getDest());
+	        this.board.performMove(ranKan, ranKan.getPosition(), availablePositions.get(selectRandom).getDest());
+	    	}
 	    }
 
 	    void togglePlayer() {
@@ -132,18 +162,18 @@ import realBillabong.Main;
 		
 		public ArrayList<Move> checkForMoves(Kangaroo k){
 			//System.out.println("checking moves");
-			 
+			this.possibleMoves = new ArrayList<Move>();
 			
 			for(int i = 0; i < 14; i++){
 				for(int j = 0 ;  j < 16; j++){
-						for(int y = 0; y < 14; y++){
-							for(int x = 0; x < 16; x++){
-								if(k.checkLegal(j, i, x, y, b[y][x])){
-									Move m = new Move(k, b[i][j], b[y][x]) ;
+						//for(int y = 0; y < 14; y++){
+							//for(int x = 0; x < 16; x++){
+								if(k.checkLegal(k.getPosition().getxLoc(), k.getPosition().getyLoc(), j, i, b[i][j])){
+									Move m = new Move(k, b[k.getPosition().getyLoc()][k.getPosition().getxLoc()], b[i][j]) ;
 									possibleMoves.add(m) ;
 									//System.out.println("move " + y + " " + x + " added to list");
-								}
-							}
+								//}
+							//}
 						}
 					}
 					
@@ -152,9 +182,14 @@ import realBillabong.Main;
 			
 		}
 		
-		public void checkForMoves(){
+		public ArrayList<Move> checkForMoves(){
 			//System.out.println("checking moves");
 			Kangaroo current; 
+			
+			this.possibleMoves = new ArrayList<Move>();
+			/*if (!b[1][1].isOccupied()){
+				System.out.println("it kind of works");
+			}*/
 			
 			for(int i = 0; i < 14; i++){
 				for(int j = 0 ;  j < 16; j++){
@@ -177,7 +212,7 @@ import realBillabong.Main;
 					
 				}
 			}
-			
+			return possibleMoves;
 			
 			
 		}
@@ -387,14 +422,14 @@ import realBillabong.Main;
 	public void getNextPlayer() {
 		boolean done = false;
 		int i = 0;
-		while(i < playerNumber && done != true){
+		while(i < playerNumber && done == false){
             if (i == playerNo) {
-            	if (i == playerNumber){
-            		playerNo = 0;  
+            	if (i == playerNumber-1){
+            		setPlayerNo(0);  
             		done = true;
             	}
             	else {
-            		playerNo++;
+            		setPlayerNo(i++);
             		done = true;
             	}
             }

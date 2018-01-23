@@ -3,15 +3,22 @@ import java.util.List;
 import AI.Nodee;
 import AI.Tree;
 import Game.Board;
+import Game.Player;
+import realBillabong.Main;
 
 
 public class MonteCarloTreeSearch {
 	  private static final int WIN_SCORE = 5;
 	    private int level;
 	    private int oponent;
+	    private Board gameBoard;
+	    private Player initialPlayer;
 
 	    public MonteCarloTreeSearch() {
 	        this.level = 3;
+	        gameBoard = Main.getState().getLoop().getBoard();
+	        initialPlayer = Main.getState().getLoop().getCurrentPlayer();
+	        findNextMove(gameBoard, initialPlayer.getColor());
 	    }
 
 	    public int getLevel() {
@@ -29,18 +36,18 @@ public class MonteCarloTreeSearch {
 	    public Board findNextMove(Board board, int playerNo) {
 	        long start = System.currentTimeMillis();
 	        long end = start + 60 * getMillisForCurrentLevel();
-
+	        
 	        oponent = 1;
 	        Tree tree = new Tree();
 	        Nodee rootNode = tree.getRoot();
 	        rootNode.getState().setBoard(board);
-	        rootNode.getState().setPlayerNo(oponent);
+	        rootNode.getState().setPlayerNo(playerNo);
 
 	        while (System.currentTimeMillis() < end) {
 	            // Phase 1 - Selection
 	            Nodee promisingNode = selectPromisingNode(rootNode);
 	            // Phase 2 - Expansion
-	            if (promisingNode.getState().getBoard().checkStatus() == Board.IN_PROGRESS)
+	            if (promisingNode.getState().getBoard().checkStatusMCTS() == Board.IN_PROGRESS)
 	                expandNode(promisingNode);
 
 	            // Phase 3 - Simulation
@@ -67,11 +74,11 @@ public class MonteCarloTreeSearch {
 	    }
 
 	    private void expandNode(Nodee node) {
-	        List<State> possibleStates = node.getState().getAllPossibleStates();
+	        List<MState> possibleStates = node.getState().getAllPossibleStates();
 	        possibleStates.forEach(state -> {
 	            Nodee newNode = new Nodee(state);
 	            newNode.setParent(node);
-	            newNode.getState().setPlayerNo(node.getState().getOpponent());
+	            newNode.getState().getNextPlayer();
 	            node.getChildArray().add(newNode);
 	        });
 	    }
@@ -88,17 +95,17 @@ public class MonteCarloTreeSearch {
 
 	    private int simulateRandomPlayout(Nodee node) {
 	        Nodee tempNode = new Nodee(node);
-	        State tempState = tempNode.getState();
-	        int boardStatus = tempState.getBoard().checkStatus();
+	        MState tempState = tempNode.getState();
+	        int boardStatus = tempState.getBoard().checkStatusMCTS();
 
-	        if (boardStatus == oponent) {
+	        if (boardStatus > 0) {
 	            tempNode.getParent().getState().setWinScore(Integer.MIN_VALUE);
 	            return boardStatus;
 	        }
 	        while (boardStatus == Board.IN_PROGRESS) {
-	            tempState.togglePlayer();
+	            tempState.getNextPlayer();
 	            tempState.randomPlay();
-	            boardStatus = tempState.getBoard().checkStatus();
+	            boardStatus = tempState.getBoard().checkStatusMCTS();
 	        }
 
 	        return boardStatus;

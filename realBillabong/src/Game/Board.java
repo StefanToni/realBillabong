@@ -71,15 +71,33 @@ public class Board
 	//for each player then, then he cannot add more
 	
 	
-	public Board(Board board) {
-		int boardLength = board.getBoardValues().length;
-        this.boardValues = new int[boardLength][boardLength];
-        int[][] boardValues = board.getBoardValues();
-        int n = boardValues.length;
-        for (int i = 0; i < n; i++) {
-            int m = boardValues[i].length;
-            for (int j = 0; j < m; j++) {
-                this.boardValues[i][j] = boardValues[i][j];
+	public Board(Board oldBoard) {
+		//int boardLength = board.getBoardValues().length;
+        //this.boardValues = new int[boardLength][boardLength];
+        //int[][] boardValues = board.getBoardValues();
+        //int n = boardValues.length;
+		board = new Square[14][16] ;
+		
+		for(int i = 0 ; i < 14 ; i++){
+			for(int j = 0 ; j < 16 ; j++){
+				board[i][j] = new Square(i, j) ;
+			}
+		}
+		for (int m = 6 ; m < 8 ; m++) {
+			for (int n = 6 ; n < 10 ; n++) {
+				board[m][n].setWater(true);
+			}
+		}
+		
+		Square[][] b = oldBoard.getBoardArray();
+        for (int i = 0; i < 14; i++) {
+        	for (int j = 0; j < 16; j++) {
+        		if (b[i][j].isOccupied()) {
+        			board[i][j].setIsHere(b[i][j].getIsHere());
+        		}
+            //int m = boardValues[i].length;
+            //for (int j = 0; j < m; j++) {
+               // this.boardValues[i][j] = boardValues[i][j];
             }
         }
 	}
@@ -153,12 +171,21 @@ public class Board
 		else return -1;
 	}
 	
+	public int checkStatusMCTS() {
+		if (Main.getState().getLoop().getCurrentPlayer().haveIWon()) {
+			return Main.getState().getLoop().getCurrentPlayer().getColor();
+		}
+		else {
+			return IN_PROGRESS;
+		}
+	}
+	
 	public void performMove(Kangaroo k, Square o, Square d){
 		System.out.println("Trying move");
 		try
 		{
 			k.move(o, d);
-			//moveCounter++;
+			this.totalMoves++;
 			Main.getState().getLoop().incrementCounter();
 			System.out.println("perform move executed ");
 		} catch (Exception e)
@@ -175,6 +202,7 @@ public class Board
 		
 		//Main.getState().getComponent().repaint();
 	}
+	
 
 //	public void performMove(int playerNo, Square[][] p) {
 //		// TODO Auto-generated method stub

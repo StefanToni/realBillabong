@@ -5,17 +5,22 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import realBillabong.Main;
+
 public class Nodee {
 	 	MState state;
 	    Nodee parent;
 	    List<Nodee> childArray;
+	    int playerNumber;
 
 	    public Nodee() {
-	        this.state = new MState();
+	    	this.playerNumber = Main.getState().getLoop().getPlayers().size();
+	        this.state = new MState(playerNumber);
 	        childArray = new ArrayList<>();
 	    }
 
 	    public Nodee(MState state) {
+	        this.playerNumber = Main.getState().getLoop().getPlayers().size();
 	        this.state = state;
 	        childArray = new ArrayList<>();
 	    }
@@ -24,6 +29,7 @@ public class Nodee {
 	        this.state = state;
 	        this.parent = parent;
 	        this.childArray = childArray;
+	        this.playerNumber = Main.getState().getLoop().getPlayers().size();
 	    }
 
 	    public Nodee(Nodee nodee) {
