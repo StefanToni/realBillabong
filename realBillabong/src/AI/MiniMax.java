@@ -26,7 +26,8 @@ public class MiniMax {
 	
 		public MiniMax(Move move)
 		{	
-			
+			currentPlayer = Main.getState().getLoop().getCurrentPlayer();
+			possibleMoves = new ArrayList<Move>();
 				b = Main.getState().getLoop().getBoardAr();
 			if( move.getKangaroo() == null)
 			{	
