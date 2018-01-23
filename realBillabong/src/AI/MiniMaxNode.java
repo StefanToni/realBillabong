@@ -9,6 +9,7 @@ public class MiniMaxNode {
 	double score;
 	Move move;
 	MiniMaxNode parent;
+	int i = 0;
 	
 	public MiniMaxNode(Boolean root, Boolean leaf, ArrayList<MiniMaxNode> children, MiniMaxNode parent, Move move, double score)
 	{
@@ -18,6 +19,18 @@ public class MiniMaxNode {
 		this.parent = parent;
 		this.score = score;
 		this.move = move;
+	}
+	
+	public MiniMaxNode getNextChild()
+	{	if(i == children.size())
+		{
+			i = 0;
+		}
+		
+	i++;
+	
+		return children.get(i-1);
+		
 	}
 	
 	public double getScore()
@@ -46,11 +59,20 @@ public class MiniMaxNode {
 		}
 	}
 	
+	public Move getMove()
+	{
+		return move;
+	}
+	
 	public void newParent(MiniMaxNode parent)
 	{
 		this.parent = parent;
 	}
 	
+	public MiniMaxNode getParent()
+	{
+		return parent;
+	}
 //	public void deleteParent(MiniMaxNode parent)
 //	{
 //		for(int i = 0; i<parents.size(); i++)
