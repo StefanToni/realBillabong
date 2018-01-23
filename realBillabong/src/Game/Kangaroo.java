@@ -23,6 +23,12 @@ public class Kangaroo {
 		team = t ;
 	}
 	
+	public Kangaroo(int t, Square p){
+		team = t ;
+		position = p ;
+		or = p ;
+	}
+	
 	public Square getPosition() {
 		return position;
 	}
@@ -56,6 +62,7 @@ public class Kangaroo {
 	{
 		System.out.println("Kangaroo has finished");
 		this.getPosition().empty();
+		or.empty();
 		Main.getState().getLoop().getCurrentPlayer().incrementFinishCounter();
 		if(Main.getState().getLoop().getCurrentPlayer().haveIWon())
 		{
@@ -66,6 +73,7 @@ public class Kangaroo {
 			System.out.println("Time = "  + ((Main.getState().getLoop().et-Main.getState().getLoop().st)) + " seconds");
 			System.out.println("Congrats bruv");
 			System.out.println(Main.getState().getLoop().errorCounter + "  errors made");
+			return;
 			//System.exit(0);
 		}
 		else {
@@ -264,6 +272,8 @@ public void move(Square origin, Square dest){
 		int cy = oy;
 		int middleCounter = 0;
 		
+		if(deltaX%2==0 && deltaY%2==0)
+		{
 		
 		//if diagonal
 		if(Math.abs(deltaX) == Math.abs(deltaY))
@@ -382,7 +392,8 @@ public void move(Square origin, Square dest){
 					cx++;
 					if(boardCopy[cy][cx].isWater()) middleCounter++;
 					if(boardCopy[cy][cx].isOccupied()&& !boardCopy[cy][cx].isWater())
-					{	middleCoords[0] = cy; 
+					{	
+						middleCoords[0] = cy; 
 						middleCoords[1] = cx;
 						middleCounter++;
 					}
@@ -407,8 +418,10 @@ public void move(Square origin, Square dest){
 			
 			else return false;
 			
-		}	
+		}
 		
+		}
+		return false; 
 	}
 	
 	

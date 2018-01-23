@@ -8,7 +8,11 @@ import java.util.ListIterator;
 import AI.Diffuser;
 import AI.MiniMax;
 import AI.MiniMaxAB;
+
 import AI.MonteCarloTreeSearch;
+
+import AI.MiniMax_AlphaBeta;
+
 import AI.Move;
 import AI.RandomAI;
 import realBillabong.Main;
@@ -229,8 +233,16 @@ public class Gameloop implements MouseListener{
 		
 	
 		//new MiniMax(getBoardAr());
-		//new MiniMaxAB(currentPlayer, 1, getBoardAr()) ;
+
 		MCTS = new MonteCarloTreeSearch();
+
+
+		//new MiniMaxAB(currentPlayer, 2, getBoardAr()) ;
+		
+		//MiniMax_AlphaBeta mmab = new MiniMax_AlphaBeta() ;
+		//setBoardAr(mmab.getNextMove()) ;
+
+
 		//new RandomAI(getBoardAr());
 		
 	}

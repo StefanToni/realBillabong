@@ -33,7 +33,7 @@ public class MoveCalculator
 	
 	private ArrayList<Square[][]> getNextMoves(Kangaroo k) 
 	{
-		
+		roosNP = new ArrayList<Square>() ;
 		ArrayList<Square[][]> possible_moves = new ArrayList<Square[][]>();
 		
 		Square op = k.getPosition();
@@ -53,25 +53,25 @@ public class MoveCalculator
 					new_y = new_board[i][j].getyLoc();
 					//k.setPosition(op);
 					//new_board[i][j].empty(); // to restore the board to the original gamestate before checking the move
-					if(k.checkLegal(old_x, old_y, new_x, new_y, new_board[new_x][new_y])) {
+					if(k.checkLegal(old_x, old_y, new_x, new_y, new_board[new_y][new_x])) {
 						// to add the new move to the array of newboards
-						new_board[old_x][old_y].empty();
-						k.setPosition(new_board[new_x][new_y]);
-						new_board[new_x][new_y].fill(k);
+						new_board[old_y][old_x].empty();
+						k.setPosition(new_board[new_y][new_x]);
+						new_board[new_y][new_x].fill(k);
 						Square[][] tempB = new Square[14][16] ;
 						for(int m = 0; m < 14 ; m++){
 							for(int n = 0; n < 16 ; n++){
 								tempB[m][n] = new_board[m][n];
 							}
 						}
-						roosNP.add(tempB[new_x][new_y]);
+						roosNP.add(tempB[new_y][new_x]);
 						possible_moves.add(tempB);
 						
 						// to restore the board to the original gamestate.
 						
-						new_board[new_x][new_y].empty();
+						new_board[new_y][new_x].empty();
 						k.setPosition(op);
-						new_board[old_x][old_y].fill(k); 
+						new_board[old_y][old_x].fill(k); 
 						
 					}				
 				}
