@@ -33,7 +33,7 @@ public class MoveCalculator
 	
 	private ArrayList<Square[][]> getNextMoves(Kangaroo k) 
 	{
-		
+		roosNP = new ArrayList<Square>() ;
 		ArrayList<Square[][]> possible_moves = new ArrayList<Square[][]>();
 		
 		Square op = k.getPosition();
