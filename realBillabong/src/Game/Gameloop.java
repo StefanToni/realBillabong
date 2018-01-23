@@ -224,13 +224,24 @@ public class Gameloop implements MouseListener{
 		if(Math.abs(t.getxLoc()- destination.getxLoc()) == 1 || Math.abs(t.getyLoc()- destination.getyLoc()) == 1 );
 		else aiMove(curAI);
 		*/
+<<<<<<< HEAD
 		new MiniMaxDepth();
 		
+=======
+	
+>>>>>>> branch 'master' of https://github.com/StefanToni/realBillabong.git
 		//new MiniMax();
 	
 		//new MiniMax(getBoardAr());
 
-		//new MiniMaxAB(currentPlayer, 2, getBoardAr()) ;
+		//MCTS = new MonteCarloTreeSearch();
+
+
+		new MiniMaxAB(currentPlayer, 2, getBoardAr()) ;
+		
+		//MiniMax_AlphaBeta mmab = new MiniMax_AlphaBeta() ;
+		//setBoardAr(mmab.getNextMove()) ;
+
 
 		//new RandomAI(getBoardAr());
 		
