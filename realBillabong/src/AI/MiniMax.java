@@ -49,6 +49,7 @@ public class MiniMax {
 
 			//clone = b.clone();
 			b[oy][ox].empty();
+			b[y][x].empty();
 			b[y][x].fill(move.getKangaroo());
 			checkMoves(move.getKangaroo(), x, y, ox, oy);
 			
@@ -66,13 +67,13 @@ public class MiniMax {
 					
 						for(int y = 0; y < 14; y++){
 							for(int x = 0; x < 16; x++){
-								if(tx!=-1 && ((tx == j && ty == i && tnx == x && tny == y)||(tnx == j && tny == i && tx == x && ty == y)) )
-								{
-									System.out.println( "Move is not added to movelist!" );
-								}
+//								if(tx!=-1 && ((tx == j && ty == i && tnx == x && tny == y)||(tnx == j && tny == i && tx == x && ty == y)) )
+//								{
+//									System.out.println( "Move is not added to movelist!" );
+//								}
 								
-								else if(current.checkLegal(j, i, x, y, b[y][x])){
-									Move m = new Move(current, b[i][j], b[y][x]) ;
+								if(current.checkLegal(i, j, x, y, b[y][x])){
+									Move m = new Move(current, b[j][i], b[y][x]) ;
 									possibleMoves.add(m) ;
 									//System.out.println("move " + y + " " + x + " added to list");
 								}
@@ -81,6 +82,8 @@ public class MiniMax {
 					}
 						
 			b[yyy][xxx].empty();
+			b[oyyy][oxxx].empty();
+
 			b[oyyy][oxxx].fill(current);
 					
 				
