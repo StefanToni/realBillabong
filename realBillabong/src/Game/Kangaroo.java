@@ -103,7 +103,7 @@ public class Kangaroo {
 		this.moveable = false;
 		Main.getState().getLoop().getCurrentPlayer().incrementTurns();
 		Main.getState().getLoop().getCurrentPlayer().firstmove = true;
-		//or.empty();
+		or.empty();
 		Main.getState().getLoop().getNextPlayer();
 		//Main.getState().getLoop().aiMove();
 		

@@ -61,7 +61,7 @@ public class MiniMaxAB {
 			for(int j = 0 ;  j < 16; j++){
 				if(board[i][j].isOccupied()){
 					cntr++;
-					System.out.println("x: " + j + ", y: " + i);
+					//System.out.println("x: " + j + ", y: " + i);
 				}
 			}
 		}
@@ -79,15 +79,15 @@ public class MiniMaxAB {
 
 				rooScore = rooScore + 1000000.0 ;
 				
-				System.out.println("score increased due to lapcounter > 0");
+				//System.out.println("score increased due to lapcounter > 0");
 			}
 			if(curren.getKangaroos().get(i).lapCounter > 1){
 				rooScore = rooScore + 1000000.0 ;
-				System.out.println("score increased due to lapcounter > 1");
+				//System.out.println("score increased due to lapcounter > 1");
 			}
 			if(curren.getKangaroos().get(i).lapCounter > 2){
 				rooScore = rooScore + 1000000.0 ;
-				System.out.println("score increased due to lapcounter > 2");
+				//System.out.println("score increased due to lapcounter > 2");
 			}
 			
 			score = score + rooScore ;
@@ -193,9 +193,9 @@ public class MiniMaxAB {
 			
 			
 			//for all moves perform recursive minimax
-			System.out.println(possibleMoves.size() + " possible moves . . . . . .. . . . .. ");
+			//System.out.println(possibleMoves.size() + " possible moves . . . . . .. . . . .. ");
 			for(int i = 0; i < possibleMoves.size() - 1; i++){
-				System.out.println("i is : " + i + " ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !") ;
+				//System.out.println("i is : " + i + " ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !") ;
 				Square[][] temp = new Square[14][16] ;
 				for(int a = 0; a < 14; a++){
 					for(int c = 0; c < 16; c++){
@@ -206,7 +206,7 @@ public class MiniMaxAB {
 				performMove(possibleMoves.get(i).getKangaroo(), possibleMoves.get(i).getOrigin(), possibleMoves.get(i).getDest(), temp);
 			
 				if(curren == originalGangster){ //max player
-					System.out.println("max player");
+					//System.out.println("max player");
 					bestScore = Integer.MIN_VALUE ;
 					/*if(curren.getColor() == players.size() - 1){
 						curren = players.get(0) ;
@@ -221,13 +221,13 @@ public class MiniMaxAB {
 						Move tempMove = possibleMoves.get(i) ;
 						bestScore = score ;
 						bestMove = tempMove ;
-						System.out.println("Move " + i + " selected");
+						//System.out.println("Move " + i + " selected");
 					}
-					System.out.println(bestScore);
+					//System.out.println(bestScore);
 					//return bestScore ;					
 				}
 				else{ // min player
-					System.out.println("min player");
+					//System.out.println("min player");
 					bestScore = Integer.MAX_VALUE ;
 					/*if(curren.getColor() == players.size()){
 						curren = players.get(0) ;
@@ -242,13 +242,13 @@ public class MiniMaxAB {
 						Move tempMove = possibleMoves.get(i) ;
 						bestScore = score ;
 						bestMove = tempMove ;						
-						System.out.println("Move " + i + " selected");
+						//System.out.println("Move " + i + " selected");
 					}
-					System.out.println(bestScore);
+					//System.out.println(bestScore);
 					//return bestScore ;
 				}
 			}
-			System.out.println(bestScore + " last return ! ! 1 1 1 1 1 1 ");
+			//System.out.println(bestScore + " last return ! ! 1 1 1 1 1 1 ");
 			return bestScore; 
 		}
 		
